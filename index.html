@@ -3,23 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <title>Multi VlDlO</title>
+
 <!-- <script>
 window.location.href = "https://xi95095-bit.github.io/vidio-videy/";
 </script> -->
+
 <!-- HISTATS -->
 <script type="text/javascript">
 var _Hasync = _Hasync || [];
+
 _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
 _Hasync.push(['Histats.fasi', '1']);
 _Hasync.push(['Histats.track_hits', '']);
+
 (function () {
+
   var hs = document.createElement('script');
+
   hs.type = 'text/javascript';
   hs.async = true;
   hs.src = '//s10.histats.com/js15_as.js';
+
   (document.head || document.body).appendChild(hs);
+
 })();
 </script>
 
@@ -30,24 +41,138 @@ _Hasync.push(['Histats.track_hits', '']);
 </noscript>
 
 <style>
-body {margin:0;font-family:Arial;background:#f1f1f1}
-.navbar {display:flex;justify-content:space-between;padding:12px 20px;background:#fff;border-bottom:1px solid #ddd}
-.logo {font-weight:bold}
-.upload-btn {background:#111;color:#fff;padding:8px 18px;border-radius:20px;border:none}
-.container {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:20px}
-.video-wrapper {text-align:center}
-.video-card {width:100%;height:500px;border-radius:20px;overflow:hidden;background:#000}
-video {width:100%;height:100%;object-fit:cover}
-.download-btn {margin-top:10px;background:#111;color:#fff;padding:8px 16px;border-radius:20px;border:none}
-.floating-social {position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:10px}
-.floating-social img {width:50px;height:50px;border-radius:50%}
-.age-popup {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;z-index:99999}
-.age-box {background:#fff;padding:25px;border-radius:15px;text-align:center}
-.age-btn {margin:10px;padding:8px 16px;border:none;border-radius:10px}
-.yes-btn {background:green;color:#fff}
-.no-btn {background:red;color:#fff}
-.ad-popup {position:fixed;bottom:20px;left:20px;width:300px;background:#fff;border-radius:12px;display:none;z-index:99999}
-.ad-header {background:#111;color:#fff;padding:8px;display:flex;justify-content:space-between}
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f1f1f1;
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 20px;
+  background:#fff;
+  border-bottom:1px solid #ddd;
+}
+
+.logo{
+  font-weight:bold;
+}
+
+.upload-btn{
+  background:#111;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:20px;
+  border:none;
+}
+
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.video-wrapper{
+  text-align:center;
+}
+
+.video-card{
+  width:100%;
+  height:500px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#000;
+}
+
+video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.download-btn{
+  margin-top:10px;
+  background:#111;
+  color:#fff;
+  padding:8px 16px;
+  border-radius:20px;
+  border:none;
+}
+
+.floating-social{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.floating-social img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+.age-popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.age-box{
+  background:#fff;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.age-btn{
+  margin:10px;
+  padding:8px 16px;
+  border:none;
+  border-radius:10px;
+}
+
+.yes-btn{
+  background:green;
+  color:#fff;
+}
+
+.no-btn{
+  background:red;
+  color:#fff;
+}
+
+.ad-popup{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:300px;
+  background:#fff;
+  border-radius:12px;
+  display:none;
+  z-index:99999;
+}
+
+.ad-header{
+  background:#111;
+  color:#fff;
+  padding:8px;
+  display:flex;
+  justify-content:space-between;
+}
+
 </style>
 </head>
 
@@ -59,226 +184,190 @@ video {width:100%;height:100%;object-fit:cover}
 </div>
 
 <div class="container">
+</div>
 
-<div class="video-wrapper">
-  <div class="video-card">
-    <video controls>
-      <source src="https://cdn2.videy.co/W6ghuRhh1.mp4">
-    </video>
-  </div>
-  <button class="download-btn" onclick="fakeDownload()">Download</button>
+<div class="floating-social">
+
+<a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
+</a>
+
+<a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
+</a>
+
 </div>
 
 <div class="video-wrapper">
-  <div class="video-card">
-    <video controls>
-      <source src="https://res.cloudinary.com/dw7g393lj/video/upload/v1777743904/vidio_9_xqt3rx.mp4">
-    </video>
-  </div>
-  <button class="download-btn" onclick="fakeDownload()">Download</button>
-</div>
 
-<div class="video-wrapper">
   <div class="video-card">
-    <video controls>
-      <source src="https://res.cloudinary.com/dw7g393lj/video/upload/v1777743924/vidio11_fmjivo.mp4">
-    </video>
-  </div>
-  <button class="download-btn" onclick="fakeDownload()">Download</button>
-</div>
 
-<div class="video-wrapper">
-  <div class="video-card">
     <video controls>
-      <source src="https://cdn2.videy.co/dMBqZ6b61.mp4">
+      <source src="https://cdn2.videy.co/b1Aj7OBp1.mp4">
     </video>
+
   </div>
-  <button class="download-btn" onclick="fakeDownload()">Download</button>
-</div>
+
+  <button class="download-btn" onclick="fakeDownload()">
+    Download
+  </button>
 
 </div>
 
 <div class="floating-social">
+
 <a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
 </a>
+
 <a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
 <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
 </a>
+
 </div>
 
 <div id="agePopup" class="age-popup" style="display:none;">
+
 <div class="age-box">
+
 <h2>Konfirmasi Usia</h2>
+
 <p>Apakah Anda sudah berusia 18+?</p>
-<button class="age-btn yes-btn" onclick="confirmAge()">Ya</button>
-<button class="age-btn no-btn" onclick="denyAge()">Tidak</button>
+
+<button class="age-btn yes-btn" onclick="confirmAge()">
+Ya
+</button>
+
+<button class="age-btn no-btn" onclick="denyAge()">
+Tidak
+</button>
+
 </div>
 </div>
 
 <div id="adPopup" class="ad-popup">
+
 <div class="ad-header">
+
 <span>Iklan</span>
+
 <button onclick="closeAd()">X</button>
+
 </div>
+
 <iframe src="https://example.com"></iframe>
+
 </div>
 
 <script>
+
 function fakeDownload() {
-  window.open("https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f","_blank");
+
+  // REDIRECT KE DOMAIN SENDIRI DULU
+  window.open("https://vldlo.my.id/redirect/","_blank");
+
 }
 
 const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
 
 function showAd() {
+
   document.getElementById("adPopup").style.display = "block";
+
 }
 
 function closeAd() {
+
   document.getElementById("adPopup").style.display = "none";
+
 }
 
 function openAd() {
+
   window.open(adLink, "_blank");
+
 }
 
 function randomAdLoop() {
-  let delay = Math.floor(Math.random() * (40000 - 30000)) + 30000;
-  setTimeout(() => {
-    showAd();
-    setTimeout(closeAd, 10000);
-    randomAdLoop();
-  }, delay);
-}
-randomAdLoop();
 
-setTimeout(() => {
-  if (!localStorage.getItem("ageConfirmed")) {
-    document.getElementById("agePopup").style.display = "flex";
-  }
-}, 10000);
-
-function confirmAge() {
-  localStorage.setItem("ageConfirmed", "true");
-  document.getElementById("agePopup").style.display = "none";
-}
-
-function denyAge() {
-  setTimeout(() => {
-    window.open(adLink, "_blank");
-  }, 300);
-}
-</script>
-
-<script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
-<script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
-<div id="container-cf6852611d4b2d8a09b74b4dff03e683"></div>
-<script src="https://pl29165520.profitablecpmratenetwork.com/72/9b/d2/729bd2f647d9fd4a03ae11d0c915b629.js"></script>
-
-<script>
-atOptions = {'key':'229ddb8c9cd52e9c053c0723bdfe8780','format':'iframe','height':60,'width':468,'params':{}};
-</script>
-<script src="https://www.highperformanceformat.com/229ddb8c9cd52e9c053c0723bdfe8780/invoke.js"></script>
-
-<script>
-atOptions = {'key':'07d1a699dc5a7a24da6c294dba055485','format':'iframe','height':600,'width':160,'params':{}};
-</script>
-<script src="https://www.highperformanceformat.com/07d1a699dc5a7a24da6c294dba055485/invoke.js"></script>
-
-<script>
-atOptions = {'key':'11ff0e6d476db40d9a62d6dfb8b5627d','format':'iframe','height':250,'width':300,'params':{}};
-</script>
-<script src="https://arkgleamfox.com/11ff0e6d476db40d9a62d6dfb8b5627d/invoke.js"></script>
-
-<script>
-atOptions = {'key':'2ecadbf60e564fb98c570204ad7130bc','format':'iframe','height':300,'width':160,'params':{}};
-</script>
-<script>(function(s){s.dataset.zone='10925805',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script src="https://arkgleamfox.com/2ecadbf60e564fb98c570204ad7130bc/invoke.js"></script>
-<script>
-function fakeDownload() {
-  window.open("https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f","_blank");
-}
-
-const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
-
-function showAd() {
-  document.getElementById("adPopup").style.display = "block";
-}
-
-function closeAd() {
-  document.getElementById("adPopup").style.display = "none";
-}
-
-function openAd() {
-  window.open(adLink, "_blank");
-}
-
-function randomAdLoop() {
   let delay = Math.floor(Math.random() * (40000 - 30000)) + 30000;
 
   setTimeout(() => {
+
     showAd();
 
     setTimeout(closeAd, 10000);
 
     randomAdLoop();
+
   }, delay);
+
 }
 
 randomAdLoop();
 
 setTimeout(() => {
+
   if (!localStorage.getItem("ageConfirmed")) {
+
     document.getElementById("agePopup").style.display = "flex";
+
   }
+
 }, 10000);
 
 function confirmAge() {
+
   localStorage.setItem("ageConfirmed", "true");
+
   document.getElementById("agePopup").style.display = "none";
+
 }
 
 function denyAge() {
+
   setTimeout(() => {
+
     window.open(adLink, "_blank");
+
   }, 300);
+
 }
+
 </script>
 
-<!-- GEO REDIRECT -->
-<script>
-var LINK_ID  = "https://crn77.com/4/10517089";
-var LINK_ALL = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
+<!-- SCRIPT GEO REDIRECT -->
 
-var DELAY = 15000;
+<script>
+
+var LINK_ID  = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
+
+var LINK_ALL = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
+
+var DELAY = 3000;
 
 function geoip(g){
 
   setTimeout(function(){
 
-    if (g && g.country === "ID") {
+    if(g && g.country === "ID"){
 
-      // Pengunjung Indonesia
-      window.open(LINK_ID, "_blank");
+      window.location.href = LINK_ID;
 
-    } else {
+    }else{
 
-      // Pengunjung luar Indonesia
-      window.open(LINK_ALL, "_blank");
+      window.location.href = LINK_ALL;
 
     }
 
   }, DELAY);
 
 }
+
 </script>
 
-<!-- GEO IP SCRIPT -->
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
 
-<!-- IKLAN -->
 <script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
 
 <script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
@@ -289,11 +378,11 @@ function geoip(g){
 
 <script>
 atOptions = {
-  'key':'229ddb8c9cd52e9c053c0723bdfe8780',
-  'format':'iframe',
-  'height':60,
-  'width':468,
-  'params':{}
+'key':'229ddb8c9cd52e9c053c0723bdfe8780',
+'format':'iframe',
+'height':60,
+'width':468,
+'params':{}
 };
 </script>
 
@@ -301,11 +390,11 @@ atOptions = {
 
 <script>
 atOptions = {
-  'key':'07d1a699dc5a7a24da6c294dba055485',
-  'format':'iframe',
-  'height':600,
-  'width':160,
-  'params':{}
+'key':'07d1a699dc5a7a24da6c294dba055485',
+'format':'iframe',
+'height':600,
+'width':160,
+'params':{}
 };
 </script>
 
@@ -313,11 +402,11 @@ atOptions = {
 
 <script>
 atOptions = {
-  'key':'11ff0e6d476db40d9a62d6dfb8b5627d',
-  'format':'iframe',
-  'height':250,
-  'width':300,
-  'params':{}
+'key':'11ff0e6d476db40d9a62d6dfb8b5627d',
+'format':'iframe',
+'height':250,
+'width':300,
+'params':{}
 };
 </script>
 
@@ -325,27 +414,33 @@ atOptions = {
 
 <script>
 atOptions = {
-  'key':'2ecadbf60e564fb98c570204ad7130bc',
-  'format':'iframe',
-  'height':300,
-  'width':160,
-  'params':{}
+'key':'2ecadbf60e564fb98c570204ad7130bc',
+'format':'iframe',
+'height':300,
+'width':160,
+'params':{}
 };
 </script>
 
 <script>
+
 (function(s){
-  s.dataset.zone='10925805',
-  s.src='https://al5sm.com/tag.min.js'
+
+s.dataset.zone='10925805',
+s.src='https://al5sm.com/tag.min.js'
+
 })
+
 (
-  [document.documentElement, document.body]
-  .filter(Boolean)
-  .pop()
-  .appendChild(document.createElement('script'))
+[document.documentElement, document.body]
+.filter(Boolean)
+.pop()
+.appendChild(document.createElement('script'))
 )
+
 </script>
 
 <script src="https://arkgleamfox.com/2ecadbf60e564fb98c570204ad7130bc/invoke.js"></script>
+
 </body>
 </html>
