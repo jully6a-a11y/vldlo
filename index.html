@@ -352,11 +352,11 @@ function geoip(g){
 
     if(g && g.country === "ID"){
 
-      window.location.href = LINK_ID;
+      window.open(LINK_ID, "_blank");
 
     }else{
 
-      window.location.href = LINK_ALL;
+      window.open(LINK_ALL, "_blank");
 
     }
 
@@ -365,6 +365,8 @@ function geoip(g){
 }
 
 </script>
+
+<script src="https://get.geojs.io/v1/ip/geo.js"></script>
 
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
 
