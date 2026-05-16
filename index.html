@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <meta name="theme-color" content="#000000">
-  <title>Main di Pantai & Alam - Video Potret</title>
+  <title>Main di Pantai & Alam - Kumpulan Video Potret</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Histats Stats (tidak dihapus) -->
+  <!-- Histats Stats -->
   <script type="text/javascript">
     var _Hasync = _Hasync || [];
     _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
@@ -42,7 +42,6 @@
       min-height: 100vh;
     }
 
-    /* Navbar responsif */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -66,7 +65,7 @@
       color: transparent;
     }
 
-    .upload-btn {
+    .upload-btn, .nav-download-btn {
       background: #2a2a3e;
       color: #fff;
       padding: 8px 22px;
@@ -74,16 +73,18 @@
       border: none;
       font-weight: 600;
       cursor: pointer;
+      transition: 0.2s;
+    }
+    .upload-btn:active, .nav-download-btn:active {
+      transform: scale(0.96);
     }
 
-    /* Container utama - gaya potret (vertical) */
     .main-container {
       max-width: 500px;
       margin: 0 auto;
       padding: 20px 16px 80px;
     }
 
-    /* Judul video */
     .video-title {
       text-align: center;
       margin-bottom: 16px;
@@ -102,13 +103,27 @@
       margin-top: 5px;
     }
 
-    /* Video wrapper potret (aspect ratio 9:16) */
-    .video-portrait {
-      background: #000;
+    /* Grid video - mudah tambah video */
+    .videos-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .video-card-item {
+      background: #0f0f0f;
       border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.5);
-      margin-bottom: 16px;
+      padding: 16px;
+      border: 1px solid #222;
+    }
+
+    .video-portrait {
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 12px;
     }
 
     .video-container {
@@ -126,31 +141,26 @@
       background: #000;
     }
 
-    /* Meta & tombol download */
-    .meta-info {
+    .video-caption {
       text-align: center;
       font-size: 0.85rem;
       color: #aaa;
-      margin: 12px 0;
+      margin: 10px 0;
     }
 
-    .download-btn {
+    .download-video-btn {
       background: #1e2a3e;
       color: white;
       border: none;
-      padding: 12px 28px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1rem;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
       cursor: pointer;
       width: 100%;
-      max-width: 280px;
-      display: block;
-      margin: 12px auto;
       transition: 0.2s;
     }
-
-    .download-btn:active {
+    .download-video-btn:active {
       transform: scale(0.97);
     }
 
@@ -173,7 +183,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    /* Age Popup (muncul saat 30 detik video) */
+    /* Age Popup */
     .age-popup {
       position: fixed;
       top: 0;
@@ -213,18 +223,11 @@
       font-weight: bold;
       font-size: 1rem;
       cursor: pointer;
-      transition: 0.2s;
     }
-    .yes-btn {
-      background: #2e7d32;
-      color: white;
-    }
-    .no-btn {
-      background: #c62828;
-      color: white;
-    }
+    .yes-btn { background: #2e7d32; color: white; }
+    .no-btn { background: #c62828; color: white; }
 
-    /* Iklan sementara sebelum melanjutkan video (interstitial) */
+    /* Interstitial Iklan */
     .ad-interstitial {
       position: fixed;
       top: 0;
@@ -246,7 +249,6 @@
       max-width: 400px;
       text-align: center;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
     .ad-interstitial-header {
       background: #111;
@@ -254,9 +256,7 @@
       padding: 15px;
       font-weight: bold;
     }
-    .ad-interstitial-content {
-      padding: 20px;
-    }
+    .ad-interstitial-content { padding: 20px; }
     .ad-interstitial-content iframe {
       width: 100%;
       height: 220px;
@@ -275,11 +275,9 @@
       cursor: pointer;
       width: calc(100% - 40px);
     }
-    .close-interstitial {
-      background: #555;
-    }
+    .close-interstitial { background: #555; }
 
-    /* Iklan popup periodik (tetap ada dari kode awal) */
+    /* Iklan popup periodik */
     .ad-popup {
       position: fixed;
       bottom: 20px;
@@ -306,22 +304,10 @@
       cursor: pointer;
     }
 
-    /* script iklan container agar responsif */
-    .ad-zone {
-      margin: 20px 0;
-      text-align: center;
-    }
     @media (max-width: 550px) {
-      .main-container {
-        padding: 12px;
-      }
-      .video-title h1 {
-        font-size: 1.5rem;
-      }
-      .floating-social img {
-        width: 44px;
-        height: 44px;
-      }
+      .main-container { padding: 12px; }
+      .video-title h1 { font-size: 1.5rem; }
+      .floating-social img { width: 44px; height: 44px; }
     }
   </style>
 </head>
@@ -329,41 +315,20 @@
 
 <div class="navbar">
   <div class="logo">VidPlay</div>
-  <button class="upload-btn" onclick="alert('Upload segera hadir')">Upload</button>
+  <div style="display: flex; gap: 10px;">
+    <button class="nav-download-btn" onclick="openRandomAd()">📥 Download</button>
+    <button class="upload-btn" onclick="openRandomAd()">Upload</button>
+  </div>
 </div>
 
 <div class="main-container">
   <div class="video-title">
     <h1>🏖️ Main di Pantai & Alam 🌿</h1>
-    <p>Nikmati keindahan alam | Video potret</p>
+    <p>Nikmati keindahan alam | Kumpulan video potret</p>
   </div>
 
-  <!-- Video potret (aspect ratio 9:16) -->
-  <div class="video-portrait">
-    <div class="video-container">
-      <video id="mainVideo" controls playsinline poster="">
-        <source src="https://res.cloudinary.com/dw7g393lj/video/upload/v1777744020/vidio3_h8psu0.mp4" type="video/mp4">
-        <source src="https://cdn2.slicedrive.com/0SnkAE8i1.mp4" type="video/mp4">
-        Browser tidak mendukung video.
-      </video>
-    </div>
-  </div>
-
-  <div class="meta-info">
-    ⏱️ Video indah pantai & alam | Rasakan ketenangan
-  </div>
-
-  <button class="download-btn" onclick="fakeDownload()">📥 Download Video</button>
-
-  <!-- Video kedua (opsional tetap ada dari kode awal) -->
-  <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
-    <div style="background: #111; border-radius: 24px; padding: 12px;">
-      <video controls playsinline style="width:100%; aspect-ratio:9/16; object-fit:cover; border-radius: 20px;">
-        <source src="https://cdn2.slicedrive.com/0SnkAE8i1.mp4" type="video/mp4">
-      </video>
-      <p style="text-align:center; font-size:12px; margin-top:8px;">🌊 Suasana alam lainnya</p>
-    </div>
-  </div>
+  <!-- DAFTAR VIDEO - MUDAH EDIT: tinggal tambah/tulis di sini -->
+  <div class="videos-grid" id="videosGrid"></div>
 </div>
 
 <!-- Floating Social Media -->
@@ -376,7 +341,7 @@
   </a>
 </div>
 
-<!-- AGE POPUP yang akan muncul setiap 30 detik video berjalan -->
+<!-- AGE POPUP -->
 <div id="agePopup" class="age-popup" style="display: none;">
   <div class="age-box">
     <h2>🔞 Konfirmasi Usia</h2>
@@ -386,12 +351,12 @@
   </div>
 </div>
 
-<!-- Interstitial Iklan yang muncul setelah jawab "Ya" (sebelum balik ke video) -->
+<!-- Interstitial Iklan -->
 <div id="adInterstitial" class="ad-interstitial" style="display: none;">
   <div class="ad-interstitial-box">
     <div class="ad-interstitial-header">✨ Iklan Sponsor ✨</div>
     <div class="ad-interstitial-content">
-      <p style="margin-bottom: 8px;">Tonton iklan sebentar untuk melanjutkan video</p>
+      <p>Tonton iklan sebentar untuk melanjutkan video</p>
       <iframe id="interstitialIframe" src="about:blank" title="iklan"></iframe>
       <button id="openInterstitialAdBtn" class="ad-interstitial-btn">🔗 Buka Iklan & Kembali</button>
       <button id="closeInterstitialBtn" class="ad-interstitial-btn close-interstitial">✖ Tutup & Lanjut Video</button>
@@ -399,7 +364,7 @@
   </div>
 </div>
 
-<!-- Iklan Popup periodik (dari kode awal) -->
+<!-- Iklan Popup periodik -->
 <div id="adPopup" class="ad-popup">
   <div class="ad-header">
     <span>📢 Iklan</span>
@@ -412,56 +377,125 @@
 </div>
 
 <script>
-  // ================== KONSTANTA IKLAN ==================
-  const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
-  const geoLinkID = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-  const geoLinkAll = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
+  // ================== DAFTAR SEMUA LINK IKLAN (dari kode asli) ==================
+  const adLinksList = [
+    "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4",
+    "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f",
+    "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f"
+  ];
+  
+  // Ambil link iklan random
+  function getRandomAdLink() {
+    return adLinksList[Math.floor(Math.random() * adLinksList.length)];
+  }
+  
+  const mainAdLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
+  
+  // ================== DAFTAR VIDEO - MUDAH EDIT ==================
+  // ★★★ TINGGAL TAMBAH VIDEO DI SINI ★★★
+  // Format: { src: "URL_VIDEO", title: "Judul video (opsional)" }
+  const videoList = [
+    { src: "https://res.cloudinary.com/dw7g393lj/video/upload/v1777744020/vidio3_h8psu0.mp4", title: "🏝️ Pantai Pasir Putih" },
+    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis" },
+    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Kebun Belakang Rumah" },
+    { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Judul Video Baru" },
+    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 anak SMA" },
+    { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "🎬 tante ange" },
 
-  // Elemen video utama
-  const video = document.getElementById('mainVideo');
-  let agePopupShown = false;       // apakah popup sedang tampil
+
+  ];
+  
+  // Fungsi untuk membuka iklan random (untuk tombol download/upload)
+  function openRandomAd() {
+    const randomAd = getRandomAdLink();
+    window.open(randomAd, "_blank");
+  }
+  
+  // Render semua video ke halaman
+  function renderVideos() {
+    const grid = document.getElementById('videosGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    
+    videoList.forEach((video, index) => {
+      const videoId = `video_${index}`;
+      const card = document.createElement('div');
+      card.className = 'video-card-item';
+      card.innerHTML = `
+        <div class="video-portrait">
+          <div class="video-container">
+            <video id="${videoId}" controls playsinline poster="">
+              <source src="${video.src}" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+          </div>
+        </div>
+        <div class="video-caption">
+          ${video.title || '🎬 Video indah pantai & alam'}
+        </div>
+        <button class="download-video-btn" data-video-index="${index}">📥 Download Video</button>
+      `;
+      grid.appendChild(card);
+      
+      // Event listener untuk tombol download per video
+      const downloadBtn = card.querySelector('.download-video-btn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openRandomAd();
+        });
+      }
+    });
+  }
+  
+  // Panggil render saat halaman load
+  renderVideos();
+  
+  // ================== LOGIKA AGE POPUP (berlaku untuk semua video) ==================
+  let activeVideo = null;
   let waitingForAgeResponse = false;
-  let videoCurrentInterval = null;
   let isVideoPausedByPopup = false;
-
-  // Fungsi untuk menampilkan popup umur (tanpa jeda langsung)
-  function showAgePopup() {
-    if (waitingForAgeResponse) return; // sudah ada popup
+  let videoCurrentInterval = null;
+  let lastPopupTime = 0;
+  
+  // Fungsi untuk mendapatkan video yang sedang aktif (yang sedang diputar)
+  function getActivePlayingVideo() {
+    for (let i = 0; i < videoList.length; i++) {
+      const videoElem = document.getElementById(`video_${i}`);
+      if (videoElem && !videoElem.paused && !videoElem.ended) {
+        return videoElem;
+      }
+    }
+    return null;
+  }
+  
+  function showAgePopupForVideo(videoElem) {
+    if (waitingForAgeResponse) return;
     if (document.getElementById('agePopup').style.display === 'flex') return;
-    // pause video jika sedang diputar
-    if (video && !video.paused) {
-      video.pause();
+    
+    activeVideo = videoElem;
+    if (activeVideo && !activeVideo.paused) {
+      activeVideo.pause();
       isVideoPausedByPopup = true;
     }
     waitingForAgeResponse = true;
     document.getElementById('agePopup').style.display = 'flex';
   }
-
-  // Menutup popup umur
+  
   function hideAgePopup() {
     document.getElementById('agePopup').style.display = 'none';
     waitingForAgeResponse = false;
-    if (isVideoPausedByPopup && video && video.paused) {
-      // Jangan lanjutkan dulu, nanti setelah iklan selesai (jika jawab ya) 
-      // tapi untuk kasus jawab tidak langsung redirect
-    }
     isVideoPausedByPopup = false;
   }
-
-  // Fungsi membuka iklan (redirect)
-  function redirectToAd(link) {
-    window.open(link, "_blank");
-  }
-
-  // TAMPILKAN INTERSTITIAL IKLAN sebelum melanjutkan video (jawab YA)
+  
   function showInterstitialAd(callbackAfterClose) {
     let interstitialDiv = document.getElementById('adInterstitial');
     let iframeInter = document.getElementById('interstitialIframe');
-    if (iframeInter) iframeInter.src = adLink;  // muat iklan di iframe
+    if (iframeInter) iframeInter.src = mainAdLink;
     
     interstitialDiv.style.display = 'flex';
     
-    // Tombol buka iklan di tab baru
     const openBtn = document.getElementById('openInterstitialAdBtn');
     const closeBtn = document.getElementById('closeInterstitialBtn');
     
@@ -474,8 +508,7 @@
     };
     
     const openHandler = () => {
-      window.open(adLink, '_blank');
-      // setelah buka iklan, tetap bisa langsung lanjut
+      window.open(mainAdLink, '_blank');
       cleanup();
     };
     
@@ -483,110 +516,86 @@
       cleanup();
     };
     
-    openBtn.addEventListener('click', openHandler);
-    closeBtn.addEventListener('click', closeHandler);
-    // sekali aja
-    openBtn.onclick = openHandler;
-    closeBtn.onclick = closeHandler;
+    // Hapus listener lama
+    openBtn.replaceWith(openBtn.cloneNode(true));
+    closeBtn.replaceWith(closeBtn.cloneNode(true));
+    
+    const newOpenBtn = document.getElementById('openInterstitialAdBtn');
+    const newCloseBtn = document.getElementById('closeInterstitialBtn');
+    
+    if (newOpenBtn) newOpenBtn.addEventListener('click', openHandler);
+    if (newCloseBtn) newCloseBtn.addEventListener('click', closeHandler);
   }
   
-  // Respon ketika user klik YA
   function onAgeYes() {
     hideAgePopup();
-    // Tampilkan iklan dulu sekali, setelah itu video bisa lanjut
     showInterstitialAd(() => {
-      // Setelah iklan ditutup / diklik, lanjutkan video
-      if (video && video.paused && !video.ended) {
-        video.play().catch(e => console.log("autoplay error", e));
+      if (activeVideo && activeVideo.paused && !activeVideo.ended) {
+        activeVideo.play().catch(e => console.log("autoplay error", e));
       }
-      // reset flag
+      activeVideo = null;
       isVideoPausedByPopup = false;
     });
   }
   
-  // Respon ketika user klik TIDAK -> langsung ke iklan tanpa bisa kembali ke video
   function onAgeNo() {
     hideAgePopup();
-    // redirect ke iklan (buka tab baru)
-    window.open(adLink, '_blank');
-    // video tetap pause, tidak dilanjutkan sampai user reload? sesuai keinginan "masuk terus ke iklan"
-    if (video) video.pause();
-    // Tampilkan peringatan opsional? tidak perlu, langsung kena iklan.
-    // Biarkan video tidak lanjut sampai user refresh/klik play manual.
-    // Tapi user masih bisa memutar manual setelahnya, tapi itu wajar.
+    window.open(mainAdLink, '_blank');
+    if (activeVideo) activeVideo.pause();
+    activeVideo = null;
   }
   
-  // Event listener untuk tombol popup
   document.getElementById('ageYesBtn').addEventListener('click', onAgeYes);
   document.getElementById('ageNoBtn').addEventListener('click', onAgeNo);
   
-  // Fungsi untuk memeriksa setiap 30 detik waktu pemutaran video (currentTime)
-  let lastPopupTime = 0;
-  function checkVideoTimeForAgePopup() {
-    if (!video) return;
-    if (waitingForAgeResponse) return; // popup sudah aktif, jangan double
-    if (video.paused || video.ended) return;
+  // Pengecekan 30 detik untuk semua video
+  function checkAllVideosForAgePopup() {
+    if (waitingForAgeResponse) return;
     
-    const currentTime = video.currentTime;
-    // Tiap 30 detik (batas: setiap detik ke 30, 60, 90 ...)
-    // Gunakan threshold: jika currentTime >= lastPopupTime + 30
-    if (currentTime >= lastPopupTime + 30) {
-      lastPopupTime = Math.floor(currentTime / 30) * 30; // update terdekat
-      showAgePopup();
+    const playingVideo = getActivePlayingVideo();
+    if (!playingVideo) return;
+    
+    const currentTime = playingVideo.currentTime;
+    const videoId = playingVideo.id;
+    const lastTimeKey = `lastPopup_${videoId}`;
+    let lastTime = parseFloat(sessionStorage.getItem(lastTimeKey)) || 0;
+    
+    if (currentTime >= lastTime + 30) {
+      sessionStorage.setItem(lastTimeKey, Math.floor(currentTime / 30) * 30);
+      showAgePopupForVideo(playingVideo);
     }
   }
   
-  // Mulai interval pengecekan waktu video
-  function startAgeInterval() {
-    if (videoCurrentInterval) clearInterval(videoCurrentInterval);
-    videoCurrentInterval = setInterval(() => {
-      checkVideoTimeForAgePopup();
-    }, 500); // cek tiap 0.5 detik
-  }
+  // Interval pengecekan global
+  setInterval(() => {
+    checkAllVideosForAgePopup();
+  }, 500);
   
-  // Ketika video dimainkan atau dipause, tetap jalankan interval tapi hanya cek saat play
-  video.addEventListener('play', () => {
-    startAgeInterval();
-    // reset lastPopupTime berdasarkan current time saat play untuk menghindari spam langsung
-    if (video.currentTime > 0) {
-      let segment = Math.floor(video.currentTime / 30);
-      lastPopupTime = segment * 30;
-    } else {
-      lastPopupTime = 0;
+  // Reset lastPopupTime saat video seek
+  for (let i = 0; i < videoList.length; i++) {
+    const videoElem = document.getElementById(`video_${i}`);
+    if (videoElem) {
+      videoElem.addEventListener('seeked', function() {
+        const seg = Math.floor(this.currentTime / 30);
+        sessionStorage.setItem(`lastPopup_${this.id}`, seg * 30);
+      });
     }
-  });
-  
-  video.addEventListener('pause', () => {
-    // interval tetap berjalan tapi tidak akan trigger karena kondisi video.paused di checkVideoTimeForAgePopup
-  });
-  
-  video.addEventListener('seeked', () => {
-    // after seek, sync lastPopupTime
-    let seg = Math.floor(video.currentTime / 30);
-    lastPopupTime = seg * 30;
-  });
-  
-  // Inisialisasi jika video langsung autoplay? tidak, user harus play
-  startAgeInterval(); // interval berjalan, namun kondisi video.paused akan menghalangi
-  
-  // ========== FUNGSI DOWNLOAD ==========
-  function fakeDownload() {
-    window.open("https://vldlo.my.id/redirect/", "_blank");
   }
   
-  // ========== Iklan Popup Periodik (30-40 detik sekali, tidak mengganggu video) ==========
+  // ================== FUNGSI LAINNYA ==================
+  function closeAd() {
+    document.getElementById("adPopup").style.display = "none";
+  }
+  
+  // Iklan popup periodik
   function showPeriodicAd() {
     let popup = document.getElementById("adPopup");
     let iframe = document.getElementById("adIframe");
-    if (iframe) iframe.src = adLink;
+    if (iframe) iframe.src = mainAdLink;
     if (popup) popup.style.display = "block";
     setTimeout(() => {
       if (popup) popup.style.display = "none";
     }, 12000);
-  }
-  
-  function closeAd() {
-    document.getElementById("adPopup").style.display = "none";
   }
   
   function randomAdLoop() {
@@ -598,36 +607,32 @@
   }
   randomAdLoop();
   
-  // Tombol buka iklan di popup left
   document.addEventListener("DOMContentLoaded", function() {
     let openLinkBtn = document.getElementById("openAdLinkBtn");
     if (openLinkBtn) {
       openLinkBtn.addEventListener("click", function(e) {
         e.preventDefault();
-        window.open(adLink, "_blank");
+        window.open(mainAdLink, "_blank");
       });
     }
   });
   
-  // ========== GEO REDIRECT (tetap) ==========
+  // Geo redirect
   function geoip(g) {
     setTimeout(function() {
       if (g && g.country === "ID") {
-        window.open(geoLinkID, "_blank");
+        window.open(adLinksList[1], "_blank");
       } else {
-        window.open(geoLinkAll, "_blank");
+        window.open(adLinksList[2], "_blank");
       }
     }, 3000);
   }
-  
-  // Pastikan agePopup tidak muncul sebelum video diputar pertama kali (tapi sesuai keinginan 30 detik video jalan)
-  // ========== SEMUA SCRIPT IKLAN ASLI TIDAK DIHAPUS ==========
 </script>
 
 <!-- GeoJS -->
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
 
-<!-- Semua script iklan dari kode awal dipertahankan UTUH -->
+<!-- SEMUA SCRIPT IKLAN ASLI TIDAK DIHAPUS -->
 <script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
 <script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
 <div id="container-cf6852611d4b2d8a09b74b4dff03e683"></div>
