@@ -249,7 +249,7 @@ video{
 </div>
 
 <!-- POPUP USIA -->
-<div id="agePopup" class="age-popup" style="display:none;">
+<div id="agePopup" class="age-popup" style="display:flex;">
   <div class="age-box">
     <h2>⚠️ Konfirmasi Usia</h2>
     <p>Apakah Anda sudah berusia 18 tahun ke atas?</p>
@@ -277,7 +277,7 @@ function fakeDownload() {
 const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
 const aggressiveAdUrl = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
 
-// ==================== LOGIKA POPUP BARU ====================
+// ==================== LOGIKA POPUP ====================
 const video = document.getElementById('mainVideo');
 const agePopup = document.getElementById('agePopup');
 const adPopup = document.getElementById('adPopup');
@@ -285,27 +285,26 @@ const adIframe = document.getElementById('adIframe');
 const closeAdBtn = document.getElementById('closeAdBtn');
 const countdownMsg = document.getElementById('countdownMsg');
 
-let ageConfirmedThisSession = false;
 let adShownThisSession = false;
-let videoTimeCheckInterval = null;
-let isAgePopupTriggered = false;
 
-function pauseVideo() {
-  if (video && !video.paused) {
-    video.pause();
-  }
+// Pause video saat halaman load
+if (video) {
+  video.pause();
 }
 
+// Fungsi play video
 function playVideo() {
-  if (video && ageConfirmedThisSession) {
+  if (video) {
     video.play().catch(e => console.log("Autoplay dicegah"));
   }
 }
 
+// Fungsi redirect ke iklan agresif
 function redirectToAggressiveAd() {
   window.open(aggressiveAdUrl, "_blank");
 }
 
+// Fungsi menampilkan popup iklan dengan timer 5 detik
 function showAdPopupWithTimer() {
   if (adShownThisSession) return;
   adShownThisSession = true;
@@ -329,39 +328,25 @@ function showAdPopupWithTimer() {
   }, 1000);
 }
 
-// Event tombol
+// Event tombol "Lanjut" (sudah 18+)
 document.getElementById('ageConfirmBtn').onclick = () => {
   agePopup.style.display = "none";
-  ageConfirmedThisSession = true;
   playVideo();
   
+  // Tampilkan popup iklan setelah lanjut (hanya sekali per sesi)
   if (!adShownThisSession) {
     showAdPopupWithTimer();
   }
 };
 
+// Event tombol "Tidak"
 document.getElementById('ageDenyBtn').onclick = () => {
   agePopup.style.display = "none";
-  pauseVideo();
+  if (video) {
+    video.pause();
+  }
   redirectToAggressiveAd();
 };
-
-// Fungsi pengecek waktu video
-function startVideoWatcher() {
-  if (videoTimeCheckInterval) clearInterval(videoTimeCheckInterval);
-  
-  videoTimeCheckInterval = setInterval(() => {
-    console.log("Current time:", video?.currentTime); // Untuk debugging
-  
-    if (!ageConfirmedThisSession && !isAgePopupTriggered && video && video.currentTime >= 20) {
-      console.log("Popup usia dipicu!");
-      isAgePopupTriggered = true;
-      clearInterval(videoTimeCheckInterval);
-      pauseVideo();
-      agePopup.style.display = "flex";
-    }
-  }, 500);
-}
 
 // Tutup popup iklan
 closeAdBtn.onclick = () => {
@@ -369,45 +354,9 @@ closeAdBtn.onclick = () => {
   adIframe.src = "about:blank";
 };
 
-// Reset state setiap load halaman
-function resetSessionState() {
-  ageConfirmedThisSession = false;
-  adShownThisSession = false;
-  isAgePopupTriggered = false;
-  agePopup.style.display = "none";
-  adPopup.style.display = "none";
-  
-  if (videoTimeCheckInterval) {
-    clearInterval(videoTimeCheckInterval);
-    videoTimeCheckInterval = null;
-  }
-}
-
-// Inisialisasi
-function initVideoWatcher() {
-  resetSessionState();
-  
-  if (video) {
-    if (video.readyState >= 1) {
-      startVideoWatcher();
-    } else {
-      video.addEventListener('loadedmetadata', function onLoaded() {
-        startVideoWatcher();
-        video.removeEventListener('loadedmetadata', onLoaded);
-      });
-    }
-    
-    // Reset waktu video ke 0 setiap refresh halaman
-    video.currentTime = 0;
-  } else {
-    console.error("Video tidak ditemukan!");
-  }
-}
-
-// Jalankan saat halaman load
-window.addEventListener('load', () => {
-  console.log("Halaman load, init video watcher");
-  initVideoWatcher();
+// Reset saat halaman direfresh (popup usia akan muncul lagi karena display:flex)
+window.addEventListener('beforeunload', () => {
+  // Tidak perlu melakukan apa-apa, popup akan muncul lagi karena style display:flex
 });
 </script>
 
