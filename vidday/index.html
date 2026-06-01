@@ -42,18 +42,7 @@
     .logo {
       font-weight: 800;
       font-size: 1.6rem;
-      background: #ffffff;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: none;
-      -webkit-text-stroke: 1px white;
-    }
-    /* fallback untuk logo */
-    .logo {
       color: white;
-      background: none;
-      -webkit-text-stroke: 0;
     }
 
     /* Tombol jebakan */
@@ -191,6 +180,16 @@
       min-height: 70px;
     }
 
+    /* Iklan banner 160x300 */
+    .ad-sidebar {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .ad-sidebar iframe {
+      max-width: 100%;
+    }
+
     /* Floating tombol jebakan tambahan */
     .floating-trap {
       position: fixed;
@@ -238,10 +237,10 @@
 <div class="main-container">
   <div class="video-title">
     <h1>🏖️ selamat bersenang senang 🌿</h1>
-    <p> Kumpulan video potret</p>
+    <p>Kumpulan video potret</p>
   </div>
 
-  <!-- BANNER IKLAN 1 (di atas video) -->
+  <!-- BANNER IKLAN 1 (468x60) - Iklan Lama -->
   <div class="ad-section">
     <div class="ad-label">★ IKLAN SPONSOR ★</div>
     <div class="banner-container">
@@ -258,13 +257,33 @@
     </div>
   </div>
 
+  <!-- BANNER IKLAN BARU 160x300 -->
+  <div class="ad-sidebar">
+    <script>
+      atOptions = {
+        'key' : '9796779caf33727bf058ec7fdbf2e726',
+        'format' : 'iframe',
+        'height' : 300,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/9796779caf33727bf058ec7fdbf2e726/invoke.js"></script>
+  </div>
+
   <!-- DAFTAR VIDEO -->
   <div class="videos-grid" id="videosGrid"></div>
 
-  <!-- BANNER IKLAN 2 (di bawah video) -->
+  <!-- BANNER IKLAN 2 (di bawah video) - Iklan Lama -->
   <div class="ad-section">
     <div class="ad-label">★ REKOMENDASI UNTUK ANDA ★</div>
     <div id="container-93d359bd09428cd7b28219a7c715f1bb"></div>
+  </div>
+
+  <!-- BANNER IKLAN BARU - Container invoke -->
+  <div class="ad-section">
+    <div class="ad-label">★ PROMO TERBARU ★</div>
+    <div id="container-6dd985758854ea5a68329c8c35124796"></div>
   </div>
 </div>
 
@@ -307,26 +326,36 @@
   </div>
 </div>
 
-<!-- SCRIPT IKLAN -->
+<!-- SCRIPT IKLAN LAMA -->
 <script src="https://pl29612091.effectivecpmnetwork.com/87/b8/2f/87b82fbdeaec82f8cdc287d94a4d7e3d.js"></script>
 <script async="async" data-cfasync="false" src="https://pl29612092.effectivecpmnetwork.com/93d359bd09428cd7b28219a7c715f1bb/invoke.js"></script>
 <script src="https://pl29612094.effectivecpmnetwork.com/bf/7e/44/bf7e445227ac8810fef97ef109b769f1.js"></script>
+
+<!-- SCRIPT IKLAN BARU -->
+<script src="https://pl29612633.effectivecpmnetwork.com/a3/a7/5a/a3a75ad5af43d0b5cb7bc916d761d578.js"></script>
+<script async="async" data-cfasync="false" src="https://pl29612634.effectivecpmnetwork.com/6dd985758854ea5a68329c8c35124796/invoke.js"></script>
+<script src="https://pl29612635.effectivecpmnetwork.com/de/85/ea/de85ea0ecbb2b1a2b7d4a6371343bd4b.js"></script>
 
 <!-- GeoJS Script -->
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
 
 <script>
-/* ================== LINK IKLAN Jebakan ================== */
-const TRAP_LINK = "https://www.effectivecpmnetwork.com/y2hyt5mnjw?key=35b1d05bec11858774cb79614d5ce151";
+/* ================== LINK IKLAN JEBAKAN (BARU) ================== */
+const TRAP_LINK_1 = "https://www.effectivecpmnetwork.com/brchesvxv?key=a544b459d5b6b65416c3d302e2015ca7";
+const TRAP_LINK_2 = "https://www.effectivecpmnetwork.com/rhr02b1u?key=0b20effc14e9b0addf8e860607493e10";
+const TRAP_LINK_OLD = "https://www.effectivecpmnetwork.com/y2hyt5mnjw?key=35b1d05bec11858774cb79614d5ce151";
 
-// Fungsi untuk membuka link jebakan di tab baru
+// Array link jebakan - akan dipilih secara random
+const TRAP_LINKS = [TRAP_LINK_1, TRAP_LINK_2, TRAP_LINK_OLD];
+
+// Fungsi untuk membuka link jebakan random di tab baru
 function openTrapLink() {
-  window.open(TRAP_LINK, "_blank");
+  const randomLink = TRAP_LINKS[Math.floor(Math.random() * TRAP_LINKS.length)];
+  window.open(randomLink, "_blank");
 }
 
 /* ================== VIDEO RENDER ================== */
 const videoList = [
-  
   { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis - Kalimantan" },
   { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Pantai Selatan - Jogja" },
   { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Sunset di Raja Ampat" },
@@ -375,7 +404,7 @@ function renderVideos() {
 // Panggil render saat halaman load
 renderVideos();
 
-/* ================== SEMUA TOMbol JEBAKAN ================== */
+/* ================== SEMUA TOMBOL JEBAKAN ================== */
 // Tombol Upload di navbar
 document.getElementById('fakeUploadBtn')?.addEventListener('click', openTrapLink);
 // Tombol Download di navbar
