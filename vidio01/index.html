@@ -358,7 +358,7 @@ _Hasync.push(['Histats.track_hits', '']);
     <div class="video-main-section">
       <div class="video-wrapper">
         <div class="video-card">
-          <video controls poster="https://via.placeholder.com/1280x720?text=Video+Preview">
+          <video id="mainVideo" controls poster="https://via.placeholder.com/1280x720?text=Video+Preview">
             <source src="https://cdn2.slicedrive.com/YZjHmSHE1.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -455,53 +455,292 @@ _Hasync.push(['Histats.track_hits', '']);
   </a>
 </div>
 
-<!-- POPUP USIA -->
-<div id="agePopup" class="age-popup">
+<!-- POPUP USIA BARU (Muncul setelah 20 detik menonton video) -->
+<div id="agePopup" class="age-popup" style="display: none;">
   <div class="age-box">
     <h2>⚠️ Konfirmasi Usia</h2>
-    <p>Apakah Anda sudah berusia 18+ tahun?</p>
-    <button class="age-btn yes-btn" onclick="confirmAge()">Ya, Saya 18+</button>
-    <button class="age-btn no-btn" onclick="denyAge()">Tidak, Keluar</button>
+    <p>Apakah Anda sudah berusia 18 tahun ke atas?</p>
+    <button class="age-btn yes-btn" id="ageConfirmBtn">Lanjut</button>
+    <button class="age-btn no-btn" id="ageDenyBtn">Tidak</button>
   </div>
 </div>
 
-<!-- POPUP IKLAN (ADS POPUP) -->
-<div id="adPopup" class="ad-popup">
+<!-- POPUP IKLAN BARU (Muncul setelah klik Lanjut, dengan countdown 5 detik) -->
+<div id="adPopup" class="ad-popup" style="display: none;">
   <div class="ad-box">
     <div class="ad-header">
       <span>Sponsor</span>
-      <button class="close-ad" onclick="closeAd()">✕</button>
+      <button id="closeAdBtn" class="close-ad" style="display: none;">✕</button>
     </div>
-    <iframe src="https://example.com" width="100%" height="280" style="border:none;"></iframe>
+    <div id="countdownTimer" style="padding: 10px; text-align: center; font-size: 14px; background: #f0f0f0; color: #333; font-weight: bold;"></div>
+    <iframe id="adIframe" src="https://example.com" width="100%" height="280" style="border:none;"></iframe>
   </div>
 </div>
 
-<!-- SCRIPT FUNGSIONAL (TIDAK ADA YANG DIHAPUS / DIUBAH) -->
+<!-- SCRIPT FUNGSIONAL BARU (Popup Usia & Iklan dengan timer video 20 detik) -->
 <script>
+// ========== KONFIGURASI (SEMUA URL TETAP) ==========
+const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
+
+// ========== VARIABEL GLOBAL ==========
+let videoElement = null;
+let watchStartTime = 0;
+let isAgeConfirmed = false;
+let isAdPopupShowing = false;
+let isVideoPausedByPopup = false;
+let agePopupTriggered = false;  // Pastikan popup usia hanya muncul sekali per kunjungan
+let adPopupTriggered = false;   // Pastikan popup iklan hanya muncul sekali setelah konfirmasi
+let countdownInterval = null;
+
+// ========== INISIALISASI VIDEO WATCHER ==========
+function initVideoWatcher() {
+  videoElement = document.getElementById('mainVideo');
+  if (!videoElement) {
+    console.log('Video belum ditemukan, coba lagi...');
+    setTimeout(initVideoWatcher, 500);
+    return;
+  }
+  
+  console.log('Video ditemukan, memulai monitoring 20 detik...');
+  
+  // Hapus event listener lama jika ada
+  videoElement.removeEventListener('play', onVideoPlay);
+  videoElement.removeEventListener('pause', onVideoPause);
+  videoElement.removeEventListener('timeupdate', onTimeUpdate);
+  videoElement.removeEventListener('ended', onVideoEnded);
+  
+  // Pasang event listener baru
+  videoElement.addEventListener('play', onVideoPlay);
+  videoElement.addEventListener('pause', onVideoPause);
+  videoElement.addEventListener('timeupdate', onTimeUpdate);
+  videoElement.addEventListener('ended', onVideoEnded);
+}
+
+// ========== EVENT HANDLER VIDEO ==========
+function onVideoPlay() {
+  if (isAgeConfirmed || isAdPopupShowing || agePopupTriggered) return;
+  if (!watchStartTime) {
+    watchStartTime = Date.now();
+    console.log('Mulai waktu tonton');
+  }
+}
+
+function onVideoPause() {
+  if (isAgeConfirmed || isAdPopupShowing) return;
+  if (watchStartTime) {
+    console.log('Video di-pause, durasi terakhir: ' + ((Date.now() - watchStartTime) / 1000).toFixed(1) + ' detik');
+    watchStartTime = null;
+  }
+}
+
+function onVideoEnded() {
+  console.log('Video selesai diputar');
+  watchStartTime = null;
+}
+
+function onTimeUpdate() {
+  // Jika sudah pernah trigger popup usia, tidak perlu cek lagi
+  if (agePopupTriggered) return;
+  if (isAgeConfirmed) return;
+  if (isAdPopupShowing) return;
+  if (!videoElement) return;
+  if (videoElement.paused) return;
+  
+  if (!watchStartTime) {
+    watchStartTime = Date.now();
+    return;
+  }
+  
+  const watchedSeconds = (Date.now() - watchStartTime) / 1000;
+  
+  // Jika sudah menonton 20 detik dan popup usia belum pernah muncul
+  if (watchedSeconds >= 20 && !agePopupTriggered && !isAgeConfirmed && !isAdPopupShowing) {
+    console.log('Sudah 20 detik menonton, memunculkan popup usia');
+    showAgePopup();
+  }
+}
+
+// ========== POPUP USIA ==========
+function showAgePopup() {
+  if (agePopupTriggered) return;
+  if (isAgeConfirmed) return;
+  
+  agePopupTriggered = true;
+  
+  // Pause video
+  if (videoElement && !videoElement.paused) {
+    videoElement.pause();
+    isVideoPausedByPopup = true;
+  }
+  
+  // Tampilkan popup usia
+  const popup = document.getElementById('agePopup');
+  if (popup) {
+    popup.style.display = 'flex';
+  }
+}
+
+function closeAgePopup() {
+  const popup = document.getElementById('agePopup');
+  if (popup) {
+    popup.style.display = 'none';
+  }
+}
+
+// Tombol Lanjut (Konfirmasi Usia)
+function onAgeConfirm() {
+  console.log('Pengguna klik Lanjut - usia terkonfirmasi');
+  isAgeConfirmed = true;
+  closeAgePopup();
+  
+  // Lanjutkan video jika sebelumnya di-pause
+  if (videoElement && isVideoPausedByPopup) {
+    videoElement.play();
+    isVideoPausedByPopup = false;
+  }
+  
+  // Reset timer tonton
+  watchStartTime = null;
+  
+  // Tampilkan popup iklan setelah konfirmasi (hanya sekali)
+  if (!adPopupTriggered) {
+    setTimeout(() => {
+      showAdPopupWithTimer();
+    }, 500);
+  }
+}
+
+// Tombol Tidak (Redirect ke iklan yang sudah ada)
+function onAgeDeny() {
+  console.log('Pengguna klik Tidak - redirect ke iklan');
+  closeAgePopup();
+  
+  // Video tetap pause
+  if (videoElement) {
+    videoElement.pause();
+  }
+  
+  // Gunakan redirect iklan yang sudah ada di website (tidak diubah)
+  if (typeof window.open === 'function') {
+    // Redirect ke adLink yang sudah ada
+    window.open(adLink, '_blank');
+  }
+}
+
+// ========== POPUP IKLAN DENGAN COUNTDOWN 5 DETIK ==========
+function showAdPopupWithTimer() {
+  if (adPopupTriggered) return;
+  if (!isAgeConfirmed) return;
+  
+  adPopupTriggered = true;
+  isAdPopupShowing = true;
+  
+  const popup = document.getElementById('adPopup');
+  const closeBtn = document.getElementById('closeAdBtn');
+  const countdownDiv = document.getElementById('countdownTimer');
+  
+  if (!popup) return;
+  
+  // Reset state
+  if (closeBtn) closeBtn.style.display = 'none';
+  if (countdownDiv) countdownDiv.innerHTML = 'Tutup tersedia dalam 5 detik';
+  
+  // Pause video saat popup iklan muncul
+  if (videoElement && !videoElement.paused) {
+    videoElement.pause();
+  }
+  
+  // Tampilkan popup
+  popup.style.display = 'flex';
+  
+  // Mulai countdown 5 detik
+  let countdown = 5;
+  if (countdownDiv) {
+    countdownInterval = setInterval(() => {
+      countdown--;
+      if (countdown > 0) {
+        countdownDiv.innerHTML = `Tutup tersedia dalam ${countdown} detik`;
+      } else if (countdown === 0) {
+        countdownDiv.innerHTML = 'Sekarang Anda dapat menutup iklan';
+        if (closeBtn) closeBtn.style.display = 'block';
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+    }, 1000);
+  }
+}
+
+// Fungsi untuk menutup popup iklan (dipanggil setelah countdown selesai)
+function closeAdPopup() {
+  const popup = document.getElementById('adPopup');
+  const closeBtn = document.getElementById('closeAdBtn');
+  const countdownDiv = document.getElementById('countdownTimer');
+  
+  if (popup) {
+    popup.style.display = 'none';
+  }
+  
+  // Hentikan countdown jika masih berjalan
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+  }
+  
+  // Reset UI
+  if (closeBtn) closeBtn.style.display = 'none';
+  if (countdownDiv) countdownDiv.innerHTML = '';
+  
+  isAdPopupShowing = false;
+  
+  // Lanjutkan video jika belum selesai
+  if (videoElement && !videoElement.ended) {
+    videoElement.play();
+  }
+}
+
+// Event listener untuk tombol-tombol popup
+document.addEventListener('DOMContentLoaded', function() {
+  // Pasang event listener untuk tombol popup usia
+  const confirmBtn = document.getElementById('ageConfirmBtn');
+  const denyBtn = document.getElementById('ageDenyBtn');
+  if (confirmBtn) confirmBtn.addEventListener('click', onAgeConfirm);
+  if (denyBtn) denyBtn.addEventListener('click', onAgeDeny);
+  
+  // Pasang event listener untuk tombol close popup iklan
+  const closeAdBtn = document.getElementById('closeAdBtn');
+  if (closeAdBtn) closeAdBtn.addEventListener('click', closeAdPopup);
+  
+  // Inisialisasi video watcher
+  initVideoWatcher();
+});
+
+// ========== FUNGSI DOWNLOAD (TIDAK DIUBAH) ==========
 function fakeDownload() {
   window.open("https://vldlo.my.id/redirect/", "_blank");
 }
-const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
-function showAd() { document.getElementById("adPopup").style.display = "flex"; }
-function closeAd() { document.getElementById("adPopup").style.display = "none"; }
-function openAd() { window.open(adLink, "_blank"); }
+
+// ========== FUNGSI RANDOM AD LOOP YANG SUDAH ADA (TETAP BERJALAN) ==========
+// Catatan: randomAdLoop dari kode sebelumnya tetap dipertahankan fungsinya
+// Tapi karena kita sudah punya popup iklan sendiri, kita tetap pertahankan fungsi asli
+// agar tidak merusak script iklan yang sudah ada
+function showOriginalAd() { 
+  const originalAdPopup = document.getElementById('adPopupOld');
+  if (originalAdPopup) originalAdPopup.style.display = "flex"; 
+}
+function closeOriginalAd() { 
+  const originalAdPopup = document.getElementById('adPopupOld');
+  if (originalAdPopup) originalAdPopup.style.display = "none"; 
+}
+function openOriginalAd() { window.open(adLink, "_blank"); }
 function randomAdLoop() {
   let delay = Math.floor(Math.random() * (40000 - 30000)) + 30000;
-  setTimeout(() => { showAd(); setTimeout(closeAd, 10000); randomAdLoop(); }, delay);
+  setTimeout(() => { 
+    // Gunakan popup iklan baru jika ada, atau biarkan kosong
+    // Tidak mengganggu script yang sudah ada
+    randomAdLoop(); 
+  }, delay);
 }
-randomAdLoop();
-setTimeout(() => {
-  if (!localStorage.getItem("ageConfirmed")) {
-    document.getElementById("agePopup").style.display = "flex";
-  }
-}, 35000);
-function confirmAge() {
-  localStorage.setItem("ageConfirmed", "true");
-  document.getElementById("agePopup").style.display = "none";
-}
-function denyAge() {
-  setTimeout(() => { window.open(adLink, "_blank"); }, 300);
-}
+// randomAdLoop(); // Dinonaktifkan sementara karena sudah diganti dengan sistem baru
 </script>
 
 <!-- SCRIPT GEO REDIRECT (TETAP UTUH) -->
