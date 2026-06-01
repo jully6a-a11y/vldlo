@@ -9,10 +9,6 @@
 
 <title>Multi VlDlO</title>
 
-<!-- <script>
-window.location.href = "https://xi95095-bit.github.io/vidio-videy/";
-</script> -->
-
 <!-- HISTATS -->
 <script type="text/javascript">
 var _Hasync = _Hasync || [];
@@ -229,7 +225,7 @@ video{
   <div class="video-card">
 
     <video id="mainVideo" controls>
-      <source src="https://cdn2.slicedrive.com/YZjHmSHE1.mp4">
+      <source src="https://cdn2.slicedrive.com/YZjHmSHE1.mp4" type="video/mp4">
     </video>
 
   </div>
@@ -252,7 +248,7 @@ video{
 
 </div>
 
-<!-- POPUP USIA BARU -->
+<!-- POPUP USIA -->
 <div id="agePopup" class="age-popup" style="display:none;">
   <div class="age-box">
     <h2>⚠️ Konfirmasi Usia</h2>
@@ -262,7 +258,7 @@ video{
   </div>
 </div>
 
-<!-- POPUP IKLAN BARU DENGAN TIMER -->
+<!-- POPUP IKLAN -->
 <div id="adPopup" class="ad-popup">
   <div class="ad-header">
     <span>Iklan</span>
@@ -273,16 +269,15 @@ video{
 </div>
 
 <script>
-
-// ==================== FUNGSI YANG SUDAH ADA (TIDAK DIUBAH) ====================
+// ==================== FUNGSI YANG SUDAH ADA ====================
 function fakeDownload() {
-  // REDIRECT KE DOMAIN SENDIRI DULU
   window.open("https://vldlo.my.id/redirect/","_blank");
 }
 
 const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
+const aggressiveAdUrl = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
 
-// ==================== LOGIKA POPUP USIA DAN POPUP IKLAN BARU ====================
+// ==================== LOGIKA POPUP BARU ====================
 const video = document.getElementById('mainVideo');
 const agePopup = document.getElementById('agePopup');
 const adPopup = document.getElementById('adPopup');
@@ -290,45 +285,33 @@ const adIframe = document.getElementById('adIframe');
 const closeAdBtn = document.getElementById('closeAdBtn');
 const countdownMsg = document.getElementById('countdownMsg');
 
-let ageConfirmedThisSession = false;  // Apakah sudah konfirmasi usia di sesi ini
-let adShownThisSession = false;       // Apakah popup iklan sudah ditampilkan di sesi ini
-let videoTimeCheckInterval = null;    // Interval pengecekan waktu video
-let isAgePopupTriggered = false;      // Mencegah popup usia muncul berkali-kali
+let ageConfirmedThisSession = false;
+let adShownThisSession = false;
+let videoTimeCheckInterval = null;
+let isAgePopupTriggered = false;
 
-// URL redirect agresif (menggunakan yang sudah ada di geo redirect)
-const aggressiveAdUrl = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-
-// Fungsi pause video
 function pauseVideo() {
   if (video && !video.paused) {
     video.pause();
   }
 }
 
-// Fungsi play video
 function playVideo() {
   if (video && ageConfirmedThisSession) {
-    video.play().catch(e => console.log("Autoplay dicegah browser"));
+    video.play().catch(e => console.log("Autoplay dicegah"));
   }
 }
 
-// Fungsi redirect ke iklan agresif
 function redirectToAggressiveAd() {
   window.open(aggressiveAdUrl, "_blank");
 }
 
-// Fungsi menampilkan popup iklan dengan timer 5 detik
 function showAdPopupWithTimer() {
   if (adShownThisSession) return;
   adShownThisSession = true;
   
-  // Isi iframe dengan URL iklan yang sudah ada
   adIframe.src = adLink;
-  
-  // Tampilkan popup
   adPopup.style.display = "block";
-  
-  // Sembunyikan tombol close
   closeAdBtn.style.display = "none";
   
   let secondsLeft = 5;
@@ -346,47 +329,47 @@ function showAdPopupWithTimer() {
   }, 1000);
 }
 
-// Event tombol "Lanjut" (sudah 18+)
+// Event tombol
 document.getElementById('ageConfirmBtn').onclick = () => {
   agePopup.style.display = "none";
   ageConfirmedThisSession = true;
   playVideo();
   
-  // Tampilkan popup iklan setelah lanjut (hanya sekali per sesi)
   if (!adShownThisSession) {
     showAdPopupWithTimer();
   }
 };
 
-// Event tombol "Tidak"
 document.getElementById('ageDenyBtn').onclick = () => {
   agePopup.style.display = "none";
   pauseVideo();
-  redirectToAggressiveAd(); // Redirect ke iklan agresif
+  redirectToAggressiveAd();
 };
 
-// Fungsi untuk mengecek waktu video setiap detik
+// Fungsi pengecek waktu video
 function startVideoWatcher() {
   if (videoTimeCheckInterval) clearInterval(videoTimeCheckInterval);
   
   videoTimeCheckInterval = setInterval(() => {
-    // Jika usia belum dikonfirmasi, video belum mencapai 20 detik, dan popup belum muncul
+    console.log("Current time:", video?.currentTime); // Untuk debugging
+  
     if (!ageConfirmedThisSession && !isAgePopupTriggered && video && video.currentTime >= 20) {
+      console.log("Popup usia dipicu!");
       isAgePopupTriggered = true;
-      clearInterval(videoTimeCheckInterval); // Hentikan pengecekan
-      pauseVideo();                         // Pause video
-      agePopup.style.display = "flex";      // Tampilkan popup usia
+      clearInterval(videoTimeCheckInterval);
+      pauseVideo();
+      agePopup.style.display = "flex";
     }
-  }, 500); // Cek setiap 0.5 detik untuk respons lebih cepat
+  }, 500);
 }
 
-// Tutup popup iklan (setelah tombol X muncul)
+// Tutup popup iklan
 closeAdBtn.onclick = () => {
   adPopup.style.display = "none";
   adIframe.src = "about:blank";
 };
 
-// Reset state saat halaman dimuat ulang (tanpa localStorage)
+// Reset state setiap load halaman
 function resetSessionState() {
   ageConfirmedThisSession = false;
   adShownThisSession = false;
@@ -394,41 +377,41 @@ function resetSessionState() {
   agePopup.style.display = "none";
   adPopup.style.display = "none";
   
-  // Hentikan interval lama jika ada
   if (videoTimeCheckInterval) {
     clearInterval(videoTimeCheckInterval);
     videoTimeCheckInterval = null;
   }
 }
 
-// Inisialisasi saat video siap
+// Inisialisasi
 function initVideoWatcher() {
   resetSessionState();
   
-  // Jika video sudah memiliki duration, langsung mulai watcher
-  if (video && video.readyState >= 1) {
-    startVideoWatcher();
-  } else {
-    // Tunggu video siap
-    video.addEventListener('loadedmetadata', function onLoaded() {
+  if (video) {
+    if (video.readyState >= 1) {
       startVideoWatcher();
-      video.removeEventListener('loadedmetadata', onLoaded);
-    });
+    } else {
+      video.addEventListener('loadedmetadata', function onLoaded() {
+        startVideoWatcher();
+        video.removeEventListener('loadedmetadata', onLoaded);
+      });
+    }
+    
+    // Reset waktu video ke 0 setiap refresh halaman
+    video.currentTime = 0;
+  } else {
+    console.error("Video tidak ditemukan!");
   }
 }
 
-// Jalankan inisialisasi saat halaman load
+// Jalankan saat halaman load
 window.addEventListener('load', () => {
+  console.log("Halaman load, init video watcher");
   initVideoWatcher();
-  
-  // Jika pengguna me-refresh halaman saat video sedang diputar, reset ulang
-  if (video) {
-    video.currentTime = 0; // Opsional: reset waktu video ke awal setiap refresh
-  }
 });
+</script>
 
-// ==================== SCRIPT IKLAN YANG SUDAH ADA (TIDAK DIUBAH) ====================
-// SCRIPT GEO REDIRECT
+<!-- SCRIPT GEO REDIRECT -->
 <script>
 var LINK_ID  = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
 var LINK_ALL = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
