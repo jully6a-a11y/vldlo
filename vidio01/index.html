@@ -2,14 +2,13 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <title>Multi VlDlO</title>
 
-<!-- HISTATS -->
+<!-- HISTATS (dari kode Anda) -->
 <script type="text/javascript">
 var _Hasync = _Hasync || [];
 
@@ -18,15 +17,11 @@ _Hasync.push(['Histats.fasi', '1']);
 _Hasync.push(['Histats.track_hits', '']);
 
 (function () {
-
   var hs = document.createElement('script');
-
   hs.type = 'text/javascript';
   hs.async = true;
   hs.src = '//s10.histats.com/js15_as.js';
-
   (document.head || document.body).appendChild(hs);
-
 })();
 </script>
 
@@ -37,164 +32,320 @@ _Hasync.push(['Histats.track_hits', '']);
 </noscript>
 
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f1f1f1;
-}
+  body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f1f1f1;
+    overflow-x: hidden;
+  }
 
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  padding:12px 20px;
-  background:#fff;
-  border-bottom:1px solid #ddd;
-}
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-.logo{
-  font-weight:bold;
-}
+  .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
 
-.upload-btn{
-  background:#111;
-  color:#fff;
-  padding:8px 18px;
-  border-radius:20px;
-  border:none;
-}
+  .upload-btn {
+    background: #111;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
 
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-  padding:20px;
-}
+  /* Container */
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
 
-.video-wrapper{
-  text-align:center;
-}
+  /* Video Wrapper */
+  .video-wrapper {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
 
-.video-card{
-  width:100%;
-  height:500px;
-  border-radius:20px;
-  overflow:hidden;
-  background:#000;
-}
+  .video-card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
 
-video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-.download-btn{
-  margin-top:10px;
-  background:#111;
-  color:#fff;
-  padding:8px 16px;
-  border-radius:20px;
-  border:none;
-}
+  .download-btn {
+    margin-top: 10px;
+    background: #111;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
 
-.floating-social{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
+  /* Floating Social */
+  .floating-social {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
 
-.floating-social img{
-  width:50px;
-  height:50px;
-  border-radius:50%;
-}
+  .floating-social img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
 
-.age-popup{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.7);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:99999;
-}
+  .floating-social img:hover {
+    transform: scale(1.05);
+  }
 
-.age-box{
-  background:#fff;
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
-}
+  /* ========== MODERN POPUP STYLES ========== */
+  
+  /* Overlay dengan blur effect */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
 
-.age-btn{
-  margin:10px;
-  padding:8px 16px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
+  .popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
 
-.yes-btn{
-  background:green;
-  color:#fff;
-}
+  /* Modal container */
+  .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    visibility: hidden;
+    pointer-events: none;
+  }
 
-.no-btn{
-  background:red;
-  color:#fff;
-}
+  .modal-container.active {
+    visibility: visible;
+    pointer-events: auto;
+  }
 
-.ad-popup{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  width:300px;
-  background:#fff;
-  border-radius:12px;
-  display:none;
-  z-index:99999;
-}
+  /* Modal Card - Desain modern */
+  .modal-card {
+    width: min(92vw, 460px);
+    background: linear-gradient(180deg, #0f172a, #0b1220);
+    border-radius: 24px;
+    border: 1px solid #1e293b;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transform: scale(0.96);
+    opacity: 0;
+    transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.2s ease;
+    position: relative;
+  }
 
-.ad-header{
-  background:#111;
-  color:#fff;
-  padding:8px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+  .modal-container.active .modal-card {
+    transform: scale(1);
+    opacity: 1;
+  }
 
-.ad-header span:first-child{
-  font-weight:bold;
-}
+  /* Close button (untuk iklan) */
+  .modal-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    background: #121a2a;
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 18px;
+    display: grid;
+    place-items: center;
+    transition: all 0.15s;
+    z-index: 10;
+  }
 
-#countdownMsg{
-  font-size:12px;
-  margin-left:10px;
-}
+  .modal-close:hover {
+    background: #1e293b;
+    color: #fff;
+  }
 
-#closeAdBtn{
-  background:red;
-  color:white;
-  border:none;
-  border-radius:5px;
-  padding:2px 8px;
-  cursor:pointer;
-}
+  /* Badge */
+  .modal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 8px 14px;
+    border-radius: 40px;
+    margin-bottom: 16px;
+  }
 
-.ad-popup iframe{
-  width:100%;
-  height:250px;
-  border:none;
-}
+  /* Header */
+  .modal-header h3 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #e5e7eb;
+  }
 
+  .modal-sub {
+    margin: 0 0 20px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Actions buttons */
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .modal-btn {
+    flex: 1;
+    border: none;
+    background: #1e293b;
+    color: #e5e7eb;
+    border-radius: 14px;
+    padding: 12px 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+
+  .modal-btn.primary {
+    background: #ef4444;
+    color: #fff;
+  }
+
+  .modal-btn.primary:hover {
+    background: #dc2626;
+  }
+
+  .modal-btn.secondary {
+    background: #334155;
+  }
+
+  .modal-btn.secondary:hover {
+    background: #475569;
+  }
+
+  /* Countdown text */
+  #ad-countdown {
+    display: inline-block;
+    background: #1e293b;
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  /* Ad container */
+  .ad-container {
+    margin-top: 16px;
+    border-top: 1px solid #1e293b;
+    padding-top: 16px;
+  }
+
+  .ad-container iframe {
+    width: 100%;
+    height: 250px;
+    border: none;
+    border-radius: 12px;
+    background: #0f172a;
+  }
+
+  .footer-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 0.7rem;
+    color: #5b6e8c;
+  }
+
+  .dot-green {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* Hapus floating social duplikat jika ada */
+  .floating-social:last-child {
+    display: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .video-wrapper {
+      padding: 16px;
+    }
+    .modal-card {
+      width: min(94vw, 420px);
+    }
+  }
 </style>
 </head>
 
@@ -209,158 +360,287 @@ video{
 </div>
 
 <div class="floating-social">
-
-<a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
-</a>
-
-<a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
-</a>
-
+  <a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+  </a>
+  <a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp">
+  </a>
 </div>
 
 <div class="video-wrapper">
-
   <div class="video-card">
-
     <video id="mainVideo" controls>
-      <source src="https://cdn2.slicedrive.com/YZjHmSHE1.mp4" type="video/mp4">
+      <source src="https://cdn2.videy.co/MN7hnZWL1.mp4" type="video/mp4">
     </video>
-
   </div>
-
-  <button class="download-btn" onclick="fakeDownload()">
-    Download
-  </button>
-
+  <button class="download-btn" onclick="fakeDownload()">Download</button>
 </div>
 
-<div class="floating-social">
+<!-- Floating social kedua dihapus (tidak perlu duplikat) -->
 
-<a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
-</a>
+<!-- Overlay untuk blur -->
+<div id="popupOverlay" class="popup-overlay"></div>
 
-<a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
-</a>
-
-</div>
-
-<!-- POPUP USIA -->
-<div id="agePopup" class="age-popup" style="display:flex;">
-  <div class="age-box">
-    <h2>⚠️ Konfirmasi Usia</h2>
-    <p>Apakah Anda sudah berusia 18 tahun ke atas?</p>
-    <button class="age-btn yes-btn" id="ageConfirmBtn">Lanjut</button>
-    <button class="age-btn no-btn" id="ageDenyBtn">Tidak</button>
+<!-- POPUP USIA (Modern) -->
+<div id="ageModal" class="modal-container">
+  <div class="modal-card">
+    <div class="modal-badge">
+      <span>⚠️</span> <strong>Verifikasi Usia</strong>
+    </div>
+    <div class="modal-header">
+      <h3>Konfirmasi Usia</h3>
+    </div>
+    <div class="modal-sub">Apakah Anda sudah berusia 18 tahun ke atas?</div>
+    <div class="modal-actions">
+      <button class="modal-btn secondary" id="ageNoBtn">Tidak</button>
+      <button class="modal-btn primary" id="ageYesBtn">Lanjut</button>
+    </div>
+    <div class="footer-note">
+      <span class="dot-green"></span> sesuai aturan konten dewasa
+    </div>
   </div>
 </div>
 
-<!-- POPUP IKLAN -->
-<div id="adPopup" class="ad-popup">
-  <div class="ad-header">
-    <span>Iklan</span>
-    <span id="countdownMsg"></span>
-    <button id="closeAdBtn" style="display:none;">X</button>
+<!-- POPUP IKLAN (Modern) -->
+<div id="adModal" class="modal-container">
+  <div class="modal-card">
+    <button class="modal-close" id="adCloseBtn" style="display: none;">✕</button>
+    <div class="modal-badge">
+      <span>📢</span> Sponsor
+    </div>
+    <div class="modal-header">
+      <h3>Informasi</h3>
+    </div>
+    <div class="modal-sub">
+      Mohon tunggu sebentar 
+      <span id="adCountdown"></span>
+    </div>
+    <div class="ad-container">
+      <iframe id="adIframe" src="about:blank"></iframe>
+    </div>
+    <div class="footer-note">* Iklan mendukung layanan gratis</div>
   </div>
-  <iframe id="adIframe" src="about:blank"></iframe>
 </div>
 
 <script>
-// ==================== FUNGSI YANG SUDAH ADA ====================
-function fakeDownload() {
-  window.open("https://vldlo.my.id/redirect/","_blank");
-}
-
-const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
-const aggressiveAdUrl = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-
-// ==================== LOGIKA POPUP ====================
-const video = document.getElementById('mainVideo');
-const agePopup = document.getElementById('agePopup');
-const adPopup = document.getElementById('adPopup');
-const adIframe = document.getElementById('adIframe');
-const closeAdBtn = document.getElementById('closeAdBtn');
-const countdownMsg = document.getElementById('countdownMsg');
-
-let adShownThisSession = false;
-
-// Pause video saat halaman load
-if (video) {
-  video.pause();
-}
-
-// Fungsi play video
-function playVideo() {
-  if (video) {
-    video.play().catch(e => console.log("Autoplay dicegah"));
+  // ========== SEMUA KONFIGURASI DARI KODE ASLI ANDA ==========
+  
+  // Video element
+  const video = document.getElementById('mainVideo');
+  
+  // Link iklan dari kode Anda (tetap dipertahankan)
+  const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
+  const aggressiveAdUrl = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
+  
+  // Fungsi fakeDownload (dari kode Anda)
+  function fakeDownload() {
+    window.open("https://vldlo.my.id/redirect/", "_blank");
   }
-}
-
-// Fungsi redirect ke iklan agresif
-function redirectToAggressiveAd() {
-  window.open(aggressiveAdUrl, "_blank");
-}
-
-// Fungsi menampilkan popup iklan dengan timer 5 detik
-function showAdPopupWithTimer() {
-  if (adShownThisSession) return;
-  adShownThisSession = true;
   
-  adIframe.src = adLink;
-  adPopup.style.display = "block";
-  closeAdBtn.style.display = "none";
+  // ========== SISTEM POPUP BARU (berdasarkan durasi video 20 detik) ==========
   
-  let secondsLeft = 5;
-  countdownMsg.innerText = `Tutup tersedia dalam ${secondsLeft} detik`;
+  const overlay = document.getElementById('popupOverlay');
+  const ageModal = document.getElementById('ageModal');
+  const adModal = document.getElementById('adModal');
+  const ageYesBtn = document.getElementById('ageYesBtn');
+  const ageNoBtn = document.getElementById('ageNoBtn');
+  const adCloseBtn = document.getElementById('adCloseBtn');
+  const adIframe = document.getElementById('adIframe');
+  const adCountdownSpan = document.getElementById('adCountdown');
   
-  const timer = setInterval(() => {
-    secondsLeft--;
-    if (secondsLeft > 0) {
-      countdownMsg.innerText = `Tutup tersedia dalam ${secondsLeft} detik`;
-    } else {
-      clearInterval(timer);
-      countdownMsg.innerText = "";
-      closeAdBtn.style.display = "block";
+  let agePopupTriggered = false;
+  let adPopupShown = false;
+  let countdownInterval = null;
+  let videoPausedByAge = false;
+  
+  // Fungsi untuk menampilkan popup usia
+  function showAgePopup() {
+    if (agePopupTriggered) return;
+    agePopupTriggered = true;
+    
+    // Pause video
+    if (!video.paused) {
+      video.pause();
+      videoPausedByAge = true;
     }
-  }, 1000);
-}
-
-// Event tombol "Lanjut" (sudah 18+)
-document.getElementById('ageConfirmBtn').onclick = () => {
-  agePopup.style.display = "none";
-  playVideo();
+    
+    // Tampilkan overlay dan modal
+    overlay.classList.add('active');
+    ageModal.classList.add('active');
+    
+    // Prevent scroll
+    document.body.style.overflow = 'hidden';
+  }
   
-  // Tampilkan popup iklan setelah lanjut (hanya sekali per sesi)
-  if (!adShownThisSession) {
-    showAdPopupWithTimer();
+  // Fungsi untuk menyembunyikan popup usia
+  function hideAgePopup() {
+    ageModal.classList.remove('active');
+    if (!adModal.classList.contains('active')) {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   }
-};
-
-// Event tombol "Tidak"
-document.getElementById('ageDenyBtn').onclick = () => {
-  agePopup.style.display = "none";
+  
+  // Fungsi untuk menampilkan popup iklan (dengan timer 5 detik)
+  function showAdPopup() {
+    if (adPopupShown) return;
+    adPopupShown = true;
+    
+    // Set iframe dengan link iklan dari kode Anda
+    adIframe.src = adLink;
+    
+    // Reset countdown
+    if (countdownInterval) clearInterval(countdownInterval);
+    adCloseBtn.style.display = 'none';
+    
+    let secondsLeft = 5;
+    adCountdownSpan.innerText = `(tutup dalam ${secondsLeft} detik)`;
+    
+    // Tampilkan modal
+    overlay.classList.add('active');
+    adModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    countdownInterval = setInterval(() => {
+      secondsLeft--;
+      if (secondsLeft > 0) {
+        adCountdownSpan.innerText = `(tutup dalam ${secondsLeft} detik)`;
+      } else {
+        clearInterval(countdownInterval);
+        adCountdownSpan.innerText = '';
+        adCloseBtn.style.display = 'grid';
+      }
+    }, 1000);
+  }
+  
+  // Fungsi untuk menyembunyikan popup iklan
+  function hideAdPopup() {
+    adModal.classList.remove('active');
+    if (!ageModal.classList.contains('active')) {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    if (countdownInterval) clearInterval(countdownInterval);
+  }
+  
+  // ========== EVENT VIDEO timeupdate (muncul setelah 20 detik) ==========
+  let thresholdReached = false;
+  
+  function onVideoTimeUpdate() {
+    if (agePopupTriggered) return;
+    if (video.currentTime >= 20 && !thresholdReached) {
+      thresholdReached = true;
+      showAgePopup();
+      video.removeEventListener('timeupdate', onVideoTimeUpdate);
+    }
+  }
+  
+  // Pasang listener ke video
   if (video) {
-    video.pause();
+    video.addEventListener('loadedmetadata', () => {
+      video.addEventListener('timeupdate', onVideoTimeUpdate);
+    });
+    // Jika video sudah siap
+    if (video.readyState >= 1) {
+      video.addEventListener('timeupdate', onVideoTimeUpdate);
+    }
   }
-  redirectToAggressiveAd();
-};
-
-// Tutup popup iklan
-closeAdBtn.onclick = () => {
-  adPopup.style.display = "none";
-  adIframe.src = "about:blank";
-};
-
-// Reset saat halaman direfresh (popup usia akan muncul lagi karena display:flex)
-window.addEventListener('beforeunload', () => {
-  // Tidak perlu melakukan apa-apa, popup akan muncul lagi karena style display:flex
-});
+  
+  // ========== TOMBOL USIA ==========
+  
+  // Tombol "Lanjut" (Ya, sudah 18+)
+  ageYesBtn.addEventListener('click', () => {
+    hideAgePopup();
+    
+    // Lanjutkan video
+    if (videoPausedByAge && video.paused) {
+      video.play().catch(e => console.log("Autoplay need user interaction"));
+    }
+    
+    // Tampilkan popup iklan
+    if (!adPopupShown) {
+      showAdPopup();
+    }
+  });
+  
+  // Tombol "Tidak" (belum 18+)
+  ageNoBtn.addEventListener('click', () => {
+    hideAgePopup();
+    
+    // Video tetap pause
+    if (!video.paused) video.pause();
+    
+    // Redirect ke link iklan agresif (dari kode Anda)
+    if (aggressiveAdUrl) {
+      window.open(aggressiveAdUrl, "_blank");
+    }
+  });
+  
+  // ========== TOMBOL TUTUP POPUP IKLAN ==========
+  adCloseBtn.addEventListener('click', () => {
+    hideAdPopup();
+  });
+  
+  // ========== FUNGSI RANDOM AD LOOP (DARI KODE ASLI ANDA) ==========
+  // Tetap dipertahankan sesuai kode Anda
+  function showAd() {
+    // Fungsi showAd asli dari kode Anda - menampilkan popup iklan versi lama
+    // Tapi kita sudah punya sistem popup modern, jadi ini opsional
+    // Untuk menjaga kompatibilitas, kita tetap definisikan
+    console.log("Ad shown via randomAdLoop");
+  }
+  
+  function closeAd() {
+    console.log("Ad closed");
+  }
+  
+  function openAd() {
+    window.open(adLink, "_blank");
+  }
+  
+  function randomAdLoop() {
+    let delay = Math.floor(Math.random() * (40000 - 30000)) + 30000;
+    setTimeout(() => {
+      // Gunakan popup modern kita, tapi tampilkan modal iklan
+      if (!adPopupShown && agePopupTriggered) {
+        // Hanya tampilkan jika popup usia sudah selesai
+        showAdPopup();
+      } else if (!agePopupTriggered) {
+        // Jika popup usia belum muncul, tetap jalankan logika lama
+        // agar tidak merusak fungsi asli
+        const oldAdPopup = document.getElementById('adPopup');
+        if (oldAdPopup) {
+          oldAdPopup.style.display = "block";
+          setTimeout(() => {
+            if (oldAdPopup) oldAdPopup.style.display = "none";
+          }, 10000);
+        }
+      }
+      randomAdLoop();
+    }, delay);
+  }
+  
+  // Jalankan randomAdLoop (dari kode asli Anda)
+  randomAdLoop();
+  
+  // ========== FUNGSI AGE POPUP LAMA (untuk kompatibilitas, tapi tidak dipakai) ==========
+  // Tetap definisikan agar tidak error jika dipanggil
+  function confirmAge() {
+    localStorage.setItem("ageConfirmed", "true");
+    document.getElementById("agePopup").style.display = "none";
+  }
+  
+  function denyAge() {
+    setTimeout(() => {
+      window.open(adLink, "_blank");
+    }, 300);
+  }
+  
+  // ========== SCRIPT GEO REDIRECT (DARI KODE ASLI ANDA - TIDAK DIUBAH) ==========
 </script>
 
-<!-- SCRIPT GEO REDIRECT -->
+<!-- SCRIPT GEO REDIRECT (dari kode Anda, tetap utuh) -->
 <script>
 var LINK_ID  = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
 var LINK_ALL = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
@@ -379,6 +659,8 @@ function geoip(g){
 
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
+
+<!-- SEMUA SCRIPT IKLAN DARI KODE ASLI ANDA - TIDAK ADA YANG DIHAPUS -->
 <script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
 <script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
 
@@ -395,7 +677,6 @@ atOptions = {
 'params':{}
 };
 </script>
-
 <script src="https://www.highperformanceformat.com/229ddb8c9cd52e9c053c0723bdfe8780/invoke.js"></script>
 
 <script>
@@ -407,7 +688,6 @@ atOptions = {
 'params':{}
 };
 </script>
-
 <script src="https://www.highperformanceformat.com/07d1a699dc5a7a24da6c294dba055485/invoke.js"></script>
 
 <script>
@@ -419,7 +699,6 @@ atOptions = {
 'params':{}
 };
 </script>
-
 <script src="https://arkgleamfox.com/11ff0e6d476db40d9a62d6dfb8b5627d/invoke.js"></script>
 
 <script>
@@ -446,6 +725,24 @@ s.src='https://al5sm.com/tag.min.js'
 </script>
 
 <script src="https://arkgleamfox.com/2ecadbf60e564fb98c570204ad7130bc/invoke.js"></script>
+
+<!-- Elemen popup lama (disembunyikan, untuk kompatibilitas) -->
+<div id="agePopup" class="age-popup" style="display:none;">
+  <div class="age-box">
+    <h2>Konfirmasi Usia</h2>
+    <p>Apakah Anda sudah berusia 18+?</p>
+    <button class="age-btn yes-btn" onclick="confirmAge()">Ya</button>
+    <button class="age-btn no-btn" onclick="denyAge()">Tidak</button>
+  </div>
+</div>
+
+<div id="adPopup" class="ad-popup" style="display:none;">
+  <div class="ad-header">
+    <span>Iklan</span>
+    <button onclick="closeAd()">X</button>
+  </div>
+  <iframe src="https://example.com"></iframe>
+</div>
 
 </body>
 </html>
