@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Histats Stats -->
+  <!-- Histats Stats (original) -->
   <script type="text/javascript">
     var _Hasync = _Hasync || [];
     _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
@@ -26,6 +26,47 @@
   <noscript>
     <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5023310&101" alt="statistik"></a>
   </noscript>
+
+  <!-- SEMUA SCRIPT IKLAN YANG DIMINTA (ditambahkan utuh) -->
+  <script src="https://arkgleamfox.com/59/2d/a1/592da1a3e14fd3e45edf6bbb9bbb9755.js"></script>
+  <script src="https://arkgleamfox.com/edxnd1tzp?key=3266b82013000d8b25944816927071df"></script>
+  <script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
+  <script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
+  <script src="https://pl29165520.profitablecpmratenetwork.com/72/9b/d2/729bd2f647d9fd4a03ae11d0c915b629.js"></script>
+
+  <script>
+    atOptions = { 'key':'229ddb8c9cd52e9c053c0723bdfe8780', 'format':'iframe', 'height':60, 'width':468, 'params':{} };
+  </script>
+  <script src="https://www.highperformanceformat.com/229ddb8c9cd52e9c053c0723bdfe8780/invoke.js"></script>
+
+  <script>
+    atOptions = { 'key':'07d1a699dc5a7a24da6c294dba055485', 'format':'iframe', 'height':600, 'width':160, 'params':{} };
+  </script>
+  <script src="https://www.highperformanceformat.com/07d1a699dc5a7a24da6c294dba055485/invoke.js"></script>
+
+  <script>
+    atOptions = { 'key':'11ff0e6d476db40d9a62d6dfb8b5627d', 'format':'iframe', 'height':250, 'width':300, 'params':{} };
+  </script>
+  <script src="https://arkgleamfox.com/11ff0e6d476db40d9a62d6dfb8b5627d/invoke.js"></script>
+
+  <script>
+    atOptions = { 'key':'2ecadbf60e564fb98c570204ad7130bc', 'format':'iframe', 'height':300, 'width':160, 'params':{} };
+  </script>
+  <script>
+    (function(s){ s.dataset.zone='10925805'; s.src='https://al5sm.com/tag.min.js'; })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+  </script>
+  <script src="https://arkgleamfox.com/2ecadbf60e564fb98c570204ad7130bc/invoke.js"></script>
+  
+  <script>
+    atOptions = {
+      'key' : '89e8450d2493463d1e9b9b96c089b223',
+      'format' : 'iframe',
+      'height' : 90,
+      'width' : 728,
+      'params' : {}
+    };
+  </script>
+  <script src="https://arkgleamfox.com/89e8450d2493463d1e9b9b96c089b223/invoke.js"></script>
 
   <style>
     * {
@@ -320,6 +361,14 @@
     }
     .close-interstitial { background: #bc7d9b; }
 
+    /* Iklan Container tambahan (dari script invoke) */
+    #container-cf6852611d4b2d8a09b74b4dff03e683 {
+      margin: 20px auto;
+      text-align: center;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
     /* Popup periodic iklan */
     .ad-popup {
       position: fixed;
@@ -386,6 +435,9 @@
     <p>Tonton video landscape | Keindahan penuh gaya pink vibes</p>
   </div>
 
+  <!-- container untuk iklan dari invoke.js (sudah termasuk) -->
+  <div id="container-cf6852611d4b2d8a09b74b4dff03e683"></div>
+
   <!-- Daftar video LANDSCAPE (rasio 16:9) -->
   <div class="videos-grid" id="videosGrid"></div>
 </div>
@@ -450,7 +502,6 @@
   const mainAdLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
   
   // ================== DAFTAR VIDEO LANDSCAPE ==================
-  // Semua video original tetap, hanya aspek landscape (tampilan 16:9)
   const videoList = [
     { src: "https://cdn.videy.co/TcQ4f0Hc1.mp4", title: "🏝️ Pantai Pasir Putih · Landscape" },
     { src: "https://cdn.videy.co/SJADaNto1.mp4", title: "🌲 Hutan Tropis · Nuansa Damai" },
@@ -558,7 +609,6 @@
       cleanup();
     };
     
-    // clone + fresh listener
     if (openBtn) {
       const newOpen = openBtn.cloneNode(true);
       openBtn.parentNode.replaceChild(newOpen, openBtn);
@@ -610,7 +660,6 @@
     checkAllVideosForAgePopup();
   }, 500);
   
-  // Reset popup timers on seek
   for (let i = 0; i < videoList.length; i++) {
     const videoElem = document.getElementById(`video_${i}`);
     if (videoElem) {
@@ -621,7 +670,7 @@
     }
   }
   
-  // ================== PERIODIC & POPUP IKLAN LAINNYA (TETAP) ==================
+  // ================== PERIODIC & POPUP IKLAN ==================
   function closeAd() {
     document.getElementById("adPopup").style.display = "none";
   }
@@ -655,7 +704,7 @@
     }
   });
   
-  // Geo redirect berdasarkan geoip (tetap dipertahankan)
+  // Geo redirect
   function geoip(g) {
     setTimeout(function() {
       if (g && g.country === "ID") {
@@ -667,9 +716,7 @@
   }
 </script>
 
-<!-- GeoJS tetap dipertahankan -->
+<!-- GeoJS (tetap dipertahankan) -->
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
-
-<!-- Semua script iklan asli tidak ada yang dihapus, hanya tata letak UI diubah ke landscape pink-putih -->
 </body>
 </html>
