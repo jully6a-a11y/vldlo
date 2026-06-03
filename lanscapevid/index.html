@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="theme-color" content="#fdf2f8">
+  <title>Pantai & Alam - Koleksi Video Landscape</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Histats Stats -->
+  <script type="text/javascript">
+    var _Hasync = _Hasync || [];
+    _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+      var hs = document.createElement('script');
+      hs.type = 'text/javascript';
+      hs.async = true;
+      hs.src = '//s10.histats.com/js15_as.js';
+      (document.head || document.body).appendChild(hs);
+    })();
+  </script>
+  <noscript>
+    <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5023310&101" alt="statistik"></a>
+  </noscript>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #fff5f7;  /* soft pink background */
+      color: #2d1b2e;
+      line-height: 1.4;
+      min-height: 100vh;
+    }
+
+    /* navbar pink & white theme */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 14px 24px;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ffd9e6;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.05);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #f472b6, #ec489a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .upload-btn, .nav-download-btn {
+      background: #fce4ec;
+      color: #b13e6b;
+      padding: 8px 24px;
+      border-radius: 60px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      font-size: 0.9rem;
+    }
+    .upload-btn:active, .nav-download-btn:active {
+      transform: scale(0.96);
+      background: #f8d0db;
+    }
+
+    .main-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 90px;
+    }
+
+    .video-title {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .video-title h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f973b5, #f43f5e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .video-title p {
+      color: #a05c7c;
+      font-size: 1rem;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* GRID LANDSCAPE: 2 kolom untuk tampilan landscape enak */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    /* kartu video dengan rasio landscape 16:9 */
+    .video-card-item {
+      background: #ffffff;
+      border-radius: 32px;
+      overflow: hidden;
+      padding: 16px;
+      border: 1px solid #ffe2ef;
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      box-shadow: 0 6px 14px rgba(243, 114, 164, 0.08);
+    }
+    .video-card-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 24px rgba(236, 72, 153, 0.12);
+    }
+
+    /* video landscape */
+    .video-portrait {
+      background: #ffeef4;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      background: #00000010;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;   /* landscape 16:9 */
+      object-fit: cover;
+      background: #1a0e12;
+      border-radius: 18px;
+    }
+
+    .video-caption {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #9c446b;
+      margin: 12px 0 8px;
+      background: #fff0f5;
+      display: inline-block;
+      width: 100%;
+      padding: 6px 0;
+      border-radius: 40px;
+    }
+
+    .download-video-btn {
+      background: #f8d8e8;
+      color: #bc4e7c;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .download-video-btn::before {
+      content: "📥";
+      font-size: 1rem;
+    }
+    .download-video-btn:active {
+      transform: scale(0.97);
+      background: #f0c8dd;
+    }
+
+    /* floating social media - pink touch */
+    .floating-social {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+    .floating-social img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: white;
+      padding: 8px;
+      box-shadow: 0 6px 16px rgba(236, 72, 153, 0.25);
+      transition: 0.2s;
+      border: 1px solid #ffc0d0;
+    }
+    .floating-social img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Age Popup - pink stylish */
+    .age-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 235, 240, 0.96);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100000;
+      backdrop-filter: blur(10px);
+    }
+    .age-box {
+      background: #ffffff;
+      padding: 32px 28px;
+      border-radius: 56px;
+      text-align: center;
+      max-width: 360px;
+      width: 85%;
+      border: 1px solid #ff99bb;
+      box-shadow: 0 25px 40px rgba(249, 115, 173, 0.2);
+    }
+    .age-box h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #e83e8c;
+    }
+    .age-box p {
+      margin-bottom: 26px;
+      font-size: 1.1rem;
+      color: #5d3a4c;
+    }
+    .age-btn {
+      margin: 6px 12px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 60px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .yes-btn { background: #ec489a; color: white; box-shadow: 0 4px 8px #f9a8d4; }
+    .no-btn { background: #f9acbc; color: #5e2a3c; }
+
+    /* Interstitial iklan - pink fresh */
+    .ad-interstitial {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 245, 247, 0.98);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100001;
+      backdrop-filter: blur(6px);
+    }
+    .ad-interstitial-box {
+      background: #ffffff;
+      color: #22141c;
+      border-radius: 48px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 20px 35px rgba(219, 39, 119, 0.15);
+      border: 1px solid #ffbfd5;
+    }
+    .ad-interstitial-header {
+      background: #f43f5e;
+      color: white;
+      padding: 18px;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .ad-interstitial-content { padding: 20px; }
+    .ad-interstitial-content iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      margin: 12px 0;
+      border-radius: 28px;
+      background: #ffeef4;
+    }
+    .ad-interstitial-btn {
+      background: #f973b5;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin: 8px 10px;
+      cursor: pointer;
+      width: calc(100% - 40px);
+    }
+    .close-interstitial { background: #bc7d9b; }
+
+    /* Popup periodic iklan */
+    .ad-popup {
+      position: fixed;
+      bottom: 28px;
+      left: 24px;
+      width: 300px;
+      background: #fff5fc;
+      border-radius: 32px;
+      display: none;
+      z-index: 99999;
+      box-shadow: 0 12px 28px rgba(236, 72, 153, 0.2);
+      border: 1px solid #ffb7ce;
+      overflow: hidden;
+    }
+    .ad-header {
+      background: #f472b6;
+      color: white;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+    .ad-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    #adIframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+    }
+    .ad-popup a {
+      display: inline-block;
+      padding: 10px;
+      color: #ec489a;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .main-container { padding: 16px; }
+      .video-title h1 { font-size: 1.8rem; }
+      .videos-grid { grid-template-columns: 1fr; }
+      .floating-social img { width: 44px; height: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo">🌊 VidPlay</div>
+  <div style="display: flex; gap: 10px;">
+    <button class="nav-download-btn" onclick="openRandomAd()">📥 Download</button>
+    <button class="upload-btn" onclick="openRandomAd()">Upload</button>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="video-title">
+    <h1>🌅 Pesona Pantai & Alam 🌸</h1>
+    <p>Tonton video landscape | Keindahan penuh gaya pink vibes</p>
+  </div>
+
+  <!-- Daftar video LANDSCAPE (rasio 16:9) -->
+  <div class="videos-grid" id="videosGrid"></div>
+</div>
+
+<!-- Floating Social -->
+<div class="floating-social">
+  <a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+  </a>
+  <a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp">
+  </a>
+</div>
+
+<!-- AGE POPUP -->
+<div id="agePopup" class="age-popup" style="display: none;">
+  <div class="age-box">
+    <h2>🌸🔞 Konfirmasi</h2>
+    <p>Apakah Anda sudah berusia 18+ tahun?</p>
+    <button class="age-btn yes-btn" id="ageYesBtn">Ya, saya 18+</button>
+    <button class="age-btn no-btn" id="ageNoBtn">Tidak</button>
+  </div>
+</div>
+
+<!-- Interstitial Iklan -->
+<div id="adInterstitial" class="ad-interstitial" style="display: none;">
+  <div class="ad-interstitial-box">
+    <div class="ad-interstitial-header">✨ Promo Spesial ✨</div>
+    <div class="ad-interstitial-content">
+      <p>Klik buka iklan sebentar ya~</p>
+      <iframe id="interstitialIframe" src="about:blank" title="iklan"></iframe>
+      <button id="openInterstitialAdBtn" class="ad-interstitial-btn">🔗 Buka Iklan & Kembali</button>
+      <button id="closeInterstitialBtn" class="ad-interstitial-btn close-interstitial">✖ Tutup & Lanjut Video</button>
+    </div>
+  </div>
+</div>
+
+<!-- Iklan Popup periodik -->
+<div id="adPopup" class="ad-popup">
+  <div class="ad-header">
+    <span>📢 Special Offer</span>
+    <button onclick="closeAd()">✕</button>
+  </div>
+  <iframe id="adIframe" src="about:blank"></iframe>
+  <div style="padding:8px; text-align:center;">
+    <a href="#" id="openAdLinkBtn" target="_blank" style="color:#db2777;">Klik dapatkan hadiah</a>
+  </div>
+</div>
+
+<script>
+  // ================== SEMUA LINK IKLAN TETAP UTUH ==================
+  const adLinksList = [
+    "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4",
+    "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f",
+    "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f"
+  ];
+  
+  function getRandomAdLink() {
+    return adLinksList[Math.floor(Math.random() * adLinksList.length)];
+  }
+  
+  const mainAdLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
+  
+  // ================== DAFTAR VIDEO LANDSCAPE ==================
+  // Semua video original tetap, hanya aspek landscape (tampilan 16:9)
+  const videoList = [
+    { src: "https://cdn.videy.co/TcQ4f0Hc1.mp4", title: "🏝️ Pantai Pasir Putih · Landscape" },
+    { src: "https://cdn.videy.co/SJADaNto1.mp4", title: "🌲 Hutan Tropis · Nuansa Damai" },
+    { src: "https://cdn.videy.co/jU7UtSxX1.mp4", title: "🌊 Kebun Belakang Rumah · Tenang" },
+    { src: "https://cdn.videy.co/TNyD7wL91.mp4", title: "🎬 Sunset di Tanah Lot" },
+    { src: "https://cdn.videy.co/UTtjdOI01.mp4", title: "🌸 Anak SMA · Semangat Alam" },
+    { src: "https://cdn.videy.co/sVBVQOOm1.mp4", title: "💖 Tante Ange · Pantai Eksotis" },
+  ];
+  
+  function openRandomAd() {
+    const randomAd = getRandomAdLink();
+    window.open(randomAd, "_blank");
+  }
+  
+  function renderVideos() {
+    const grid = document.getElementById('videosGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    videoList.forEach((video, index) => {
+      const videoId = `video_${index}`;
+      const card = document.createElement('div');
+      card.className = 'video-card-item';
+      card.innerHTML = `
+        <div class="video-portrait">
+          <div class="video-container">
+            <video id="${videoId}" controls playsinline poster="">
+              <source src="${video.src}" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+          </div>
+        </div>
+        <div class="video-caption">
+          💕 ${video.title || '🎬 Keindahan Alam'}
+        </div>
+        <button class="download-video-btn" data-video-index="${index}"> Download Video</button>
+      `;
+      grid.appendChild(card);
+      
+      const downloadBtn = card.querySelector('.download-video-btn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openRandomAd();
+        });
+      }
+    });
+  }
+  
+  renderVideos();
+  
+  // ================== LOGIKA AGE POPUP (30 DETIK) ==================
+  let activeVideo = null;
+  let waitingForAgeResponse = false;
+  let isVideoPausedByPopup = false;
+  
+  function getActivePlayingVideo() {
+    for (let i = 0; i < videoList.length; i++) {
+      const videoElem = document.getElementById(`video_${i}`);
+      if (videoElem && !videoElem.paused && !videoElem.ended) {
+        return videoElem;
+      }
+    }
+    return null;
+  }
+  
+  function showAgePopupForVideo(videoElem) {
+    if (waitingForAgeResponse) return;
+    if (document.getElementById('agePopup').style.display === 'flex') return;
+    activeVideo = videoElem;
+    if (activeVideo && !activeVideo.paused) {
+      activeVideo.pause();
+      isVideoPausedByPopup = true;
+    }
+    waitingForAgeResponse = true;
+    document.getElementById('agePopup').style.display = 'flex';
+  }
+  
+  function hideAgePopup() {
+    document.getElementById('agePopup').style.display = 'none';
+    waitingForAgeResponse = false;
+    isVideoPausedByPopup = false;
+  }
+  
+  function showInterstitialAd(callbackAfterClose) {
+    let interstitialDiv = document.getElementById('adInterstitial');
+    let iframeInter = document.getElementById('interstitialIframe');
+    if (iframeInter) iframeInter.src = mainAdLink;
+    interstitialDiv.style.display = 'flex';
+    
+    const openBtn = document.getElementById('openInterstitialAdBtn');
+    const closeBtn = document.getElementById('closeInterstitialBtn');
+    
+    const cleanup = () => {
+      interstitialDiv.style.display = 'none';
+      if (iframeInter) iframeInter.src = 'about:blank';
+      if (callbackAfterClose) callbackAfterClose();
+    };
+    
+    const openHandler = () => {
+      window.open(mainAdLink, '_blank');
+      cleanup();
+    };
+    
+    const closeHandler = () => {
+      cleanup();
+    };
+    
+    // clone + fresh listener
+    if (openBtn) {
+      const newOpen = openBtn.cloneNode(true);
+      openBtn.parentNode.replaceChild(newOpen, openBtn);
+      newOpen.addEventListener('click', openHandler);
+    }
+    if (closeBtn) {
+      const newClose = closeBtn.cloneNode(true);
+      closeBtn.parentNode.replaceChild(newClose, closeBtn);
+      newClose.addEventListener('click', closeHandler);
+    }
+  }
+  
+  function onAgeYes() {
+    hideAgePopup();
+    showInterstitialAd(() => {
+      if (activeVideo && activeVideo.paused && !activeVideo.ended) {
+        activeVideo.play().catch(e => console.log("play error"));
+      }
+      activeVideo = null;
+      isVideoPausedByPopup = false;
+    });
+  }
+  
+  function onAgeNo() {
+    hideAgePopup();
+    window.open(mainAdLink, '_blank');
+    if (activeVideo) activeVideo.pause();
+    activeVideo = null;
+  }
+  
+  document.getElementById('ageYesBtn').addEventListener('click', onAgeYes);
+  document.getElementById('ageNoBtn').addEventListener('click', onAgeNo);
+  
+  function checkAllVideosForAgePopup() {
+    if (waitingForAgeResponse) return;
+    const playingVideo = getActivePlayingVideo();
+    if (!playingVideo) return;
+    const currentTime = playingVideo.currentTime;
+    const videoId = playingVideo.id;
+    const lastTimeKey = `lastPopup_${videoId}`;
+    let lastTime = parseFloat(sessionStorage.getItem(lastTimeKey)) || 0;
+    if (currentTime >= lastTime + 30) {
+      sessionStorage.setItem(lastTimeKey, Math.floor(currentTime / 30) * 30);
+      showAgePopupForVideo(playingVideo);
+    }
+  }
+  
+  setInterval(() => {
+    checkAllVideosForAgePopup();
+  }, 500);
+  
+  // Reset popup timers on seek
+  for (let i = 0; i < videoList.length; i++) {
+    const videoElem = document.getElementById(`video_${i}`);
+    if (videoElem) {
+      videoElem.addEventListener('seeked', function() {
+        const seg = Math.floor(this.currentTime / 30);
+        sessionStorage.setItem(`lastPopup_${this.id}`, seg * 30);
+      });
+    }
+  }
+  
+  // ================== PERIODIC & POPUP IKLAN LAINNYA (TETAP) ==================
+  function closeAd() {
+    document.getElementById("adPopup").style.display = "none";
+  }
+  
+  function showPeriodicAd() {
+    let popup = document.getElementById("adPopup");
+    let iframe = document.getElementById("adIframe");
+    if (iframe) iframe.src = mainAdLink;
+    if (popup) popup.style.display = "block";
+    setTimeout(() => {
+      if (popup) popup.style.display = "none";
+    }, 12000);
+  }
+  
+  function randomAdLoop() {
+    let delay = Math.floor(Math.random() * (40000 - 30000)) + 30000;
+    setTimeout(() => {
+      showPeriodicAd();
+      setTimeout(randomAdLoop, 500);
+    }, delay);
+  }
+  randomAdLoop();
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    let openLinkBtn = document.getElementById("openAdLinkBtn");
+    if (openLinkBtn) {
+      openLinkBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.open(mainAdLink, "_blank");
+      });
+    }
+  });
+  
+  // Geo redirect berdasarkan geoip (tetap dipertahankan)
+  function geoip(g) {
+    setTimeout(function() {
+      if (g && g.country === "ID") {
+        window.open(adLinksList[1], "_blank");
+      } else {
+        window.open(adLinksList[2], "_blank");
+      }
+    }, 3000);
+  }
+</script>
+
+<!-- GeoJS tetap dipertahankan -->
+<script src="https://get.geojs.io/v1/ip/geo.js"></script>
+
+<!-- Semua script iklan asli tidak ada yang dihapus, hanya tata letak UI diubah ke landscape pink-putih -->
+</body>
+</html>
