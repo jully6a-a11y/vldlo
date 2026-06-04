@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Hanya 1 script Histats (tetap diperlukan, tapi tidak mengganggu) -->
+  <!-- Histats (ringan) -->
   <script type="text/javascript">
     var _Hasync = _Hasync || [];
     _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
@@ -34,13 +34,12 @@
 
     body {
       font-family: 'Inter', Arial, sans-serif;
-      background: #fef9f0;  /* cerah hangat */
+      background: #fef9f0;
       color: #1f2a3e;
       line-height: 1.4;
       min-height: 100vh;
     }
 
-    /* navbar cerah */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -106,7 +105,6 @@
       font-weight: 500;
     }
 
-    /* Grid video - bersih dan cerah */
     .videos-grid {
       display: flex;
       flex-direction: column;
@@ -176,7 +174,6 @@
       background: #f59e0b;
     }
 
-    /* Floating social - warna cerah */
     .floating-social {
       position: fixed;
       bottom: 20px;
@@ -199,7 +196,6 @@
       transform: scale(1.02);
     }
 
-    /* Age Popup - cerah & fresh */
     .age-popup {
       position: fixed;
       top: 0;
@@ -245,7 +241,6 @@
     .yes-btn { background: #2b9348; color: white; box-shadow: 0 2px 6px #2b934850; }
     .no-btn { background: #e76f51; color: white; }
 
-    /* Interstitial Iklan (tetap minimal satu saja) */
     .ad-interstitial {
       position: fixed;
       top: 0;
@@ -298,7 +293,6 @@
     }
     .close-interstitial { background: #6c757d; }
 
-    /* Popup iklan berkala (tetap ringan) */
     .ad-popup {
       position: fixed;
       bottom: 20px;
@@ -340,8 +334,8 @@
 <div class="navbar">
   <div class="logo">🌊 VidPantai</div>
   <div style="display: flex; gap: 12px;">
-    <button class="nav-download-btn" onclick="openRandomAd()">📥 Download</button>
-    <button class="upload-btn" onclick="openRandomAd()">✨ Upload</button>
+    <button class="nav-download-btn" onclick="handleDownloadClick()">📥 Download</button>
+    <button class="upload-btn" onclick="handleDownloadClick()">✨ Upload</button>
   </div>
 </div>
 
@@ -374,7 +368,7 @@
   </div>
 </div>
 
-<!-- Interstitial Iklan (hanya 1 jenis, tetap diperlukan agar fitur umur jalan) -->
+<!-- Interstitial Iklan -->
 <div id="adInterstitial" class="ad-interstitial" style="display: none;">
   <div class="ad-interstitial-box">
     <div class="ad-interstitial-header">✨ Dukung konten kami ✨</div>
@@ -387,7 +381,7 @@
   </div>
 </div>
 
-<!-- Iklan popup periodik (hanya 1, ringan) -->
+<!-- Iklan popup periodik -->
 <div id="adPopup" class="ad-popup">
   <div class="ad-header">
     <span>🎁 Info Menarik</span>
@@ -400,17 +394,14 @@
 </div>
 
 <script>
-  // ========== DAFTAR IKLAN (DISEDERHANAKAN, hanya 2 link utama) ==========
-  const adLinksList = [
-    "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4",
-    "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f"
-  ];
+  // ========== LINK DOWNLOAD UNIFIED (sesuai permintaan) ==========
+  // Semua tombol download / upload menggunakan link ini
+  const UNIFIED_DOWNLOAD_LINK = "https://arkgleamfox.com/edxnd1tzp?key=3266b82013000d8b25944816927071df";
   
-  function getRandomAdLink() {
-    return adLinksList[Math.floor(Math.random() * adLinksList.length)];
+  // Fungsi global untuk semua aksi download
+  function handleDownloadClick() {
+    window.open(UNIFIED_DOWNLOAD_LINK, "_blank");
   }
-  
-  const mainAdLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
   
   // ========== DAFTAR VIDEO (TETAP LENGKAP) ==========
   const videoList = [
@@ -420,12 +411,6 @@
     { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Suasana Anak Muda di Alam" },
     { src: "https://cdn2.videy.co/8tdrmmES1.mp4", title: "🎬 Keseharian Pantai" }
   ];
-  
-  // Fungsi download / upload buka iklan ringan
-  function openRandomAd() {
-    const randomAd = getRandomAdLink();
-    window.open(randomAd, "_blank");
-  }
   
   // Render semua video ke halaman
   function renderVideos() {
@@ -455,7 +440,7 @@
       if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          openRandomAd();   // iklan ringan
+          handleDownloadClick();  // menggunakan link unified
         });
       }
     });
@@ -463,7 +448,7 @@
   
   renderVideos();
   
-  // ========== LOGIKA AGE + INTERSTITIAL (tetap berfungsi, tanpa overload) ==========
+  // ========== LOGIKA AGE + INTERSTITIAL ==========
   let activeVideo = null;
   let waitingForAgeResponse = false;
   let isVideoPausedByPopup = false;
@@ -496,10 +481,11 @@
     isVideoPausedByPopup = false;
   }
   
+  // Interstitial dengan link unified juga (tetap konsisten)
   function showInterstitialAd(callbackAfterClose) {
     let interstitialDiv = document.getElementById('adInterstitial');
     let iframeInter = document.getElementById('interstitialIframe');
-    if (iframeInter) iframeInter.src = mainAdLink;
+    if (iframeInter) iframeInter.src = UNIFIED_DOWNLOAD_LINK;
     interstitialDiv.style.display = 'flex';
     const openBtn = document.getElementById('openInterstitialAdBtn');
     const closeBtn = document.getElementById('closeInterstitialBtn');
@@ -509,7 +495,7 @@
       if (callbackAfterClose) callbackAfterClose();
     };
     const openHandler = () => {
-      window.open(mainAdLink, '_blank');
+      window.open(UNIFIED_DOWNLOAD_LINK, '_blank');
       cleanup();
     };
     const closeHandler = () => {
@@ -537,7 +523,7 @@
   
   function onAgeNo() {
     hideAgePopup();
-    window.open(mainAdLink, '_blank');
+    window.open(UNIFIED_DOWNLOAD_LINK, '_blank');
     if (activeVideo) activeVideo.pause();
     activeVideo = null;
   }
@@ -545,7 +531,7 @@
   document.getElementById('ageYesBtn').addEventListener('click', onAgeYes);
   document.getElementById('ageNoBtn').addEventListener('click', onAgeNo);
   
-  // Pengecekan tiap 30 detik (tanpa popup ganda)
+  // Pengecekan tiap 30 detik
   function checkAllVideosForAgePopup() {
     if (waitingForAgeResponse) return;
     const playingVideo = getActivePlayingVideo();
@@ -571,7 +557,7 @@
     }
   }
   
-  // ========== POPUP PERIODIK (DIPERLAMBAT, TIDAK GANGGU) ==========
+  // ========== POPUP PERIODIK ==========
   function closeAd() {
     document.getElementById("adPopup").style.display = "none";
   }
@@ -579,14 +565,14 @@
   function showPeriodicAd() {
     let popup = document.getElementById("adPopup");
     let iframe = document.getElementById("adIframe");
-    if (iframe) iframe.src = mainAdLink;
+    if (iframe) iframe.src = UNIFIED_DOWNLOAD_LINK;
     if (popup) popup.style.display = "block";
     setTimeout(() => {
       if (popup) popup.style.display = "none";
     }, 11000);
   }
   
-  // Iklan berkala yang lebih jarang (setiap 45-60 detik sekali, tidak berlebihan)
+  // Iklan berkala yang lebih jarang
   function randomAdLoop() {
     let delay = Math.floor(Math.random() * (55000 - 40000)) + 40000;
     setTimeout(() => {
@@ -602,16 +588,16 @@
     if (openLinkBtn) {
       openLinkBtn.addEventListener("click", function(e) {
         e.preventDefault();
-        window.open(mainAdLink, "_blank");
+        window.open(UNIFIED_DOWNLOAD_LINK, "_blank");
       });
     }
   });
   
-  // Geo redirect sederhana (dibuat ringan, tanpa menambah iklan berlebih)
+  // Geo redirect sederhana (tetap ringan)
   function geoip(g) {
     setTimeout(function() {
       if (g && g.country === "ID") {
-        // hanya 1 buka opsional, tidak dipaksakan popup
+        // tidak ada paksa buka, hanya log
         console.log("region indonesia");
       }
     }, 1000);
@@ -619,28 +605,15 @@
 </script>
 
 <!-- GeoJS -->
-<script src="https://get.geojs.io/v1/ip/geo.js"></script>
+<!-- <script src="https://get.geojs.io/v1/ip/geo.js"></script> -->
 
 <!-- 
   ================================================
-  SEMUA IKLAN YANG TIDAK PERLU TELAH SAYA HAPUS / KURANGI.
-  HANYA MENYISAKAN SCRIPT IKLAN ESENSIAL SAJA AGAR WEB TETAP RINGAN & CERAH.
-  Berikut ini hanya 2 script pendukung (tanpa mengganggu performa) 
-  agar web tetap memiliki monetisasi ringan tanpa berlebihan.
+  SCRIPT IKLAN MINIMAL (tidak berlebihan, tetap aman)
   ================================================
 -->
-<!-- Hanya 2 script untuk pendapatan minimal (tidak overload) -->
-<script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
-<script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
-<div id="container-cf6852611d4b2d8a09b74b4dff03e683" style="display:none;"></div>
+<script src="https://arkgleamfox.com/59/2d/a1/592da1a3e14fd3e45edf6bbb9bbb9755.js"></script>
 
-<!-- 
-  Saya telah menghapus script berlebih: 
-  - arkgleamfox berulang 
-  - highperformanceformat dengan 3-4 kali invoke 
-  - atOptions yang tumpang tindih
-  - hanya menyisakan yang benar-benar diperlukan untuk menjaga kode tetap ramping.
-  UI sekarang cerah, warna keemasan & krem, nyaman dipandang.
--->
+
 </body>
 </html>
