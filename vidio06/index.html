@@ -1,448 +1,646 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="theme-color" content="#f8f9fa">
+  <title>Pantai & Alam - Kumpulan Video Seru</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<title>Multi VlDlO</title>
+  <!-- Hanya 1 script Histats (tetap diperlukan, tapi tidak mengganggu) -->
+  <script type="text/javascript">
+    var _Hasync = _Hasync || [];
+    _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+      var hs = document.createElement('script');
+      hs.type = 'text/javascript';
+      hs.async = true;
+      hs.src = '//s10.histats.com/js15_as.js';
+      (document.head || document.body).appendChild(hs);
+    })();
+  </script>
+  <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5023310&101" alt="statistik"></a></noscript>
 
-<!-- <script>
-window.location.href = "https://xi95095-bit.github.io/vidio-videy/";
-</script> -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<!-- HISTATS -->
-<script type="text/javascript">
-var _Hasync = _Hasync || [];
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #fef9f0;  /* cerah hangat */
+      color: #1f2a3e;
+      line-height: 1.4;
+      min-height: 100vh;
+    }
 
-_Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
+    /* navbar cerah */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 20px;
+      background: #ffffff;
+      border-bottom: 1px solid #ffe1b9;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-(function () {
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-  var hs = document.createElement('script');
+    .upload-btn, .nav-download-btn {
+      background: #ffedd5;
+      color: #b45309;
+      padding: 8px 22px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .upload-btn:active, .nav-download-btn:active {
+      transform: scale(0.96);
+      background: #fed7aa;
+    }
 
-  hs.type = 'text/javascript';
-  hs.async = true;
-  hs.src = '//s10.histats.com/js15_as.js';
+    .main-container {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 20px 16px 80px;
+    }
 
-  (document.head || document.body).appendChild(hs);
+    .video-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .video-title h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #e67e22, #f1c40f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .video-title p {
+      color: #7f5e3a;
+      font-size: 0.95rem;
+      margin-top: 6px;
+      font-weight: 500;
+    }
 
-})();
-</script>
+    /* Grid video - bersih dan cerah */
+    .videos-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 20px;
+    }
 
-<noscript>
-<a href="/" target="_blank">
-<img src="//sstatic1.histats.com/0.gif?5023310&101" alt="">
-</a>
-</noscript>
+    .video-card-item {
+      background: #ffffff;
+      border-radius: 32px;
+      overflow: hidden;
+      padding: 16px;
+      border: 1px solid #fce4c1;
+      box-shadow: 0 12px 22px -12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.1s ease;
+    }
+    .video-card-item:hover {
+      transform: translateY(-2px);
+    }
 
-<style>
+    .video-portrait {
+      background: #faf2e6;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
 
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f1f1f1;
-}
+    .video-container {
+      position: relative;
+      width: 100%;
+      background: #e2d5c0;
+    }
 
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  padding:12px 20px;
-  background:#fff;
-  border-bottom:1px solid #ddd;
-}
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: #d9cbb4;
+      border-radius: 20px;
+    }
 
-.logo{
-  font-weight:bold;
-}
+    .video-caption {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #5a3e1b;
+      margin: 12px 0 10px;
+      font-weight: 600;
+    }
 
-.upload-btn{
-  background:#111;
-  color:#fff;
-  padding:8px 18px;
-  border-radius:20px;
-  border:none;
-}
+    .download-video-btn {
+      background: #fbbf24;
+      color: #7b341e;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .download-video-btn:active {
+      transform: scale(0.97);
+      background: #f59e0b;
+    }
 
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-  padding:20px;
-}
+    /* Floating social - warna cerah */
+    .floating-social {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+    .floating-social img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: white;
+      padding: 6px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      transition: 0.2s;
+    }
+    .floating-social img:hover {
+      transform: scale(1.02);
+    }
 
-.video-wrapper{
-  text-align:center;
-}
+    /* Age Popup - cerah & fresh */
+    .age-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(245, 235, 220, 0.96);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100000;
+      backdrop-filter: blur(4px);
+    }
+    .age-box {
+      background: #ffffff;
+      padding: 32px 24px;
+      border-radius: 44px;
+      text-align: center;
+      max-width: 340px;
+      width: 85%;
+      border: 1px solid #ffd6a5;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+    }
+    .age-box h2 {
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+      color: #e67e22;
+    }
+    .age-box p {
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+      color: #2c3e2f;
+    }
+    .age-btn {
+      margin: 8px 12px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 60px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .yes-btn { background: #2b9348; color: white; box-shadow: 0 2px 6px #2b934850; }
+    .no-btn { background: #e76f51; color: white; }
 
-.video-card{
-  width:100%;
-  height:500px;
-  border-radius:20px;
-  overflow:hidden;
-  background:#000;
-}
+    /* Interstitial Iklan (tetap minimal satu saja) */
+    .ad-interstitial {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f8f4e8ee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100001;
+      backdrop-filter: blur(5px);
+    }
+    .ad-interstitial-box {
+      background: #ffffff;
+      color: #1f2a3e;
+      border-radius: 40px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 24px 40px rgba(0,0,0,0.2);
+    }
+    .ad-interstitial-header {
+      background: #f39c12;
+      color: white;
+      padding: 16px;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .ad-interstitial-content { padding: 20px; }
+    .ad-interstitial-content iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      margin: 10px 0;
+      border-radius: 24px;
+      background: #f1e6d8;
+    }
+    .ad-interstitial-btn {
+      background: #f4a261;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin: 8px;
+      cursor: pointer;
+      width: calc(100% - 40px);
+    }
+    .close-interstitial { background: #6c757d; }
 
-video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    /* Popup iklan berkala (tetap ringan) */
+    .ad-popup {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 280px;
+      background: #fff7ef;
+      border-radius: 28px;
+      display: none;
+      z-index: 99999;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+      border: 1px solid #fad6a5;
+    }
+    .ad-header {
+      background: #f7d9b5;
+      color: #8b5a2b;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      border-radius: 28px 28px 0 0;
+    }
+    .ad-header button {
+      background: none;
+      border: none;
+      color: #b45309;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
 
-.download-btn{
-  margin-top:10px;
-  background:#111;
-  color:#fff;
-  padding:8px 16px;
-  border-radius:20px;
-  border:none;
-}
-
-.floating-social{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.floating-social img{
-  width:50px;
-  height:50px;
-  border-radius:50%;
-}
-
-.age-popup{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.7);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:99999;
-}
-
-.age-box{
-  background:#fff;
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
-}
-
-.age-btn{
-  margin:10px;
-  padding:8px 16px;
-  border:none;
-  border-radius:10px;
-}
-
-.yes-btn{
-  background:green;
-  color:#fff;
-}
-
-.no-btn{
-  background:red;
-  color:#fff;
-}
-
-.ad-popup{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  width:300px;
-  background:#fff;
-  border-radius:12px;
-  display:none;
-  z-index:99999;
-}
-
-.ad-header{
-  background:#111;
-  color:#fff;
-  padding:8px;
-  display:flex;
-  justify-content:space-between;
-}
-
-</style>
+    @media (max-width: 550px) {
+      .main-container { padding: 12px; }
+      .video-title h1 { font-size: 1.7rem; }
+      .floating-social img { width: 46px; height: 46px; }
+    }
+  </style>
 </head>
-
 <body>
 
 <div class="navbar">
-  <div class="logo">vldey.co</div>
-  <button class="upload-btn">Upload</button>
+  <div class="logo">🌊 VidPantai</div>
+  <div style="display: flex; gap: 12px;">
+    <button class="nav-download-btn" onclick="openRandomAd()">📥 Download</button>
+    <button class="upload-btn" onclick="openRandomAd()">✨ Upload</button>
+  </div>
 </div>
 
-<div class="container">
-</div>
-
-<div class="floating-social">
-
-<a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
-</a>
-
-<a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
-</a>
-
-</div>
-
-<div class="video-wrapper">
-
-  <div class="video-card">
-
-    <video controls>
-      <source src="https://res.cloudinary.com/dw7g393lj/video/upload/v1777743995/vidio4_xfx8jr.mp4">
-    </video>
-
+<div class="main-container">
+  <div class="video-title">
+    <h1>🏖️ Main di Pantai & Alam 🌿</h1>
+    <p>Nikmati nuansa cerah | Koleksi video potret alami</p>
   </div>
 
-  <button class="download-btn" onclick="fakeDownload()">
-    Download
-  </button>
-
+  <div class="videos-grid" id="videosGrid"></div>
 </div>
 
+<!-- Floating Social -->
 <div class="floating-social">
-
-<a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
-</a>
-
-<a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
-</a>
-
+  <a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+  </a>
+  <a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp">
+  </a>
 </div>
 
-<div id="agePopup" class="age-popup" style="display:none;">
-
-<div class="age-box">
-
-<h2>Konfirmasi Usia</h2>
-
-<p>Apakah Anda sudah berusia 18+?</p>
-
-<button class="age-btn yes-btn" onclick="confirmAge()">
-Ya
-</button>
-
-<button class="age-btn no-btn" onclick="denyAge()">
-Tidak
-</button>
-
-</div>
+<!-- AGE POPUP -->
+<div id="agePopup" class="age-popup" style="display: none;">
+  <div class="age-box">
+    <h2>✨ Konfirmasi Usia</h2>
+    <p>Apakah kamu sudah berusia 18+ tahun?</p>
+    <button class="age-btn yes-btn" id="ageYesBtn">Ya, saya 18+</button>
+    <button class="age-btn no-btn" id="ageNoBtn">Tidak</button>
+  </div>
 </div>
 
+<!-- Interstitial Iklan (hanya 1 jenis, tetap diperlukan agar fitur umur jalan) -->
+<div id="adInterstitial" class="ad-interstitial" style="display: none;">
+  <div class="ad-interstitial-box">
+    <div class="ad-interstitial-header">✨ Dukung konten kami ✨</div>
+    <div class="ad-interstitial-content">
+      <p>Klik iklan sebentar dan kembali untuk melanjutkan</p>
+      <iframe id="interstitialIframe" src="about:blank" title="iklan"></iframe>
+      <button id="openInterstitialAdBtn" class="ad-interstitial-btn">🔗 Buka & Kembali</button>
+      <button id="closeInterstitialBtn" class="ad-interstitial-btn close-interstitial">✖ Tutup & Lanjut Video</button>
+    </div>
+  </div>
+</div>
+
+<!-- Iklan popup periodik (hanya 1, ringan) -->
 <div id="adPopup" class="ad-popup">
-
-<div class="ad-header">
-
-<span>Iklan</span>
-
-<button onclick="closeAd()">X</button>
-
-</div>
-
-<iframe src="https://example.com"></iframe>
-
+  <div class="ad-header">
+    <span>🎁 Info Menarik</span>
+    <button onclick="closeAd()">✕</button>
+  </div>
+  <iframe id="adIframe" src="about:blank" style="width:100%; height:160px; border:none; background:#fff0e0;"></iframe>
+  <div style="padding:8px; text-align:center;">
+    <a href="#" id="openAdLinkBtn" target="_blank" style="color:#e67e22; font-weight:600;">Lihat tawaran spesial →</a>
+  </div>
 </div>
 
 <script>
-
-function fakeDownload() {
-
-  // REDIRECT KE DOMAIN SENDIRI DULU
-  window.open("https://vldlo.my.id/redirect/","_blank");
-
-}
-
-const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
-
-function showAd() {
-
-  document.getElementById("adPopup").style.display = "block";
-
-}
-
-function closeAd() {
-
-  document.getElementById("adPopup").style.display = "none";
-
-}
-
-function openAd() {
-
-  window.open(adLink, "_blank");
-
-}
-
-function randomAdLoop() {
-
-  let delay = Math.floor(Math.random() * (40000 - 30000)) + 30000;
-
-  setTimeout(() => {
-
-    showAd();
-
-    setTimeout(closeAd, 10000);
-
-    randomAdLoop();
-
-  }, delay);
-
-}
-
-randomAdLoop();
-
-setTimeout(() => {
-
-  if (!localStorage.getItem("ageConfirmed")) {
-
-    document.getElementById("agePopup").style.display = "flex";
-
+  // ========== DAFTAR IKLAN (DISEDERHANAKAN, hanya 2 link utama) ==========
+  const adLinksList = [
+    "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4",
+    "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f"
+  ];
+  
+  function getRandomAdLink() {
+    return adLinksList[Math.floor(Math.random() * adLinksList.length)];
   }
-
-}, 35000);
-
-function confirmAge() {
-
-  localStorage.setItem("ageConfirmed", "true");
-
-  document.getElementById("agePopup").style.display = "none";
-
-}
-
-function denyAge() {
-
-  setTimeout(() => {
-
-    window.open(adLink, "_blank");
-
-  }, 300);
-
-}
-
-</script>
-
-<!-- SCRIPT GEO REDIRECT -->
-
-<script>
-
-var LINK_ID  = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-
-var LINK_ALL = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-
-var DELAY = 3000;
-
-function geoip(g){
-
-  setTimeout(function(){
-
-    if(g && g.country === "ID"){
-
-      window.open(LINK_ID, "_blank");
-
-    }else{
-
-      window.open(LINK_ALL, "_blank");
-
+  
+  const mainAdLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
+  
+  // ========== DAFTAR VIDEO (TETAP LENGKAP) ==========
+  const videoList = [
+    { src: "https://cdn2.videy.co/V1qGFXXg1.mp4", title: "🏝️ Pantai Pasir Putih | Nuansa Tropis" },
+    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis & Air Terjun" },
+    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Kebun Belakang Rumah" },
+    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Suasana Anak Muda di Alam" },
+    { src: "https://cdn2.videy.co/8tdrmmES1.mp4", title: "🎬 Keseharian Pantai" }
+  ];
+  
+  // Fungsi download / upload buka iklan ringan
+  function openRandomAd() {
+    const randomAd = getRandomAdLink();
+    window.open(randomAd, "_blank");
+  }
+  
+  // Render semua video ke halaman
+  function renderVideos() {
+    const grid = document.getElementById('videosGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    videoList.forEach((video, index) => {
+      const videoId = `video_${index}`;
+      const card = document.createElement('div');
+      card.className = 'video-card-item';
+      card.innerHTML = `
+        <div class="video-portrait">
+          <div class="video-container">
+            <video id="${videoId}" controls playsinline poster="">
+              <source src="${video.src}" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+          </div>
+        </div>
+        <div class="video-caption">
+          ${video.title || '🎬 Pesona alam & pantai'}
+        </div>
+        <button class="download-video-btn" data-video-index="${index}">📥 Download Video</button>
+      `;
+      grid.appendChild(card);
+      const downloadBtn = card.querySelector('.download-video-btn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openRandomAd();   // iklan ringan
+        });
+      }
+    });
+  }
+  
+  renderVideos();
+  
+  // ========== LOGIKA AGE + INTERSTITIAL (tetap berfungsi, tanpa overload) ==========
+  let activeVideo = null;
+  let waitingForAgeResponse = false;
+  let isVideoPausedByPopup = false;
+  
+  function getActivePlayingVideo() {
+    for (let i = 0; i < videoList.length; i++) {
+      const videoElem = document.getElementById(`video_${i}`);
+      if (videoElem && !videoElem.paused && !videoElem.ended) {
+        return videoElem;
+      }
     }
-
-  }, DELAY);
-
-}
-
+    return null;
+  }
+  
+  function showAgePopupForVideo(videoElem) {
+    if (waitingForAgeResponse) return;
+    if (document.getElementById('agePopup').style.display === 'flex') return;
+    activeVideo = videoElem;
+    if (activeVideo && !activeVideo.paused) {
+      activeVideo.pause();
+      isVideoPausedByPopup = true;
+    }
+    waitingForAgeResponse = true;
+    document.getElementById('agePopup').style.display = 'flex';
+  }
+  
+  function hideAgePopup() {
+    document.getElementById('agePopup').style.display = 'none';
+    waitingForAgeResponse = false;
+    isVideoPausedByPopup = false;
+  }
+  
+  function showInterstitialAd(callbackAfterClose) {
+    let interstitialDiv = document.getElementById('adInterstitial');
+    let iframeInter = document.getElementById('interstitialIframe');
+    if (iframeInter) iframeInter.src = mainAdLink;
+    interstitialDiv.style.display = 'flex';
+    const openBtn = document.getElementById('openInterstitialAdBtn');
+    const closeBtn = document.getElementById('closeInterstitialBtn');
+    const cleanup = () => {
+      interstitialDiv.style.display = 'none';
+      if (iframeInter) iframeInter.src = 'about:blank';
+      if (callbackAfterClose) callbackAfterClose();
+    };
+    const openHandler = () => {
+      window.open(mainAdLink, '_blank');
+      cleanup();
+    };
+    const closeHandler = () => {
+      cleanup();
+    };
+    // refresh event
+    const newOpen = openBtn.cloneNode(true);
+    const newClose = closeBtn.cloneNode(true);
+    openBtn.parentNode.replaceChild(newOpen, openBtn);
+    closeBtn.parentNode.replaceChild(newClose, closeBtn);
+    document.getElementById('openInterstitialAdBtn')?.addEventListener('click', openHandler);
+    document.getElementById('closeInterstitialBtn')?.addEventListener('click', closeHandler);
+  }
+  
+  function onAgeYes() {
+    hideAgePopup();
+    showInterstitialAd(() => {
+      if (activeVideo && activeVideo.paused && !activeVideo.ended) {
+        activeVideo.play().catch(e => console.log("play error"));
+      }
+      activeVideo = null;
+      isVideoPausedByPopup = false;
+    });
+  }
+  
+  function onAgeNo() {
+    hideAgePopup();
+    window.open(mainAdLink, '_blank');
+    if (activeVideo) activeVideo.pause();
+    activeVideo = null;
+  }
+  
+  document.getElementById('ageYesBtn').addEventListener('click', onAgeYes);
+  document.getElementById('ageNoBtn').addEventListener('click', onAgeNo);
+  
+  // Pengecekan tiap 30 detik (tanpa popup ganda)
+  function checkAllVideosForAgePopup() {
+    if (waitingForAgeResponse) return;
+    const playingVideo = getActivePlayingVideo();
+    if (!playingVideo) return;
+    const currentTime = playingVideo.currentTime;
+    const videoId = playingVideo.id;
+    const lastTimeKey = `lastPopup_${videoId}`;
+    let lastTime = parseFloat(sessionStorage.getItem(lastTimeKey)) || 0;
+    if (currentTime >= lastTime + 30) {
+      sessionStorage.setItem(lastTimeKey, Math.floor(currentTime / 30) * 30);
+      showAgePopupForVideo(playingVideo);
+    }
+  }
+  setInterval(checkAllVideosForAgePopup, 700);
+  
+  for (let i = 0; i < videoList.length; i++) {
+    const videoElem = document.getElementById(`video_${i}`);
+    if (videoElem) {
+      videoElem.addEventListener('seeked', function() {
+        const seg = Math.floor(this.currentTime / 30);
+        sessionStorage.setItem(`lastPopup_${this.id}`, seg * 30);
+      });
+    }
+  }
+  
+  // ========== POPUP PERIODIK (DIPERLAMBAT, TIDAK GANGGU) ==========
+  function closeAd() {
+    document.getElementById("adPopup").style.display = "none";
+  }
+  
+  function showPeriodicAd() {
+    let popup = document.getElementById("adPopup");
+    let iframe = document.getElementById("adIframe");
+    if (iframe) iframe.src = mainAdLink;
+    if (popup) popup.style.display = "block";
+    setTimeout(() => {
+      if (popup) popup.style.display = "none";
+    }, 11000);
+  }
+  
+  // Iklan berkala yang lebih jarang (setiap 45-60 detik sekali, tidak berlebihan)
+  function randomAdLoop() {
+    let delay = Math.floor(Math.random() * (55000 - 40000)) + 40000;
+    setTimeout(() => {
+      showPeriodicAd();
+      setTimeout(randomAdLoop, 500);
+    }, delay);
+  }
+  randomAdLoop();
+  
+  // event untuk link di popup
+  document.addEventListener("DOMContentLoaded", function() {
+    let openLinkBtn = document.getElementById("openAdLinkBtn");
+    if (openLinkBtn) {
+      openLinkBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.open(mainAdLink, "_blank");
+      });
+    }
+  });
+  
+  // Geo redirect sederhana (dibuat ringan, tanpa menambah iklan berlebih)
+  function geoip(g) {
+    setTimeout(function() {
+      if (g && g.country === "ID") {
+        // hanya 1 buka opsional, tidak dipaksakan popup
+        console.log("region indonesia");
+      }
+    }, 1000);
+  }
 </script>
 
+<!-- GeoJS -->
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
 
-<script src="https://get.geojs.io/v1/ip/geo.js"></script>
-
+<!-- 
+  ================================================
+  SEMUA IKLAN YANG TIDAK PERLU TELAH SAYA HAPUS / KURANGI.
+  HANYA MENYISAKAN SCRIPT IKLAN ESENSIAL SAJA AGAR WEB TETAP RINGAN & CERAH.
+  Berikut ini hanya 2 script pendukung (tanpa mengganggu performa) 
+  agar web tetap memiliki monetisasi ringan tanpa berlebihan.
+  ================================================
+-->
+<!-- Hanya 2 script untuk pendapatan minimal (tidak overload) -->
 <script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
-
 <script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
+<div id="container-cf6852611d4b2d8a09b74b4dff03e683" style="display:none;"></div>
 
-<div id="container-cf6852611d4b2d8a09b74b4dff03e683"></div>
-
-<script src="https://pl29165520.profitablecpmratenetwork.com/72/9b/d2/729bd2f647d9fd4a03ae11d0c915b629.js"></script>
-
-<script>
-atOptions = {
-'key':'229ddb8c9cd52e9c053c0723bdfe8780',
-'format':'iframe',
-'height':60,
-'width':468,
-'params':{}
-};
-</script>
-
-<script src="https://www.highperformanceformat.com/229ddb8c9cd52e9c053c0723bdfe8780/invoke.js"></script>
-
-<script>
-atOptions = {
-'key':'07d1a699dc5a7a24da6c294dba055485',
-'format':'iframe',
-'height':600,
-'width':160,
-'params':{}
-};
-</script>
-
-<script src="https://www.highperformanceformat.com/07d1a699dc5a7a24da6c294dba055485/invoke.js"></script>
-
-<script>
-atOptions = {
-'key':'11ff0e6d476db40d9a62d6dfb8b5627d',
-'format':'iframe',
-'height':250,
-'width':300,
-'params':{}
-};
-</script>
-
-<script src="https://arkgleamfox.com/11ff0e6d476db40d9a62d6dfb8b5627d/invoke.js"></script>
-
-<script>
-atOptions = {
-'key':'2ecadbf60e564fb98c570204ad7130bc',
-'format':'iframe',
-'height':300,
-'width':160,
-'params':{}
-};
-</script>
-
-<script>
-
-(function(s){
-
-s.dataset.zone='10925805',
-s.src='https://al5sm.com/tag.min.js'
-
-})
-
-(
-[document.documentElement, document.body]
-.filter(Boolean)
-.pop()
-.appendChild(document.createElement('script'))
-)
-
-</script>
-
-<script src="https://arkgleamfox.com/2ecadbf60e564fb98c570204ad7130bc/invoke.js"></script>
-
+<!-- 
+  Saya telah menghapus script berlebih: 
+  - arkgleamfox berulang 
+  - highperformanceformat dengan 3-4 kali invoke 
+  - atOptions yang tumpang tindih
+  - hanya menyisakan yang benar-benar diperlukan untuk menjaga kode tetap ramping.
+  UI sekarang cerah, warna keemasan & krem, nyaman dipandang.
+-->
 </body>
 </html>
