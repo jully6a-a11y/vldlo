@@ -10,22 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Histats Stats -->
-  <script type="text/javascript">
-    var _Hasync = _Hasync || [];
-    _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
+  <script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
     _Hasync.push(['Histats.fasi', '1']);
     _Hasync.push(['Histats.track_hits', '']);
     (function() {
-      var hs = document.createElement('script');
-      hs.type = 'text/javascript';
-      hs.async = true;
-      hs.src = '//s10.histats.com/js15_as.js';
-      (document.head || document.body).appendChild(hs);
-    })();
-  </script>
-  <noscript>
-    <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5023310&101" alt="statistik"></a>
-  </noscript>
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();</script>
+  <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
+
+  <!-- Script Iklan Tambahan yang diminta -->
+  <script src="https://pl29644781.effectivecpmnetwork.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js"></script>
+  <script src="https://pl29644782.effectivecpmnetwork.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js"></script>
 
   <style>
     * {
@@ -377,7 +375,7 @@
 </div>
 
 <script>
-  // ================== DAFTAR SEMUA LINK IKLAN (dari kode asli) ==================
+  // ================== DAFTAR SEMUA LINK IKLAN ==================
   const adLinksList = [
     "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4",
     "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f",
@@ -392,17 +390,12 @@
   const mainAdLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
   
   // ================== DAFTAR VIDEO - MUDAH EDIT ==================
-  // ★★★ TINGGAL TAMBAH VIDEO DI SINI ★★★
-  // Format: { src: "URL_VIDEO", title: "Judul video (opsional)" }
   const videoList = [
     { src: "https://cdn2.videy.co/V1qGFXXg1.mp4", title: "🏝️ Pantai Pasir Putih" },
     { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis" },
     { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Kebun Belakang Rumah" },
     { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 anak SMA" },
     { src: "https://cdn2.videy.co/8tdrmmES1.mp4", title: "🎬 dipaksa om item" },
-    
-
-
   ];
   
   // Fungsi untuk membuka iklan random (untuk tombol download/upload)
@@ -438,7 +431,6 @@
       `;
       grid.appendChild(card);
       
-      // Event listener untuk tombol download per video
       const downloadBtn = card.querySelector('.download-video-btn');
       if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
@@ -449,17 +441,12 @@
     });
   }
   
-  // Panggil render saat halaman load
   renderVideos();
   
-  // ================== LOGIKA AGE POPUP (berlaku untuk semua video) ==================
+  // ================== LOGIKA AGE POPUP ==================
   let activeVideo = null;
   let waitingForAgeResponse = false;
-  let isVideoPausedByPopup = false;
-  let videoCurrentInterval = null;
-  let lastPopupTime = 0;
   
-  // Fungsi untuk mendapatkan video yang sedang aktif (yang sedang diputar)
   function getActivePlayingVideo() {
     for (let i = 0; i < videoList.length; i++) {
       const videoElem = document.getElementById(`video_${i}`);
@@ -477,7 +464,6 @@
     activeVideo = videoElem;
     if (activeVideo && !activeVideo.paused) {
       activeVideo.pause();
-      isVideoPausedByPopup = true;
     }
     waitingForAgeResponse = true;
     document.getElementById('agePopup').style.display = 'flex';
@@ -486,7 +472,6 @@
   function hideAgePopup() {
     document.getElementById('agePopup').style.display = 'none';
     waitingForAgeResponse = false;
-    isVideoPausedByPopup = false;
   }
   
   function showInterstitialAd(callbackAfterClose) {
@@ -502,8 +487,6 @@
     const cleanup = () => {
       interstitialDiv.style.display = 'none';
       if (iframeInter) iframeInter.src = 'about:blank';
-      openBtn.removeEventListener('click', openHandler);
-      closeBtn.removeEventListener('click', closeHandler);
       if (callbackAfterClose) callbackAfterClose();
     };
     
@@ -516,7 +499,7 @@
       cleanup();
     };
     
-    // Hapus listener lama
+    // Hapus listener lama dengan clone
     openBtn.replaceWith(openBtn.cloneNode(true));
     closeBtn.replaceWith(closeBtn.cloneNode(true));
     
@@ -534,7 +517,6 @@
         activeVideo.play().catch(e => console.log("autoplay error", e));
       }
       activeVideo = null;
-      isVideoPausedByPopup = false;
     });
   }
   
@@ -548,10 +530,9 @@
   document.getElementById('ageYesBtn').addEventListener('click', onAgeYes);
   document.getElementById('ageNoBtn').addEventListener('click', onAgeNo);
   
-  // Pengecekan 30 detik untuk semua video
+  // Pengecekan 30 detik untuk popup usia
   function checkAllVideosForAgePopup() {
     if (waitingForAgeResponse) return;
-    
     const playingVideo = getActivePlayingVideo();
     if (!playingVideo) return;
     
@@ -566,12 +547,11 @@
     }
   }
   
-  // Interval pengecekan global
   setInterval(() => {
     checkAllVideosForAgePopup();
   }, 500);
   
-  // Reset lastPopupTime saat video seek
+  // Reset saat seek
   for (let i = 0; i < videoList.length; i++) {
     const videoElem = document.getElementById(`video_${i}`);
     if (videoElem) {
@@ -582,12 +562,11 @@
     }
   }
   
-  // ================== FUNGSI LAINNYA ==================
+  // ================== FUNGSI IKLAN PERIODIK ==================
   function closeAd() {
     document.getElementById("adPopup").style.display = "none";
   }
   
-  // Iklan popup periodik
   function showPeriodicAd() {
     let popup = document.getElementById("adPopup");
     let iframe = document.getElementById("adIframe");
@@ -631,47 +610,6 @@
 
 <!-- GeoJS -->
 <script src="https://get.geojs.io/v1/ip/geo.js"></script>
-
-<!-- SEMUA SCRIPT IKLAN ASLI TIDAK DIHAPUS -->
-  <script src="https://arkgleamfox.com/59/2d/a1/592da1a3e14fd3e45edf6bbb9bbb9755.js"></script>
-<script src="https://arkgleamfox.com/edxnd1tzp?key=3266b82013000d8b25944816927071df"></script>
-<script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
-<script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
-<div id="container-cf6852611d4b2d8a09b74b4dff03e683"></div>
-<script src="https://pl29165520.profitablecpmratenetwork.com/72/9b/d2/729bd2f647d9fd4a03ae11d0c915b629.js"></script>
-
-<script>
-  atOptions = { 'key':'229ddb8c9cd52e9c053c0723bdfe8780', 'format':'iframe', 'height':60, 'width':468, 'params':{} };
-</script>
-<script src="https://www.highperformanceformat.com/229ddb8c9cd52e9c053c0723bdfe8780/invoke.js"></script>
-
-<script>
-  atOptions = { 'key':'07d1a699dc5a7a24da6c294dba055485', 'format':'iframe', 'height':600, 'width':160, 'params':{} };
-</script>
-<script src="https://www.highperformanceformat.com/07d1a699dc5a7a24da6c294dba055485/invoke.js"></script>
-
-<script>
-  atOptions = { 'key':'11ff0e6d476db40d9a62d6dfb8b5627d', 'format':'iframe', 'height':250, 'width':300, 'params':{} };
-</script>
-<script src="https://arkgleamfox.com/11ff0e6d476db40d9a62d6dfb8b5627d/invoke.js"></script>
-
-<script>
-  atOptions = { 'key':'2ecadbf60e564fb98c570204ad7130bc', 'format':'iframe', 'height':300, 'width':160, 'params':{} };
-</script>
-<script>
-  (function(s){ s.dataset.zone='10925805'; s.src='https://al5sm.com/tag.min.js'; })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
-</script>
-<script src="https://arkgleamfox.com/2ecadbf60e564fb98c570204ad7130bc/invoke.js"></script>
-<script>
-  atOptions = {
-    'key' : '89e8450d2493463d1e9b9b96c089b223',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-<script src="https://arkgleamfox.com/89e8450d2493463d1e9b9b96c089b223/invoke.js"></script>
 
 </body>
 </html>
