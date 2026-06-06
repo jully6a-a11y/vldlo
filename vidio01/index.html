@@ -1,748 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="theme-color" content="#ff0000">
+  <title>Main di Pantai & Alam - Kumpulan Video Potret</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<title>Multi VlDlO</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<!-- HISTATS (dari kode Anda) -->
-<script type="text/javascript">
-var _Hasync = _Hasync || [];
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%);
+      color: #1a1a2e;
+      line-height: 1.4;
+      min-height: 100vh;
+    }
 
-_Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
+    /* Navbar Merah Putih */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      border-bottom: 3px solid #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-(function () {
-  var hs = document.createElement('script');
-  hs.type = 'text/javascript';
-  hs.async = true;
-  hs.src = '//s10.histats.com/js15_as.js';
-  (document.head || document.body).appendChild(hs);
-})();
-</script>
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: white;
+    }
 
-<noscript>
-<a href="/" target="_blank">
-<img src="//sstatic1.histats.com/0.gif?5023310&101" alt="">
-</a>
-</noscript>
+    .main-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px 16px 80px;
+    }
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    .video-title {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .video-title h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .video-title p {
+      color: #cc0000;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      font-weight: 500;
+    }
 
-  body {
-    margin: 0;
-    font-family: 'Inter', Arial, sans-serif;
-    background: #f1f1f1;
-    overflow-x: hidden;
-  }
+    /* Grid video */
+    .videos-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 20px;
+    }
 
-  /* Navbar */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 20px;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .logo {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  .upload-btn {
-    background: #111;
-    color: #fff;
-    padding: 8px 18px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-  }
-
-  /* Container */
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-
-  /* Video Wrapper */
-  .video-wrapper {
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  .video-card {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 9 / 16;
-    border-radius: 20px;
-    overflow: hidden;
-    background: #000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  }
-
-  video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .download-btn {
-    margin-top: 10px;
-    background: #111;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-  }
-
-  /* Floating Social */
-  .floating-social {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-  }
-
-  .floating-social img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    transition: transform 0.2s;
-  }
-
-  .floating-social img:hover {
-    transform: scale(1.05);
-  }
-
-  /* ========== MODERN POPUP STYLES ========== */
-  
-  /* Overlay dengan blur effect */
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    z-index: 9998;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-  }
-
-  .popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* Modal container */
-  .modal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .modal-container.active {
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* Modal Card - Desain modern */
-  .modal-card {
-    width: min(92vw, 460px);
-    background: linear-gradient(180deg, #0f172a, #0b1220);
-    border-radius: 24px;
-    border: 1px solid #1e293b;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    transform: scale(0.96);
-    opacity: 0;
-    transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.2s ease;
-    position: relative;
-  }
-
-  .modal-container.active .modal-card {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  /* Close button (untuk iklan) */
-  .modal-close {
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    width: 36px;
-    height: 36px;
-    border: 1px solid #334155;
-    border-radius: 12px;
-    background: #121a2a;
-    color: #cbd5e1;
-    cursor: pointer;
-    font-size: 18px;
-    display: grid;
-    place-items: center;
-    transition: all 0.15s;
-    z-index: 10;
-  }
-
-  .modal-close:hover {
-    background: #1e293b;
-    color: #fff;
-  }
-
-  /* Badge */
-  .modal-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(239, 68, 68, 0.15);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    padding: 8px 14px;
-    border-radius: 40px;
-    margin-bottom: 16px;
-  }
-
-  /* Header */
-  .modal-header h3 {
-    margin: 0 0 8px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: #e5e7eb;
-  }
-
-  .modal-sub {
-    margin: 0 0 20px;
-    color: #94a3b8;
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  /* Actions buttons */
-  .modal-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .modal-btn {
-    flex: 1;
-    border: none;
-    background: #1e293b;
-    color: #e5e7eb;
-    border-radius: 14px;
-    padding: 12px 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.15s;
-    text-align: center;
-  }
-
-  .modal-btn.primary {
-    background: #ef4444;
-    color: #fff;
-  }
-
-  .modal-btn.primary:hover {
-    background: #dc2626;
-  }
-
-  .modal-btn.secondary {
-    background: #334155;
-  }
-
-  .modal-btn.secondary:hover {
-    background: #475569;
-  }
-
-  /* Countdown text */
-  #ad-countdown {
-    display: inline-block;
-    background: #1e293b;
-    padding: 4px 12px;
-    border-radius: 40px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-left: 10px;
-  }
-
-  /* Ad container */
-  .ad-container {
-    margin-top: 16px;
-    border-top: 1px solid #1e293b;
-    padding-top: 16px;
-  }
-
-  .ad-container iframe {
-    width: 100%;
-    height: 250px;
-    border: none;
-    border-radius: 12px;
-    background: #0f172a;
-  }
-
-  .footer-note {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    font-size: 0.7rem;
-    color: #5b6e8c;
-  }
-
-  .dot-green {
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
-  /* Hapus floating social duplikat jika ada */
-  .floating-social:last-child {
-    display: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .video-wrapper {
+    .video-card-item {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
       padding: 16px;
+      border: 1px solid #ffcccc;
+      box-shadow: 0 8px 20px rgba(255,0,0,0.1);
     }
-    .modal-card {
-      width: min(94vw, 420px);
-    }
-  }
-</style>
-</head>
 
+    .video-portrait {
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      background: #000;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .video-caption {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #ff0000;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    @media (max-width: 550px) {
+      .main-container { padding: 12px; }
+      .video-title h1 { font-size: 1.5rem; }
+    }
+  </style>
+
+  <!-- Histats.com  START  (aync)-->
+  <script type="text/javascript">var _Hasync= _Hasync|| [];
+  _Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
+  _Hasync.push(['Histats.fasi', '1']);
+  _Hasync.push(['Histats.track_hits', '']);
+  (function() {
+  var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+  hs.src = ('//s10.histats.com/js15_as.js');
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+  })();</script>
+  <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
+  <!-- Histats.com  END  -->
+
+</head>
 <body>
 
+<!-- Navbar -->
 <div class="navbar">
-  <div class="logo">vldey.co</div>
-  <button class="upload-btn">Upload</button>
+  <div class="logo">🇮🇩 VidPlay Merah Putih 🇮🇩</div>
 </div>
 
-<div class="container">
-</div>
-
-<div class="floating-social">
-  <a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
-  </a>
-  <a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp">
-  </a>
-</div>
-
-<div class="video-wrapper">
-  <div class="video-card">
-    <video id="mainVideo" controls>
-      <source src="https://cdn2.videy.co/h89R8IQ91.mp4" type="video/mp4">
-    </video>
+<div class="main-container">
+  <div class="video-title">
+    <h1>🏖️ selamat bersenang senang 🌿</h1>
+    <p>Kumpulan video potret</p>
   </div>
-  <button class="download-btn" onclick="fakeDownload()">Download</button>
+
+  <!-- DAFTAR VIDEO -->
+  <div class="videos-grid" id="videosGrid"></div>
 </div>
 
-<!-- Floating social kedua dihapus (tidak perlu duplikat) -->
-
-<!-- Overlay untuk blur -->
-<div id="popupOverlay" class="popup-overlay"></div>
-
-<!-- POPUP USIA (Modern) -->
-<div id="ageModal" class="modal-container">
-  <div class="modal-card">
-    <div class="modal-badge">
-      <span>⚠️</span> <strong>Verifikasi Usia</strong>
-    </div>
-    <div class="modal-header">
-      <h3>Konfirmasi Usia</h3>
-    </div>
-    <div class="modal-sub">Apakah Anda sudah berusia 18 tahun ke atas?</div>
-    <div class="modal-actions">
-      <button class="modal-btn secondary" id="ageNoBtn">Tidak</button>
-      <button class="modal-btn primary" id="ageYesBtn">Lanjut</button>
-    </div>
-    <div class="footer-note">
-      <span class="dot-green"></span> sesuai aturan konten dewasa
-    </div>
-  </div>
-</div>
-
-<!-- POPUP IKLAN (Modern) -->
-<div id="adModal" class="modal-container">
-  <div class="modal-card">
-    <button class="modal-close" id="adCloseBtn" style="display: none;">✕</button>
-    <div class="modal-badge">
-      <span>📢</span> Sponsor
-    </div>
-    <div class="modal-header">
-      <h3>Informasi</h3>
-    </div>
-    <div class="modal-sub">
-      Mohon tunggu sebentar 
-      <span id="adCountdown"></span>
-    </div>
-    <div class="ad-container">
-      <iframe id="adIframe" src="about:blank"></iframe>
-    </div>
-    <div class="footer-note">* Iklan mendukung layanan gratis</div>
-  </div>
-</div>
+<!-- Iklan quge5 -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="246803" async data-cfasync="false"></script>
 
 <script>
-  // ========== SEMUA KONFIGURASI DARI KODE ASLI ANDA ==========
-  
-  // Video element
-  const video = document.getElementById('mainVideo');
-  
-  // Link iklan dari kode Anda (tetap dipertahankan)
-  const adLink = "https://www.profitablecpmratenetwork.com/u666fja6?key=2e5b8f8db6d24f5655ac4136832b98a4";
-  const aggressiveAdUrl = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-  
-  // Fungsi fakeDownload (dari kode Anda)
-  function fakeDownload() {
-    window.open("https://vldlo.my.id/redirect/", "_blank");
-  }
-  
-  // ========== SISTEM POPUP BARU (berdasarkan durasi video 20 detik) ==========
-  
-  const overlay = document.getElementById('popupOverlay');
-  const ageModal = document.getElementById('ageModal');
-  const adModal = document.getElementById('adModal');
-  const ageYesBtn = document.getElementById('ageYesBtn');
-  const ageNoBtn = document.getElementById('ageNoBtn');
-  const adCloseBtn = document.getElementById('adCloseBtn');
-  const adIframe = document.getElementById('adIframe');
-  const adCountdownSpan = document.getElementById('adCountdown');
-  
-  let agePopupTriggered = false;
-  let adPopupShown = false;
-  let countdownInterval = null;
-  let videoPausedByAge = false;
-  
-  // Fungsi untuk menampilkan popup usia
-  function showAgePopup() {
-    if (agePopupTriggered) return;
-    agePopupTriggered = true;
-    
-    // Pause video
-    if (!video.paused) {
-      video.pause();
-      videoPausedByAge = true;
-    }
-    
-    // Tampilkan overlay dan modal
-    overlay.classList.add('active');
-    ageModal.classList.add('active');
-    
-    // Prevent scroll
-    document.body.style.overflow = 'hidden';
-  }
-  
-  // Fungsi untuk menyembunyikan popup usia
-  function hideAgePopup() {
-    ageModal.classList.remove('active');
-    if (!adModal.classList.contains('active')) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-  
-  // Fungsi untuk menampilkan popup iklan (dengan timer 5 detik)
-  function showAdPopup() {
-    if (adPopupShown) return;
-    adPopupShown = true;
-    
-    // Set iframe dengan link iklan dari kode Anda
-    adIframe.src = adLink;
-    
-    // Reset countdown
-    if (countdownInterval) clearInterval(countdownInterval);
-    adCloseBtn.style.display = 'none';
-    
-    let secondsLeft = 5;
-    adCountdownSpan.innerText = `(tutup dalam ${secondsLeft} detik)`;
-    
-    // Tampilkan modal
-    overlay.classList.add('active');
-    adModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    countdownInterval = setInterval(() => {
-      secondsLeft--;
-      if (secondsLeft > 0) {
-        adCountdownSpan.innerText = `(tutup dalam ${secondsLeft} detik)`;
-      } else {
-        clearInterval(countdownInterval);
-        adCountdownSpan.innerText = '';
-        adCloseBtn.style.display = 'grid';
-      }
-    }, 1000);
-  }
-  
-  // Fungsi untuk menyembunyikan popup iklan
-  function hideAdPopup() {
-    adModal.classList.remove('active');
-    if (!ageModal.classList.contains('active')) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    if (countdownInterval) clearInterval(countdownInterval);
-  }
-  
-  // ========== EVENT VIDEO timeupdate (muncul setelah 20 detik) ==========
-  let thresholdReached = false;
-  
-  function onVideoTimeUpdate() {
-    if (agePopupTriggered) return;
-    if (video.currentTime >= 20 && !thresholdReached) {
-      thresholdReached = true;
-      showAgePopup();
-      video.removeEventListener('timeupdate', onVideoTimeUpdate);
-    }
-  }
-  
-  // Pasang listener ke video
-  if (video) {
-    video.addEventListener('loadedmetadata', () => {
-      video.addEventListener('timeupdate', onVideoTimeUpdate);
-    });
-    // Jika video sudah siap
-    if (video.readyState >= 1) {
-      video.addEventListener('timeupdate', onVideoTimeUpdate);
-    }
-  }
-  
-  // ========== TOMBOL USIA ==========
-  
-  // Tombol "Lanjut" (Ya, sudah 18+)
-  ageYesBtn.addEventListener('click', () => {
-    hideAgePopup();
-    
-    // Lanjutkan video
-    if (videoPausedByAge && video.paused) {
-      video.play().catch(e => console.log("Autoplay need user interaction"));
-    }
-    
-    // Tampilkan popup iklan
-    if (!adPopupShown) {
-      showAdPopup();
-    }
-  });
-  
-  // Tombol "Tidak" (belum 18+)
-  ageNoBtn.addEventListener('click', () => {
-    hideAgePopup();
-    
-    // Video tetap pause
-    if (!video.paused) video.pause();
-    
-    // Redirect ke link iklan agresif (dari kode Anda)
-    if (aggressiveAdUrl) {
-      window.open(aggressiveAdUrl, "_blank");
-    }
-  });
-  
-  // ========== TOMBOL TUTUP POPUP IKLAN ==========
-  adCloseBtn.addEventListener('click', () => {
-    hideAdPopup();
-  });
-  
-  // ========== FUNGSI RANDOM AD LOOP (DARI KODE ASLI ANDA) ==========
-  // Tetap dipertahankan sesuai kode Anda
-  function showAd() {
-    // Fungsi showAd asli dari kode Anda - menampilkan popup iklan versi lama
-    // Tapi kita sudah punya sistem popup modern, jadi ini opsional
-    // Untuk menjaga kompatibilitas, kita tetap definisikan
-    console.log("Ad shown via randomAdLoop");
-  }
-  
-  function closeAd() {
-    console.log("Ad closed");
-  }
-  
-  function openAd() {
-    window.open(adLink, "_blank");
-  }
-  
-  function randomAdLoop() {
-    let delay = Math.floor(Math.random() * (40000 - 30000)) + 30000;
-    setTimeout(() => {
-      // Gunakan popup modern kita, tapi tampilkan modal iklan
-      if (!adPopupShown && agePopupTriggered) {
-        // Hanya tampilkan jika popup usia sudah selesai
-        showAdPopup();
-      } else if (!agePopupTriggered) {
-        // Jika popup usia belum muncul, tetap jalankan logika lama
-        // agar tidak merusak fungsi asli
-        const oldAdPopup = document.getElementById('adPopup');
-        if (oldAdPopup) {
-          oldAdPopup.style.display = "block";
-          setTimeout(() => {
-            if (oldAdPopup) oldAdPopup.style.display = "none";
-          }, 10000);
-        }
-      }
-      randomAdLoop();
-    }, delay);
-  }
-  
-  // Jalankan randomAdLoop (dari kode asli Anda)
-  randomAdLoop();
-  
-  // ========== FUNGSI AGE POPUP LAMA (untuk kompatibilitas, tapi tidak dipakai) ==========
-  // Tetap definisikan agar tidak error jika dipanggil
-  function confirmAge() {
-    localStorage.setItem("ageConfirmed", "true");
-    document.getElementById("agePopup").style.display = "none";
-  }
-  
-  function denyAge() {
-    setTimeout(() => {
-      window.open(adLink, "_blank");
-    }, 300);
-  }
-  
-  // ========== SCRIPT GEO REDIRECT (DARI KODE ASLI ANDA - TIDAK DIUBAH) ==========
-</script>
+/* ================== VIDEO RENDER ================== */
+const videoList = [
+  { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis - Kalimantan" },
+  { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Pantai Selatan - Jogja" },
+  { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Sunset di Raja Ampat" },
+  { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Liburan ke Pantai" },
+  { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "🎬 Pesona Alam Indonesia" },
+];
 
-<!-- SCRIPT GEO REDIRECT (dari kode Anda, tetap utuh) -->
-<script>
-var LINK_ID  = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-var LINK_ALL = "https://www.profitablecpmratenetwork.com/e60uraaz?key=00a8daf307455fd2003c7555c0a41b6f";
-var DELAY = 3000;
-
-function geoip(g){
-  setTimeout(function(){
-    if(g && g.country === "ID"){
-      window.open(LINK_ID, "_blank");
-    }else{
-      window.open(LINK_ALL, "_blank");
-    }
-  }, DELAY);
+// Render semua video ke halaman
+function renderVideos() {
+  const grid = document.getElementById('videosGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = '';
+  
+  videoList.forEach((video, index) => {
+    const videoId = `video_${index}`;
+    const card = document.createElement('div');
+    card.className = 'video-card-item';
+    card.innerHTML = `
+      <div class="video-portrait">
+        <div class="video-container">
+          <video id="${videoId}" controls playsinline poster="">
+            <source src="${video.src}" type="video/mp4">
+            Browser tidak mendukung video.
+          </video>
+        </div>
+      </div>
+      <div class="video-caption">
+        📹 ${video.title || '🎬 Video indah pantai & alam'}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
 }
+
+// Panggil render saat halaman load
+renderVideos();
 </script>
-
-<script src="https://get.geojs.io/v1/ip/geo.js"></script>
-<script src="https://get.geojs.io/v1/ip/geo.js"></script>
-
-<!-- SEMUA SCRIPT IKLAN DARI KODE ASLI ANDA - TIDAK ADA YANG DIHAPUS -->
-<script src="https://pl29165518.profitablecpmratenetwork.com/73/fe/87/73fe8782e5ee5ac45e16ed0fed28d9fa.js"></script>
-<script async src="https://pl29165519.profitablecpmratenetwork.com/cf6852611d4b2d8a09b74b4dff03e683/invoke.js"></script>
-
-<div id="container-cf6852611d4b2d8a09b74b4dff03e683"></div>
-
-<script src="https://pl29165520.profitablecpmratenetwork.com/72/9b/d2/729bd2f647d9fd4a03ae11d0c915b629.js"></script>
-
-<script>
-atOptions = {
-'key':'229ddb8c9cd52e9c053c0723bdfe8780',
-'format':'iframe',
-'height':60,
-'width':468,
-'params':{}
-};
-</script>
-<script src="https://www.highperformanceformat.com/229ddb8c9cd52e9c053c0723bdfe8780/invoke.js"></script>
-
-<script>
-atOptions = {
-'key':'07d1a699dc5a7a24da6c294dba055485',
-'format':'iframe',
-'height':600,
-'width':160,
-'params':{}
-};
-</script>
-<script src="https://www.highperformanceformat.com/07d1a699dc5a7a24da6c294dba055485/invoke.js"></script>
-
-<script>
-atOptions = {
-'key':'11ff0e6d476db40d9a62d6dfb8b5627d',
-'format':'iframe',
-'height':250,
-'width':300,
-'params':{}
-};
-</script>
-<script src="https://arkgleamfox.com/11ff0e6d476db40d9a62d6dfb8b5627d/invoke.js"></script>
-
-<script>
-atOptions = {
-'key':'2ecadbf60e564fb98c570204ad7130bc',
-'format':'iframe',
-'height':300,
-'width':160,
-'params':{}
-};
-</script>
-
-<script>
-(function(s){
-s.dataset.zone='10925805',
-s.src='https://al5sm.com/tag.min.js'
-})
-(
-[document.documentElement, document.body]
-.filter(Boolean)
-.pop()
-.appendChild(document.createElement('script'))
-)
-</script>
-
-<script src="https://arkgleamfox.com/2ecadbf60e564fb98c570204ad7130bc/invoke.js"></script>
-
-<!-- Elemen popup lama (disembunyikan, untuk kompatibilitas) -->
-<div id="agePopup" class="age-popup" style="display:none;">
-  <div class="age-box">
-    <h2>Konfirmasi Usia</h2>
-    <p>Apakah Anda sudah berusia 18+?</p>
-    <button class="age-btn yes-btn" onclick="confirmAge()">Ya</button>
-    <button class="age-btn no-btn" onclick="denyAge()">Tidak</button>
-  </div>
-</div>
-
-<div id="adPopup" class="ad-popup" style="display:none;">
-  <div class="ad-header">
-    <span>Iklan</span>
-    <button onclick="closeAd()">X</button>
-  </div>
-  <iframe src="https://example.com"></iframe>
-</div>
 
 </body>
 </html>
