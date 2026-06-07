@@ -1,11 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <meta name="monetag" content="13f93e085f03d3c5870e29d0c903c1b0">
+  <!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
+<!-- Histats.com  END  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <meta name="theme-color" content="#000000">
-  <title>Kumpulan Video </title>
+  <meta name="theme-color" content="#ff0000">
+  <title>selamat malam jumat all</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,8 +31,8 @@
 
     body {
       font-family: 'Inter', Arial, sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
+      background: linear-gradient(135deg, #ffebeb 0%, #ffffff 100%);
+      color: #1f2a3e;
       line-height: 1.4;
       min-height: 100vh;
     }
@@ -32,8 +44,9 @@
       flex-wrap: wrap;
       gap: 12px;
       padding: 12px 20px;
-      background: #111;
-      border-bottom: 1px solid #2a2a2a;
+      background: #ffffff;
+      border-bottom: 2px solid #ff0000;
+      box-shadow: 0 2px 8px rgba(255,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -41,56 +54,78 @@
 
     .logo {
       font-weight: 800;
-      font-size: 1.5rem;
-      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #ff0000, #cc0000);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
+    .upload-btn, .nav-download-btn {
+      background: #ff0000;
+      color: white;
+      padding: 8px 22px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 4px rgba(255,0,0,0.3);
+    }
+    .upload-btn:active, .nav-download-btn:active {
+      transform: scale(0.96);
+      background: #cc0000;
+    }
+
     .main-container {
-      max-width: 500px;
+      max-width: 560px;
       margin: 0 auto;
       padding: 20px 16px 80px;
     }
 
     .video-title {
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
     .video-title h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #ffb347, #ff6b6b);
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff0000, #cc0000);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .video-title p {
-      color: #aaa;
-      font-size: 0.9rem;
-      margin-top: 5px;
+      color: #cc0000;
+      font-size: 0.95rem;
+      margin-top: 6px;
+      font-weight: 500;
     }
 
-    /* Grid video */
     .videos-grid {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 28px;
       margin-top: 20px;
     }
 
     .video-card-item {
-      background: #0f0f0f;
-      border-radius: 28px;
+      background: #ffffff;
+      border-radius: 32px;
       overflow: hidden;
       padding: 16px;
-      border: 1px solid #222;
+      border: 1px solid #ffcccc;
+      box-shadow: 0 12px 22px -12px rgba(255,0,0,0.15);
+      transition: transform 0.1s ease;
+    }
+    .video-card-item:hover {
+      transform: translateY(-2px);
+      border-color: #ff0000;
     }
 
     .video-portrait {
-      background: #000;
-      border-radius: 20px;
+      background: #fff0f0;
+      border-radius: 24px;
       overflow: hidden;
       margin-bottom: 12px;
     }
@@ -98,7 +133,7 @@
     .video-container {
       position: relative;
       width: 100%;
-      background: #000;
+      background: #ffcccc;
     }
 
     video {
@@ -107,17 +142,36 @@
       display: block;
       aspect-ratio: 9 / 16;
       object-fit: cover;
-      background: #000;
+      background: #ffdddd;
+      border-radius: 20px;
     }
 
     .video-caption {
       text-align: center;
-      font-size: 0.85rem;
-      color: #aaa;
-      margin: 10px 0;
+      font-size: 0.9rem;
+      color: #cc0000;
+      margin: 12px 0 10px;
+      font-weight: 600;
     }
 
-    /* Floating social */
+    .download-video-btn {
+      background: #ff0000;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: default;
+      width: 100%;
+      transition: 0.2s;
+      box-shadow: 0 2px 4px rgba(255,0,0,0.3);
+      opacity: 0.7;
+    }
+    .download-video-btn:active {
+      transform: none;
+    }
+
     .floating-social {
       position: fixed;
       bottom: 20px;
@@ -128,39 +182,173 @@
       z-index: 999;
     }
     .floating-social img {
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: white;
-      padding: 5px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      padding: 6px;
+      box-shadow: 0 6px 14px rgba(255,0,0,0.2);
+      transition: 0.2s;
+      border: 1px solid #ffcccc;
+    }
+    .floating-social img:hover {
+      transform: scale(1.02);
+    }
+
+    .age-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 240, 240, 0.96);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100000;
+      backdrop-filter: blur(4px);
+    }
+    .age-box {
+      background: #ffffff;
+      padding: 32px 24px;
+      border-radius: 44px;
+      text-align: center;
+      max-width: 340px;
+      width: 85%;
+      border: 2px solid #ff0000;
+      box-shadow: 0 20px 30px -12px rgba(255,0,0,0.2);
+    }
+    .age-box h2 {
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+      color: #ff0000;
+    }
+    .age-box p {
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+      color: #660000;
+    }
+    .age-btn {
+      margin: 8px 12px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 60px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .yes-btn { background: #ff0000; color: white; box-shadow: 0 2px 6px rgba(255,0,0,0.5); }
+    .no-btn { background: #ffffff; color: #ff0000; border: 2px solid #ff0000; }
+
+    .ad-interstitial {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 240, 240, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100001;
+      backdrop-filter: blur(5px);
+    }
+    .ad-interstitial-box {
+      background: #ffffff;
+      color: #1f2a3e;
+      border-radius: 40px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 24px 40px rgba(255,0,0,0.25);
+      border: 1px solid #ff0000;
+    }
+    .ad-interstitial-header {
+      background: #ff0000;
+      color: white;
+      padding: 16px;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .ad-interstitial-content { padding: 20px; }
+    .ad-interstitial-content iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      margin: 10px 0;
+      border-radius: 24px;
+      background: #fff0f0;
+    }
+    .ad-interstitial-btn {
+      background: #ff0000;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin: 8px;
+      cursor: pointer;
+      width: calc(100% - 40px);
+    }
+    .close-interstitial { background: #990000; }
+
+    .ad-popup {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 280px;
+      background: #ffffff;
+      border-radius: 28px;
+      display: none;
+      z-index: 99999;
+      box-shadow: 0 12px 28px rgba(255,0,0,0.25);
+      border: 1px solid #ff0000;
+    }
+    .ad-header {
+      background: #ff0000;
+      color: white;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      border-radius: 28px 28px 0 0;
+    }
+    .ad-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
     }
 
     @media (max-width: 550px) {
       .main-container { padding: 12px; }
-      .video-title h1 { font-size: 1.5rem; }
-      .floating-social img { width: 44px; height: 44px; }
+      .video-title h1 { font-size: 1.7rem; }
+      .floating-social img { width: 46px; height: 46px; }
     }
   </style>
 </head>
 <body>
 
 <div class="navbar">
-  <div class="logo">VidPlay</div>
-  <!-- Tombol download/upload dihapus karena mengarah ke iklan -->
+  <div class="logo">🇮🇩 Vidsantai</div>
+  <div style="display: flex; gap: 12px;">
+    <button class="nav-download-btn" onclick="handleDownloadClick()">📥 Download</button>
+    <button class="upload-btn" onclick="handleDownloadClick()">✨ Upload</button>
+  </div>
 </div>
 
 <div class="main-container">
   <div class="video-title">
-    <h1>🏖️ Main di Pantai & Alam 🌿</h1>
-    <p>Nikmati keindahan alam | Kumpulan video potret</p>
+    <h1>🇮🇩 spesail untuk malam malam 🌿</h1>
+    <p>Nikmati nuansa cerah | Koleksi video potret alami</p>
   </div>
 
-  <!-- Daftar video akan diisi JavaScript -->
   <div class="videos-grid" id="videosGrid"></div>
 </div>
 
-<!-- Floating Social Media (bukan iklan, hanya link komunitas) -->
+<!-- Floating Social -->
 <div class="floating-social">
   <a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
@@ -170,25 +358,65 @@
   </a>
 </div>
 
-<script>
-  // ================== DAFTAR VIDEO - MUDAH DITAMBAH ==================
-  // Format: { src: "URL_VIDEO", title: "Judul video" }
-  const videoList = [
-    { src: "https://res.cloudinary.com/dw7g393lj/video/upload/v1777744020/vidio3_h8psu0.mp4", title: "🏝️ Pantai Pasir Putih" },
-    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis" },
-    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Kebun Belakang Rumah" },
-    { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Judul Video Baru" },
-    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 anak SMA" },
-    { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "🎬 tante ange" }
-  ];
+<!-- AGE POPUP -->
+<div id="agePopup" class="age-popup" style="display: none;">
+  <div class="age-box">
+    <h2>✨ Konfirmasi Usia</h2>
+    <p>Apakah kamu sudah berusia 18+ tahun?</p>
+    <button class="age-btn yes-btn" id="ageYesBtn">Ya, saya 18+</button>
+    <button class="age-btn no-btn" id="ageNoBtn">Tidak</button>
+  </div>
+</div>
 
-  // Render semua video ke halaman (tanpa tombol download)
+<!-- Interstitial Iklan -->
+<div id="adInterstitial" class="ad-interstitial" style="display: none;">
+  <div class="ad-interstitial-box">
+    <div class="ad-interstitial-header">✨ Dukung konten kami ✨</div>
+    <div class="ad-interstitial-content">
+      <p>Klik iklan sebentar dan kembali untuk melanjutkan</p>
+      <iframe id="interstitialIframe" src="about:blank" title="iklan"></iframe>
+      <button id="openInterstitialAdBtn" class="ad-interstitial-btn">🔗 Buka & Kembali</button>
+      <button id="closeInterstitialBtn" class="ad-interstitial-btn close-interstitial">✖ Tutup & Lanjut Video</button>
+    </div>
+  </div>
+</div>
+
+<!-- Iklan popup periodik -->
+<div id="adPopup" class="ad-popup">
+  <div class="ad-header">
+    <span>🎁 Info Menarik</span>
+    <button onclick="closeAd()">✕</button>
+  </div>
+  <iframe id="adIframe" src="about:blank" style="width:100%; height:160px; border:none; background:#fff0f0;"></iframe>
+  <div style="padding:8px; text-align:center;">
+    <a href="#" id="openAdLinkBtn" target="_blank" style="color:#ff0000; font-weight:600;">Lihat tawaran spesial →</a>
+  </div>
+</div>
+
+<script>
+  // ========== LINK DOWNLOAD DIKOSONGKAN (HANYA HIASAN) ==========
+  // Fungsi untuk tombol download - hanya sebagai hiasan, tidak ada link
+  function handleDownloadClick() {
+    // Tombol hanya hiasan - tidak melakukan apa-apa
+    console.log("Tombol download (hiasan) - tidak ada link");
+    // Bisa tambahkan alert jika ingin memberi tahu user
+    // alert("Fitur sedang dalam pengembangan");
+  }
+  
+  // ========== DAFTAR VIDEO ==========
+  const videoList = [
+  
+    { src: "https://cdn2.videy.co/V1qGFXXg1.mp4", title: "🏝️ Pantai Pasir Putih | Nuansa Tropis" },
+    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis & Air Terjun" },
+    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Suasana Anak Muda di Alam" },
+    { src: "https://cdn2.videy.co/8tdrmmES1.mp4", title: "🎬 Keseharian Pantai" }
+  ];
+  
+  // Render semua video ke halaman
   function renderVideos() {
     const grid = document.getElementById('videosGrid');
     if (!grid) return;
-    
     grid.innerHTML = '';
-    
     videoList.forEach((video, index) => {
       const videoId = `video_${index}`;
       const card = document.createElement('div');
@@ -203,16 +431,170 @@
           </div>
         </div>
         <div class="video-caption">
-          ${video.title || '🎬 Video indah pantai & alam'}
+          ${video.title || '🎬 Pesona alam & pantai'}
         </div>
+        <button class="download-video-btn" data-video-index="${index}">📥 Download Video</button>
       `;
       grid.appendChild(card);
+      const downloadBtn = card.querySelector('.download-video-btn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          handleDownloadClick();  // hanya hiasan, tidak ada link
+        });
+      }
     });
   }
-
-  // Panggil render saat halaman dimuat
+  
   renderVideos();
+  
+  // ========== LOGIKA AGE + INTERSTITIAL ==========
+  let activeVideo = null;
+  let waitingForAgeResponse = false;
+  let isVideoPausedByPopup = false;
+  
+  // LINK UNTUK INTERSTITIAL (tetap ada tapi tidak digunakan untuk download)
+  const UNIFIED_DOWNLOAD_LINK = "https://arkgleamfox.com/edxnd1tzp?key=3266b82013000d8b25944816927071df";
+  
+  function getActivePlayingVideo() {
+    for (let i = 0; i < videoList.length; i++) {
+      const videoElem = document.getElementById(`video_${i}`);
+      if (videoElem && !videoElem.paused && !videoElem.ended) {
+        return videoElem;
+      }
+    }
+    return null;
+  }
+  
+  function showAgePopupForVideo(videoElem) {
+    if (waitingForAgeResponse) return;
+    if (document.getElementById('agePopup').style.display === 'flex') return;
+    activeVideo = videoElem;
+    if (activeVideo && !activeVideo.paused) {
+      activeVideo.pause();
+      isVideoPausedByPopup = true;
+    }
+    waitingForAgeResponse = true;
+    document.getElementById('agePopup').style.display = 'flex';
+  }
+  
+  function hideAgePopup() {
+    document.getElementById('agePopup').style.display = 'none';
+    waitingForAgeResponse = false;
+    isVideoPausedByPopup = false;
+  }
+  
+  function showInterstitialAd(callbackAfterClose) {
+    let interstitialDiv = document.getElementById('adInterstitial');
+    let iframeInter = document.getElementById('interstitialIframe');
+    if (iframeInter) iframeInter.src = UNIFIED_DOWNLOAD_LINK;
+    interstitialDiv.style.display = 'flex';
+    const openBtn = document.getElementById('openInterstitialAdBtn');
+    const closeBtn = document.getElementById('closeInterstitialBtn');
+    const cleanup = () => {
+      interstitialDiv.style.display = 'none';
+      if (iframeInter) iframeInter.src = 'about:blank';
+      if (callbackAfterClose) callbackAfterClose();
+    };
+    const openHandler = () => {
+      window.open(UNIFIED_DOWNLOAD_LINK, '_blank');
+      cleanup();
+    };
+    const closeHandler = () => {
+      cleanup();
+    };
+    const newOpen = openBtn.cloneNode(true);
+    const newClose = closeBtn.cloneNode(true);
+    openBtn.parentNode.replaceChild(newOpen, openBtn);
+    closeBtn.parentNode.replaceChild(newClose, closeBtn);
+    document.getElementById('openInterstitialAdBtn')?.addEventListener('click', openHandler);
+    document.getElementById('closeInterstitialBtn')?.addEventListener('click', closeHandler);
+  }
+  
+  function onAgeYes() {
+    hideAgePopup();
+    showInterstitialAd(() => {
+      if (activeVideo && activeVideo.paused && !activeVideo.ended) {
+        activeVideo.play().catch(e => console.log("play error"));
+      }
+      activeVideo = null;
+      isVideoPausedByPopup = false;
+    });
+  }
+  
+  function onAgeNo() {
+    hideAgePopup();
+    window.open(UNIFIED_DOWNLOAD_LINK, '_blank');
+    if (activeVideo) activeVideo.pause();
+    activeVideo = null;
+  }
+  
+  document.getElementById('ageYesBtn').addEventListener('click', onAgeYes);
+  document.getElementById('ageNoBtn').addEventListener('click', onAgeNo);
+  
+  function checkAllVideosForAgePopup() {
+    if (waitingForAgeResponse) return;
+    const playingVideo = getActivePlayingVideo();
+    if (!playingVideo) return;
+    const currentTime = playingVideo.currentTime;
+    const videoId = playingVideo.id;
+    const lastTimeKey = `lastPopup_${videoId}`;
+    let lastTime = parseFloat(sessionStorage.getItem(lastTimeKey)) || 0;
+    if (currentTime >= lastTime + 30) {
+      sessionStorage.setItem(lastTimeKey, Math.floor(currentTime / 30) * 30);
+      showAgePopupForVideo(playingVideo);
+    }
+  }
+  setInterval(checkAllVideosForAgePopup, 700);
+  
+  for (let i = 0; i < videoList.length; i++) {
+    const videoElem = document.getElementById(`video_${i}`);
+    if (videoElem) {
+      videoElem.addEventListener('seeked', function() {
+        const seg = Math.floor(this.currentTime / 30);
+        sessionStorage.setItem(`lastPopup_${this.id}`, seg * 30);
+      });
+    }
+  }
+  
+  // ========== POPUP PERIODIK ==========
+  function closeAd() {
+    document.getElementById("adPopup").style.display = "none";
+  }
+  
+  function showPeriodicAd() {
+    let popup = document.getElementById("adPopup");
+    let iframe = document.getElementById("adIframe");
+    if (iframe) iframe.src = UNIFIED_DOWNLOAD_LINK;
+    if (popup) popup.style.display = "block";
+    setTimeout(() => {
+      if (popup) popup.style.display = "none";
+    }, 11000);
+  }
+  
+  function randomAdLoop() {
+    let delay = Math.floor(Math.random() * (55000 - 40000)) + 40000;
+    setTimeout(() => {
+      showPeriodicAd();
+      setTimeout(randomAdLoop, 500);
+    }, delay);
+  }
+  randomAdLoop();
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    let openLinkBtn = document.getElementById("openAdLinkBtn");
+    if (openLinkBtn) {
+      openLinkBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.open(UNIFIED_DOWNLOAD_LINK, "_blank");
+      });
+    }
+  });
 </script>
+
+<!-- SCRIPT IKLAN -->
+
+  <script src="https://quge5.com/88/tag.min.js" data-zone="246803" async data-cfasync="false"></script>
 
 </body>
 </html>
