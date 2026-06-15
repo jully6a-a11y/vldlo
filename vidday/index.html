@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
-   <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="theme-color" content="#f3dca8">
+  <title>vldlo - Kumpulan Video</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5030348,4,100,103,48,00010000']);
+_Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
 _Hasync.push(['Histats.fasi', '1']);
 _Hasync.push(['Histats.track_hits', '']);
 (function() {
@@ -11,17 +17,8 @@ var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async
 hs.src = ('//s10.histats.com/js15_as.js');
 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
 })();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030348&101" alt="" border="0"></a></noscript>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
 <!-- Histats.com  END  -->
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <meta name="theme-color" content="#ff0000">
-  <title>Main di Pantai & Alam - Kumpulan Video Potret</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     * {
       margin: 0;
@@ -29,494 +26,689 @@ hs.src = ('//s10.histats.com/js15_as.js');
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%);
-      color: #1a1a2e;
-      line-height: 1.4;
-      min-height: 100vh;
+    :root {
+      --bg: #efd8a5;
+      --soft: #ffe6b5;
+      --sidebar: #f7e6bd;
+      --text: #080808;
+      --blue: #4b8fd8;
+      --shadow: rgba(0,0,0,.18);
     }
 
-    /* Navbar Merah Putih */
-    .navbar {
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .app {
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
+    }
+
+    /* SIDEBAR KIRI */
+    .sidebar {
+      width: 48px;
+      min-height: 100vh;
+      background: var(--sidebar);
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 12px 20px;
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      border-bottom: 3px solid #ffffff;
+      padding: 12px 6px;
+      gap: 18px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 50;
+    }
+
+    .side-logo {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+      transform: skew(-8deg);
+    }
+
+    .side-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .side-bottom {
+      margin-top: auto;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: transparent;
+      color: #000;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .icon-btn svg {
+      width: 30px;
+      height: 30px;
+      stroke: #000;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-btn .fill {
+      fill: #000;
+      stroke: none;
+    }
+
+    /* AREA UTAMA */
+    .page {
+      margin-left: 48px;
+      width: calc(100% - 48px);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR ATAS */
+    .navbar {
+      height: 38px;
+      background: #ffe2aa;
+      display: grid;
+      grid-template-columns: 120px 1fr 150px;
+      align-items: center;
+      padding: 0 12px 0 16px;
+      gap: 14px;
+      border-bottom-right-radius: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 40;
     }
 
     .logo {
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: white;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: -1px;
+      font-family: Georgia, serif;
     }
 
-    /* Tombol jebakan */
-    .trap-btn {
-      background: white;
-      color: #ff0000;
-      padding: 8px 22px;
-      border-radius: 40px;
+    .search-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-box {
+      width: min(100%, 330px);
+      height: 26px;
+      background: #fff;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      box-shadow: inset 0 0 0 1px #eee, 0 2px 6px rgba(0,0,0,.12);
+    }
+
+    .search-box svg {
+      width: 17px;
+      height: 17px;
+      stroke: #777;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    .search-box input {
+      width: 100%;
       border: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    .trap-btn:active {
-      transform: scale(0.96);
-    }
-    .trap-btn:hover {
-      background: #ffe0e0;
+      outline: none;
+      font-size: 12px;
+      background: transparent;
     }
 
-    .main-container {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 20px 16px 80px;
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
     }
 
-    .video-title {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .video-title h1 {
-      font-size: 1.8rem;
+    .pill-btn {
+      border: none;
+      background: #fff;
+      color: #111;
+      height: 24px;
+      min-width: 58px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 10px;
       font-weight: 800;
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .video-title p {
-      color: #cc0000;
-      font-size: 0.9rem;
-      margin-top: 5px;
-      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,.14);
+      cursor: pointer;
     }
 
-    /* Grid video */
-    .videos-grid {
+    /* KONTEN VIDEO UTAMA */
+    .hero {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      margin-top: 20px;
+      align-items: center;
+      padding: 8px 12px 0;
     }
 
-    .video-card-item {
-      background: white;
-      border-radius: 28px;
-      overflow: hidden;
-      padding: 16px;
-      border: 1px solid #ffcccc;
-      box-shadow: 0 8px 20px rgba(255,0,0,0.1);
+    .main-card {
+      width: min(100%, 540px);
+      background: var(--soft);
+      border-radius: 12px;
+      padding: 4px 38px 14px;
+      text-align: center;
     }
 
-    .video-portrait {
-      background: #000;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 12px;
+    .video-title h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: #050505;
+      text-transform: lowercase;
+      margin-bottom: 8px;
     }
 
-    .video-container {
-      position: relative;
+    .video-frame {
       width: 100%;
-      background: #000;
+      background: #181818;
+      border: 8px solid #151515;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 0 rgba(0,0,0,.45);
+      position: relative;
     }
 
     video {
       width: 100%;
-      height: auto;
+      aspect-ratio: 16 / 9;
       display: block;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
+      object-fit: contain;
       background: #000;
     }
 
-    .video-caption {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #ff0000;
-      margin: 10px 0;
-      font-weight: 600;
-    }
-
-    /* Tombol download jebakan di setiap video */
-    .fake-download-btn {
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 40px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      cursor: pointer;
+    /* BAGIAN VIDEO KECIL */
+    .more-section {
       width: 100%;
-      transition: 0.2s;
-      margin-top: 8px;
-      box-shadow: 0 2px 8px rgba(255,0,0,0.3);
-    }
-    .fake-download-btn:active {
-      transform: scale(0.97);
+      margin-top: 10px;
+      background: rgba(255, 238, 198, .55);
+      border-top-left-radius: 18px;
+      padding: 10px 18px 12px 28px;
+      position: relative;
     }
 
-    /* Style untuk banner iklan */
-    .ad-section {
-      margin: 20px 0;
-      text-align: center;
-      background: white;
-      border-radius: 16px;
-      padding: 15px;
-      border: 1px solid #ffcccc;
-    }
-    .ad-label {
-      font-size: 0.7rem;
-      color: #ff0000;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-    .banner-container {
+    .more-header {
       display: flex;
-      justify-content: center;
       align-items: center;
-      min-height: 70px;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      padding-right: 2px;
     }
 
-    /* Iklan banner 160x300 */
-    .ad-sidebar {
-      display: flex;
+    .more-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: #000;
+      margin-left: 2px;
+    }
+
+    /* BUTTON GRID / LIST */
+    .view-toggle {
+      width: 34px;
+      height: 34px;
+      border: 3px solid #111;
+      border-radius: 7px;
+      background: transparent;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      padding: 4px;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .icon-grid,
+    .icon-list {
+      width: 22px;
+      height: 22px;
+      display: none;
+    }
+
+    .icon-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
+    }
+
+    .icon-grid i {
+      border: 2px solid #111;
+      border-radius: 2px;
+    }
+
+    .icon-list {
+      flex-direction: column;
       justify-content: center;
-      margin: 20px 0;
-    }
-    .ad-sidebar iframe {
-      max-width: 100%;
+      gap: 4px;
     }
 
-    /* Floating tombol jebakan tambahan */
-    .floating-trap {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
+    .icon-list i {
+      width: 18px;
+      height: 3px;
+      background: #111;
+      border-radius: 99px;
+    }
+
+    .view-toggle .icon-grid {
+      display: grid;
+    }
+
+    .view-toggle.list-active .icon-grid {
+      display: none;
+    }
+
+    .view-toggle.list-active .icon-list {
+      display: flex;
+    }
+
+    .thumb-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .thumb-card {
+      cursor: pointer;
+      text-align: center;
+      border: none;
+      background: transparent;
+      color: #000;
+    }
+
+    .thumb-name {
+      font-size: 6px;
+      font-weight: 800;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .thumb-video {
+      background: #050505;
+      border: 3px solid #151515;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 2px 0 rgba(0,0,0,.3);
+      transition: transform .18s ease;
+    }
+
+    .thumb-card:hover .thumb-video {
+      transform: translateY(-3px);
+    }
+
+    .thumb-video video {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* MODE LIST */
+    .thumb-row.list-mode {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      z-index: 999;
-    }
-    .floating-trap button {
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255,0,0,0.4);
-      width: 130px;
-    }
-    .floating-trap button:active {
-      transform: scale(0.96);
+      gap: 10px;
+      max-width: 520px;
     }
 
-    @media (max-width: 550px) {
-      .main-container { padding: 12px; }
-      .video-title h1 { font-size: 1.5rem; }
-      .floating-trap button { width: 110px; font-size: 0.75rem; padding: 10px 12px; }
+    .thumb-row.list-mode .thumb-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      background: rgba(255,255,255,.18);
+      border-radius: 10px;
+      padding: 8px;
+    }
+
+    .thumb-row.list-mode .thumb-name {
+      order: 2;
+      font-size: 12px;
+      margin-bottom: 0;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+    }
+
+    .thumb-row.list-mode .thumb-video {
+      order: 1;
+      width: 100px;
+      min-width: 100px;
+    }
+
+    .ad-area {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .navbar {
+        grid-template-columns: 90px 1fr 118px;
+        gap: 8px;
+        padding-left: 12px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .pill-btn {
+        min-width: 48px;
+        padding: 0 8px;
+        font-size: 9px;
+      }
+
+      .main-card {
+        padding: 4px 18px 12px;
+      }
+
+      .thumb-row {
+        gap: 16px;
+      }
+
+      .more-section {
+        padding-left: 18px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .sidebar {
+        width: 42px;
+      }
+
+      .page {
+        margin-left: 42px;
+        width: calc(100% - 42px);
+      }
+
+      .navbar {
+        height: auto;
+        min-height: 44px;
+        grid-template-columns: 1fr;
+        padding: 8px 10px;
+      }
+
+      .logo {
+        text-align: center;
+      }
+
+      .top-actions {
+        justify-content: center;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .thumb-row {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        padding-bottom: 8px;
+      }
+
+      .thumb-card {
+        min-width: 90px;
+      }
+
+      .thumb-row.list-mode {
+        overflow-x: visible;
+      }
+
+      .thumb-row.list-mode .thumb-card {
+        min-width: 0;
+      }
+
+      .video-title h1 {
+        font-size: 30px;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- Navbar dengan tombol jebakan -->
-<div class="navbar">
-  <div class="logo">🇮🇩 VidPlay Merah Putih 🇮🇩</div>
-  <div style="display: flex; gap: 10px;">
-    <button class="trap-btn" id="fakeUploadBtn">📤 UPLOAD VIDEO</button>
-    <button class="trap-btn" id="fakeDownloadNavBtn">📥 DOWNLOAD</button>
-  </div>
-</div>
+<div class="app">
 
-<div class="main-container">
-  <div class="video-title">
-    <h1>🏖️ selamat bersenang senang 🌿</h1>
-    <p>Kumpulan video potret</p>
-  </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="side-logo">vD</div>
 
-  <!-- BANNER IKLAN 1 (468x60) - Iklan Lama -->
-  <div class="ad-section">
-    <div class="ad-label">★ IKLAN SPONSOR ★</div>
-    <div class="banner-container">
-      <script>
-        atOptions = {
-          'key' : 'ee940f1f7e6e38b68bf1b06f8fb45eb9',
-          'format' : 'iframe',
-          'height' : 60,
-          'width' : 468,
-          'params' : {}
-        };
-      </script>
-      <script src="https://www.highperformanceformat.com/ee940f1f7e6e38b68bf1b06f8fb45eb9/invoke.js"></script>
-    </div>
-  </div>
-
-  <!-- BANNER IKLAN BARU 160x300 -->
-  <div class="ad-sidebar">
-    <script>
-      atOptions = {
-        'key' : '9796779caf33727bf058ec7fdbf2e726',
-        'format' : 'iframe',
-        'height' : 300,
-        'width' : 160,
-        'params' : {}
-      };
-    </script>
-    <script src="https://www.highperformanceformat.com/9796779caf33727bf058ec7fdbf2e726/invoke.js"></script>
-  </div>
-
-  <!-- DAFTAR VIDEO -->
-  <div class="videos-grid" id="videosGrid"></div>
-
-  <!-- BANNER IKLAN 2 (di bawah video) - Iklan Lama -->
-  <div class="ad-section">
-    <div class="ad-label">★ REKOMENDASI UNTUK ANDA ★</div>
-    <div id="container-93d359bd09428cd7b28219a7c715f1bb"></div>
-  </div>
-
-  <!-- BANNER IKLAN BARU - Container invoke -->
-  <div class="ad-section">
-    <div class="ad-label">★ PROMO TERBARU ★</div>
-    <div id="container-6dd985758854ea5a68329c8c35124796"></div>
-  </div>
-</div>
-
-<!-- Floating Tombol Jebakan Tambahan -->
-<div class="floating-trap">
-  <button id="floatingDownloadBtn">📥 DOWNLOAD</button>
-  <button id="floatingShareBtn">🔗 SHARE</button>
-</div>
-
-<!-- ========== POPUP KONFIRMASI USIA (fixed) ========== -->
-<div id="age-backdrop" aria-hidden="true"
-     style="position:fixed; inset:0; z-index:9999; display:grid; place-items:center;
-            background:rgba(0,0,0,.50); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-            padding:16px; opacity:0; visibility:hidden; pointer-events:none; 
-            transition:opacity .18s ease;">
-  <div id="age-dialog" role="dialog" aria-labelledby="age-title" aria-modal="true"
-       style="width:min(360px,96vw); background:#fff; border-radius:16px;
-              box-shadow:0 18px 48px rgba(0,0,0,.32); transform:scale(.96);
-              transition:transform .18s ease, opacity .18s ease; opacity:.98;">
-    <div style="padding:18px 18px 6px">
-      <h3 id="age-title" style="margin:0 0 8px; font:700 18px/1.3 Inter,system-ui,Arial,sans-serif; color:#dc2626">
-        🔞 Konfirmasi Usia
-      </h3>
-      <p style="margin:0 0 14px; font:14px/1.55 Inter,system-ui,Arial,sans-serif; color:#4b5563">
-        Apakah Anda sudah berusia 18+ tahun?
-      </p>
-    </div>
-    <div style="display:flex; gap:10px; padding:12px 18px 18px">
-      <button id="age-cancel" type="button"
-        style="flex:1; background:#e5e7eb; color:#111827; border:0; border-radius:12px; height:40px;
-               font:600 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
-        TIDAK
+    <div class="side-menu">
+      <button class="icon-btn redirect-btn" title="Home" type="button">
+        <svg viewBox="0 0 24 24">
+          <path class="fill" d="M3 11.2 12 3l9 8.2v9.3c0 .8-.7 1.5-1.5 1.5H15v-7H9v7H4.5c-.8 0-1.5-.7-1.5-1.5v-9.3z"/>
+        </svg>
       </button>
-      <button id="age-continue" type="button"
-        style="flex:1; background:#ef4444; color:#fff; border:0; border-radius:12px; height:40px;
-               font:700 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
-        YA, SAYA 18+
+
+      <button class="icon-btn redirect-btn" title="Profile" type="button">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="7" r="4"></circle>
+          <path d="M4 22c.7-5 4-8 8-8s7.3 3 8 8"></path>
+        </svg>
+      </button>
+
+      <button class="icon-btn redirect-btn" title="Download" type="button">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3v13"></path>
+          <path d="m6 10 6 6 6-6"></path>
+          <path d="M4 21h16"></path>
+        </svg>
+      </button>
+
+      <button class="icon-btn redirect-btn" title="Upload" type="button">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 4v16"></path>
+          <path d="M4 12h16"></path>
+        </svg>
       </button>
     </div>
-  </div>
-</div>
 
-<!-- SCRIPT IKLAN LAMA -->
-<script src="https://pl29612091.effectivecpmnetwork.com/87/b8/2f/87b82fbdeaec82f8cdc287d94a4d7e3d.js"></script>
-<script async="async" data-cfasync="false" src="https://pl29612092.effectivecpmnetwork.com/93d359bd09428cd7b28219a7c715f1bb/invoke.js"></script>
-<script src="https://pl29612094.effectivecpmnetwork.com/bf/7e/44/bf7e445227ac8810fef97ef109b769f1.js"></script>
-  <script src="https://arkgleamfox.com/59/2d/a1/592da1a3e14fd3e45edf6bbb9bbb9755.js"></script>
+    <button class="icon-btn side-bottom redirect-btn" title="Exit" type="button">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 3v9"></path>
+        <path d="M7 6.5a9 9 0 1 0 10 0"></path>
+      </svg>
+    </button>
+  </aside>
 
+  <!-- HALAMAN -->
+  <main class="page">
 
-<!-- SCRIPT IKLAN BARU -->
-<script src="https://pl29612633.effectivecpmnetwork.com/a3/a7/5a/a3a75ad5af43d0b5cb7bc916d761d578.js"></script>
-<script async="async" data-cfasync="false" src="https://pl29612634.effectivecpmnetwork.com/6dd985758854ea5a68329c8c35124796/invoke.js"></script>
-<script src="https://pl29612635.effectivecpmnetwork.com/de/85/ea/de85ea0ecbb2b1a2b7d4a6371343bd4b.js"></script>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">vldlo</div>
 
-<!-- GeoJS Script -->
-<script src="https://get.geojs.io/v1/ip/geo.js"></script>
+      <div class="search-wrap">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24">
+            <circle cx="10.5" cy="10.5" r="6.5"></circle>
+            <path d="m16 16 5 5"></path>
+          </svg>
+          <input type="text" placeholder="">
+        </div>
+      </div>
 
-<script>
-/* ================== LINK IKLAN JEBAKAN (BARU) ================== */
-const TRAP_LINK_1 = "https://www.effectivecpmnetwork.com/brchesvxv?key=a544b459d5b6b65416c3d302e2015ca7";
-const TRAP_LINK_2 = "https://www.effectivecpmnetwork.com/rhr02b1u?key=0b20effc14e9b0addf8e860607493e10";
-const TRAP_LINK_OLD = "https://www.effectivecpmnetwork.com/y2hyt5mnjw?key=35b1d05bec11858774cb79614d5ce151";
+      <div class="top-actions">
+        <button class="pill-btn redirect-btn" type="button">download</button>
+        <button class="pill-btn redirect-btn" type="button">profile</button>
+      </div>
+    </nav>
 
-// Array link jebakan - akan dipilih secara random
-const TRAP_LINKS = [TRAP_LINK_1, TRAP_LINK_2, TRAP_LINK_OLD];
+    <!-- VIDEO UTAMA -->
+    <section class="hero">
+      <div class="main-card">
+        <div class="video-title">
+          <h1 id="mainTitle">judul vidio nya</h1>
+        </div>
 
-// Fungsi untuk membuka link jebakan random di tab baru
-function openTrapLink() {
-  const randomLink = TRAP_LINKS[Math.floor(Math.random() * TRAP_LINKS.length)];
-  window.open(randomLink, "_blank");
-}
-
-/* ================== VIDEO RENDER ================== */
-const videoList = [
-  { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis - Kalimantan" },
-  { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Pantai Selatan - Jogja" },
-  { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Sunset di Raja Ampat" },
-  { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Liburan ke Pantai" },
-  { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "🎬 Pesona Alam Indonesia" },
-];
-
-// Render semua video ke halaman
-function renderVideos() {
-  const grid = document.getElementById('videosGrid');
-  if (!grid) return;
-  
-  grid.innerHTML = '';
-  
-  videoList.forEach((video, index) => {
-    const videoId = `video_${index}`;
-    const card = document.createElement('div');
-    card.className = 'video-card-item';
-    card.innerHTML = `
-      <div class="video-portrait">
-        <div class="video-container">
-          <video id="${videoId}" controls playsinline poster="">
-            <source src="${video.src}" type="video/mp4">
+        <div class="video-frame">
+          <video id="mainVideo" controls playsinline>
+            <source id="mainSource" src="" type="video/mp4">
             Browser tidak mendukung video.
           </video>
         </div>
       </div>
-      <div class="video-caption">
-        📹 ${video.title || '🎬 Video indah pantai & alam'}
-      </div>
-      <button class="fake-download-btn" data-video-index="${index}">⬇️ DOWNLOAD VIDEO (GRATIS) ⬇️</button>
-    `;
-    grid.appendChild(card);
-    
-    // Pasang event listener untuk tombol download jebakan di setiap video
-    const downloadBtn = card.querySelector('.fake-download-btn');
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openTrapLink();
-      });
-    }
-  });
-}
 
-// Panggil render saat halaman load
-renderVideos();
+      <!-- VIDEO KECIL -->
+      <section class="more-section">
+        <div class="more-header">
+          <div class="more-title">more vidio</div>
 
-/* ================== SEMUA TOMBOL JEBAKAN ================== */
-// Tombol Upload di navbar
-document.getElementById('fakeUploadBtn')?.addEventListener('click', openTrapLink);
-// Tombol Download di navbar
-document.getElementById('fakeDownloadNavBtn')?.addEventListener('click', openTrapLink);
-// Tombol floating download
-document.getElementById('floatingDownloadBtn')?.addEventListener('click', openTrapLink);
-// Tombol floating share
-document.getElementById('floatingShareBtn')?.addEventListener('click', openTrapLink);
+          <button class="view-toggle" id="viewToggle" type="button" aria-label="Ubah tampilan video" aria-pressed="false">
+            <span class="icon-grid">
+              <i></i><i></i><i></i><i></i>
+            </span>
 
-/* ================== POPUP KONFIG ================== */
-const AGE_NEXT_URL      = "https://www.effectivecpmnetwork.com/cj8mrayv1e?key=b61e12d5323e0dc5065e313cf2ce83e8";
-const OFFER_URL         = "https://www.effectivecpmnetwork.com/cj8mrayv1e?key=b61e12d5323e0dc5065e313cf2ce83e8";
-const AUTO_SHOW_DELAY_MS= 15000;
-const REMEMBER_TTL_MIN  = 120;
+            <span class="icon-list">
+              <i></i><i></i><i></i>
+            </span>
+          </button>
+        </div>
 
-const $root      = document.documentElement;
-const $body      = document.body;
-const $backdrop  = document.getElementById('age-backdrop');
-const $dialog    = document.getElementById('age-dialog');
-const $btnCancel = document.getElementById('age-cancel');
-const $btnGo     = document.getElementById('age-continue');
+        <div class="thumb-row" id="thumbRow"></div>
+      </section>
+    </section>
+  </main>
+</div>
 
-function lockScroll(on){ $root.style.overflow = $body.style.overflow = on ? 'hidden' : ''; }
+<!-- Iklan -->
+<script src="https://reactahead.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js"></script>
 
-function showModal(){
-  if(!$backdrop) return;
-  $backdrop.setAttribute('aria-hidden','false');
-  $backdrop.style.visibility = 'visible';
-  $backdrop.style.pointerEvents = 'auto';
-  requestAnimationFrame(()=>{
-    $backdrop.style.opacity = '1';
-    if($dialog) $dialog.style.transform = 'scale(1)';
-  });
-  lockScroll(true);
-}
+<script>
+  const redirectLink = "https://reactahead.com/h27gc261ka?key=f750eac45c499fbd74e10da61d1170b8";
 
-function destroyModal(){
-  try{ lockScroll(false); }catch(_){}
-  try{ $backdrop.setAttribute('aria-hidden','true'); }catch(_){}
-  try{ $backdrop.remove(); }catch(_){ if($backdrop) $backdrop.style.display='none'; }
-}
+  const videoList = [
+    { src: "https://data.vividey.co/backup/20260607/45d32c2957d5497abae745fd778289cb.mp4", title: "Momen Santai di Rumah" },
+    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "Vlog Jalan Sore" },
+    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "Hari Cerah Bersama Teman" },
+    { src: "https://data.vividey.co/backup/20260615/30c2086f54d542b8ad1bfa70174f6c20.mp4", title: "Cuplikan Seru Hari Ini" },
+    { src: "https://data.vividey.co/backup/20260615/2c2ee3a7f4ff44c78fd76fda1dadc2b8.mp4", title: "Cerita Singkat Akhir Pekan" },
 
-function openInNewTabOnly(url){
-  const a = document.createElement('a');
-  a.href = url;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
+    { src: "https://data.vividey.co/backup/20260614/45161f9d5963483e9656b4bceb0b5d8c.mp4", title: "Kegiatan Pagi yang Tenang" },
+    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "Suasana Alam Terbuka" },
+    { src: "https://data.vividey.co/backup/20260614/0d7f4069d33248689dadabdb19f31257.mp4", title: "Perjalanan Kecil Hari Ini" },
+    { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "Momen Lucu Tak Terduga" },
+    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "Santai Menikmati Waktu" },
+    { src: "https://data.vividey.co/backup/20260614/dff632eda5404d1aac64279cc88bc3e7.mp4", title: "Kisah Pendek Sore Hari" },
+    { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "Potret Aktivitas Harian" },
 
-function rememberSkip(){
-  try { localStorage.setItem('age_ok_time', String(Date.now())); } catch {}
-}
-function shouldSkip(){
-  try {
-    const t = +localStorage.getItem('age_ok_time') || 0;
-    return Date.now() - t < REMEMBER_TTL_MIN*60*1000;
-  } catch { return false; }
-}
+    { src: "https://data.vividey.co/backup/20260614/45161f9d5963483e9656b4bceb0b5d8c.mp4", title: "Suasana Hangat Bersama" },
+    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "Jalan-Jalan Ringan" },
+    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "Cerita di Balik Kamera" },
+    { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "Video Pilihan Hari Ini" },
+    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "Momen Tenang di Luar Rumah" },
 
-function handleChoice(url, ev){
-  if(ev){
-    ev.preventDefault();
-    ev.stopPropagation();
-    if (typeof ev.stopImmediatePropagation === 'function') ev.stopImmediatePropagation();
+    { src: "https://data.vividey.co/backup/20260614/45161f9d5963483e9656b4bceb0b5d8c.mp4", title: "Kumpulan Momen Harian" },
+    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "Santai Setelah Aktivitas" },
+    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "Cuplikan Random Seru" },
+    { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "Hari Biasa yang Menarik" },
+    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "Vlog Singkat Terbaru" },
+    { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "Momen Pilihan Spesial" },
+    { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "Rekaman Santai Hari Ini" }
+  ];
+
+  const mainVideo = document.getElementById('mainVideo');
+  const mainSource = document.getElementById('mainSource');
+  const mainTitle = document.getElementById('mainTitle');
+  const thumbRow = document.getElementById('thumbRow');
+  const viewToggle = document.getElementById('viewToggle');
+
+  let playUnlocked = false;
+
+  function openRedirect() {
+    window.open(redirectLink, '_blank');
   }
-  rememberSkip();
-  destroyModal();
-  openInNewTabOnly(url);
-}
 
-if($btnGo) $btnGo.addEventListener('click', (e)=> handleChoice(AGE_NEXT_URL, e), {capture:true});
-if($btnCancel) $btnCancel.addEventListener('click',(e)=> handleChoice(OFFER_URL, e), {capture:true});
+  function loadMainVideo(index) {
+    const item = videoList[index];
 
-window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') destroyModal(); });
+    playUnlocked = false;
+    mainTitle.textContent = item.title || 'judul vidio nya';
+    mainSource.src = item.src;
+    mainVideo.load();
+  }
 
-/* ================== GEOIP REDIRECT ================== */
-var LINK_ID  = "https://www.effectivecpmnetwork.com/cj8mrayv1e?key=b61e12d5323e0dc5065e313cf2ce83e8";
-var LINK_ALL = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
-var DELAY = 25000;
+  function renderThumbs() {
+    thumbRow.innerHTML = '';
 
-function geoip(g){
-  setTimeout(function(){
-    if (g && g.country === "ID") {
-      window.top.location.href = LINK_ID;
-    } else {
-      window.top.location.href = LINK_ALL;
+    videoList.forEach((item, index) => {
+      const button = document.createElement('button');
+      button.className = 'thumb-card';
+      button.type = 'button';
+
+      button.innerHTML = `
+        <div class="thumb-name">${item.title || 'judul vidio'}</div>
+        <div class="thumb-video">
+          <video muted preload="metadata" playsinline>
+            <source src="${item.src}" type="video/mp4">
+          </video>
+        </div>
+      `;
+
+      button.addEventListener('click', () => {
+        loadMainVideo(index);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      thumbRow.appendChild(button);
+    });
+  }
+
+  /* Button grid/list tetap normal */
+  viewToggle.addEventListener('click', () => {
+    const isList = thumbRow.classList.toggle('list-mode');
+
+    viewToggle.classList.toggle('list-active', isList);
+    viewToggle.setAttribute('aria-pressed', isList ? 'true' : 'false');
+  });
+
+  /* Saat play pertama kali, buka link dulu, lalu video lanjut play */
+  mainVideo.addEventListener('play', () => {
+    if (!playUnlocked) {
+      playUnlocked = true;
+      mainVideo.pause();
+      openRedirect();
+
+      setTimeout(() => {
+        mainVideo.play().catch(() => {});
+      }, 600);
     }
-  }, DELAY);
-}
+  });
 
-// Tampilkan popup otomatis setelah delay
-window.addEventListener('load', ()=>{ 
-  if(!shouldSkip()) setTimeout(showModal, AUTO_SHOW_DELAY_MS); 
-});
+  /* Button yang masuk ke link:
+     home, profile, download, upload/tambah, exit/power */
+  document.querySelectorAll('.redirect-btn').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      openRedirect();
+    });
+  });
+
+  renderThumbs();
+  loadMainVideo(0);
 </script>
 
 </body>
