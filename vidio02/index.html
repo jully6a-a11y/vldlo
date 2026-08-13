@@ -1,523 +1,544 @@
 <!DOCTYPE html>
 <html lang="id">
-   <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
-<!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5030348,4,100,103,48,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030348&101" alt="" border="0"></a></noscript>
-<!-- Histats.com  END  -->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <meta name="theme-color" content="#ff0000">
-  <title>Main di Pantai & Alam - Kumpulan Video Potret</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>NONTONIN — Streaming</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <link rel="stylesheet" href="style.css">
 
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%);
-      color: #1a1a2e;
-      line-height: 1.4;
-      min-height: 100vh;
-    }
-
-    /* Navbar Merah Putih */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 12px 20px;
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      border-bottom: 3px solid #ffffff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: white;
-    }
-
-    /* Tombol jebakan */
-    .trap-btn {
-      background: white;
-      color: #ff0000;
-      padding: 8px 22px;
-      border-radius: 40px;
-      border: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    .trap-btn:active {
-      transform: scale(0.96);
-    }
-    .trap-btn:hover {
-      background: #ffe0e0;
-    }
-
-    .main-container {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 20px 16px 80px;
-    }
-
-    .video-title {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .video-title h1 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .video-title p {
-      color: #cc0000;
-      font-size: 0.9rem;
-      margin-top: 5px;
-      font-weight: 500;
-    }
-
-    /* Grid video */
-    .videos-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      margin-top: 20px;
-    }
-
-    .video-card-item {
-      background: white;
-      border-radius: 28px;
-      overflow: hidden;
-      padding: 16px;
-      border: 1px solid #ffcccc;
-      box-shadow: 0 8px 20px rgba(255,0,0,0.1);
-    }
-
-    .video-portrait {
-      background: #000;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      background: #000;
-    }
-
-    video {
-      width: 100%;
-      height: auto;
-      display: block;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-      background: #000;
-    }
-
-    .video-caption {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #ff0000;
-      margin: 10px 0;
-      font-weight: 600;
-    }
-
-    /* Tombol download jebakan di setiap video */
-    .fake-download-btn {
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 40px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.2s;
-      margin-top: 8px;
-      box-shadow: 0 2px 8px rgba(255,0,0,0.3);
-    }
-    .fake-download-btn:active {
-      transform: scale(0.97);
-    }
-
-    /* Style untuk banner iklan */
-    .ad-section {
-      margin: 20px 0;
-      text-align: center;
-      background: white;
-      border-radius: 16px;
-      padding: 15px;
-      border: 1px solid #ffcccc;
-    }
-    .ad-label {
-      font-size: 0.7rem;
-      color: #ff0000;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-    .banner-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 70px;
-    }
-
-    /* Iklan banner 160x300 */
-    .ad-sidebar {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .ad-sidebar iframe {
-      max-width: 100%;
-    }
-
-    /* Floating tombol jebakan tambahan */
-    .floating-trap {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 999;
-    }
-    .floating-trap button {
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255,0,0,0.4);
-      width: 130px;
-    }
-    .floating-trap button:active {
-      transform: scale(0.96);
-    }
-
-    @media (max-width: 550px) {
-      .main-container { padding: 12px; }
-      .video-title h1 { font-size: 1.5rem; }
-      .floating-trap button { width: 110px; font-size: 0.75rem; padding: 10px 12px; }
-    }
-  </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- Navbar dengan tombol jebakan -->
-<div class="navbar">
-  <div class="logo">🇮🇩 VidPlay Merah Putih 🇮🇩</div>
-  <div style="display: flex; gap: 10px;">
-    <button class="trap-btn" id="fakeUploadBtn">📤 UPLOAD VIDEO</button>
-    <button class="trap-btn" id="fakeDownloadNavBtn">📥 DOWNLOAD</button>
-  </div>
-</div>
+<!-- ================= NAVBAR ================= -->
 
-<div class="main-container">
-  <div class="video-title">
-    <h1>🏖️ selamat bersenang senang 🌿</h1>
-    <p>Kumpulan video potret</p>
-  </div>
+<header class="navbar">
 
-  <!-- BANNER IKLAN 1 (468x60) - Iklan Lama -->
-  <div class="ad-section">
-    <div class="ad-label">★ IKLAN SPONSOR ★</div>
-    <div class="banner-container">
-      <script>
-        atOptions = {
-          'key' : 'ee940f1f7e6e38b68bf1b06f8fb45eb9',
-          'format' : 'iframe',
-          'height' : 60,
-          'width' : 468,
-          'params' : {}
-        };
-      </script>
-      <script src="https://www.highperformanceformat.com/ee940f1f7e6e38b68bf1b06f8fb45eb9/invoke.js"></script>
-    </div>
-  </div>
+    <div class="nav-left">
 
-  <!-- BANNER IKLAN BARU 160x300 -->
-  <div class="ad-sidebar">
-    <script>
-      atOptions = {
-        'key' : '9796779caf33727bf058ec7fdbf2e726',
-        'format' : 'iframe',
-        'height' : 300,
-        'width' : 160,
-        'params' : {}
-      };
-    </script>
-    <script src="https://www.highperformanceformat.com/9796779caf33727bf058ec7fdbf2e726/invoke.js"></script>
-  </div>
-
-  <!-- DAFTAR VIDEO -->
-  <div class="videos-grid" id="videosGrid"></div>
-
-  <!-- BANNER IKLAN 2 (di bawah video) - Iklan Lama -->
-  <div class="ad-section">
-    <div class="ad-label">★ REKOMENDASI UNTUK ANDA ★</div>
-    <div id="container-93d359bd09428cd7b28219a7c715f1bb"></div>
-  </div>
-
-  <!-- BANNER IKLAN BARU - Container invoke -->
-  <div class="ad-section">
-    <div class="ad-label">★ PROMO TERBARU ★</div>
-    <div id="container-6dd985758854ea5a68329c8c35124796"></div>
-  </div>
-</div>
-
-<!-- Floating Tombol Jebakan Tambahan -->
-<div class="floating-trap">
-  <button id="floatingDownloadBtn">📥 DOWNLOAD</button>
-  <button id="floatingShareBtn">🔗 SHARE</button>
-</div>
-
-<!-- ========== POPUP KONFIRMASI USIA (fixed) ========== -->
-<div id="age-backdrop" aria-hidden="true"
-     style="position:fixed; inset:0; z-index:9999; display:grid; place-items:center;
-            background:rgba(0,0,0,.50); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-            padding:16px; opacity:0; visibility:hidden; pointer-events:none; 
-            transition:opacity .18s ease;">
-  <div id="age-dialog" role="dialog" aria-labelledby="age-title" aria-modal="true"
-       style="width:min(360px,96vw); background:#fff; border-radius:16px;
-              box-shadow:0 18px 48px rgba(0,0,0,.32); transform:scale(.96);
-              transition:transform .18s ease, opacity .18s ease; opacity:.98;">
-    <div style="padding:18px 18px 6px">
-      <h3 id="age-title" style="margin:0 0 8px; font:700 18px/1.3 Inter,system-ui,Arial,sans-serif; color:#dc2626">
-        🔞 Konfirmasi Usia
-      </h3>
-      <p style="margin:0 0 14px; font:14px/1.55 Inter,system-ui,Arial,sans-serif; color:#4b5563">
-        Apakah Anda sudah berusia 18+ tahun?
-      </p>
-    </div>
-    <div style="display:flex; gap:10px; padding:12px 18px 18px">
-      <button id="age-cancel" type="button"
-        style="flex:1; background:#e5e7eb; color:#111827; border:0; border-radius:12px; height:40px;
-               font:600 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
-        TIDAK
-      </button>
-      <button id="age-continue" type="button"
-        style="flex:1; background:#ef4444; color:#fff; border:0; border-radius:12px; height:40px;
-               font:700 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
-        YA, SAYA 18+
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- SCRIPT IKLAN LAMA -->
-<script src="https://pl29612091.effectivecpmnetwork.com/87/b8/2f/87b82fbdeaec82f8cdc287d94a4d7e3d.js"></script>
-<script async="async" data-cfasync="false" src="https://pl29612092.effectivecpmnetwork.com/93d359bd09428cd7b28219a7c715f1bb/invoke.js"></script>
-<script src="https://pl29612094.effectivecpmnetwork.com/bf/7e/44/bf7e445227ac8810fef97ef109b769f1.js"></script>
-  <script src="https://arkgleamfox.com/59/2d/a1/592da1a3e14fd3e45edf6bbb9bbb9755.js"></script>
-
-
-<!-- SCRIPT IKLAN BARU -->
-<script src="https://pl29612633.effectivecpmnetwork.com/a3/a7/5a/a3a75ad5af43d0b5cb7bc916d761d578.js"></script>
-<script async="async" data-cfasync="false" src="https://pl29612634.effectivecpmnetwork.com/6dd985758854ea5a68329c8c35124796/invoke.js"></script>
-<script src="https://pl29612635.effectivecpmnetwork.com/de/85/ea/de85ea0ecbb2b1a2b7d4a6371343bd4b.js"></script>
-
-<!-- GeoJS Script -->
-<script src="https://get.geojs.io/v1/ip/geo.js"></script>
-
-<script>
-/* ================== LINK IKLAN JEBAKAN (BARU) ================== */
-const TRAP_LINK_1 = "https://www.effectivecpmnetwork.com/brchesvxv?key=a544b459d5b6b65416c3d302e2015ca7";
-const TRAP_LINK_2 = "https://www.effectivecpmnetwork.com/rhr02b1u?key=0b20effc14e9b0addf8e860607493e10";
-const TRAP_LINK_OLD = "https://www.effectivecpmnetwork.com/y2hyt5mnjw?key=35b1d05bec11858774cb79614d5ce151";
-
-// Array link jebakan - akan dipilih secara random
-const TRAP_LINKS = [TRAP_LINK_1, TRAP_LINK_2, TRAP_LINK_OLD];
-
-// Fungsi untuk membuka link jebakan random di tab baru
-function openTrapLink() {
-  const randomLink = TRAP_LINKS[Math.floor(Math.random() * TRAP_LINKS.length)];
-  window.open(randomLink, "_blank");
-}
-
-/* ================== VIDEO RENDER ================== */
-const videoList = [
-  { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis - Kalimantan" },
-  { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "🌊 Pantai Selatan - Jogja" },
-  { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "🎬 Sunset di Raja Ampat" },
-  { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Liburan ke Pantai" },
-  { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "🎬 Pesona Alam Indonesia" },
-];
-
-// Render semua video ke halaman
-function renderVideos() {
-  const grid = document.getElementById('videosGrid');
-  if (!grid) return;
-  
-  grid.innerHTML = '';
-  
-  videoList.forEach((video, index) => {
-    const videoId = `video_${index}`;
-    const card = document.createElement('div');
-    card.className = 'video-card-item';
-    card.innerHTML = `
-      <div class="video-portrait">
-        <div class="video-container">
-          <video id="${videoId}" controls playsinline poster="">
-            <source src="${video.src}" type="video/mp4">
-            Browser tidak mendukung video.
-          </video>
+        <div class="logo">
+            NONTON<span>IN</span>
         </div>
-      </div>
-      <div class="video-caption">
-        📹 ${video.title || '🎬 Video indah pantai & alam'}
-      </div>
-      <button class="fake-download-btn" data-video-index="${index}">⬇️ DOWNLOAD VIDEO (GRATIS) ⬇️</button>
-    `;
-    grid.appendChild(card);
-    
-    // Pasang event listener untuk tombol download jebakan di setiap video
-    const downloadBtn = card.querySelector('.fake-download-btn');
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openTrapLink();
-      });
-    }
-  });
-}
 
-// Panggil render saat halaman load
-renderVideos();
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#drama">Drama</a>
+            <a href="#film">Film</a>
+            <a href="#anime">Anime</a>
+            <a href="#popular">Terpopuler</a>
+        </nav>
 
-/* ================== SEMUA TOMBOL JEBAKAN ================== */
-// Tombol Upload di navbar
-document.getElementById('fakeUploadBtn')?.addEventListener('click', openTrapLink);
-// Tombol Download di navbar
-document.getElementById('fakeDownloadNavBtn')?.addEventListener('click', openTrapLink);
-// Tombol floating download
-document.getElementById('floatingDownloadBtn')?.addEventListener('click', openTrapLink);
-// Tombol floating share
-document.getElementById('floatingShareBtn')?.addEventListener('click', openTrapLink);
+    </div>
 
-/* ================== POPUP KONFIG ================== */
-const AGE_NEXT_URL      = "https://www.effectivecpmnetwork.com/cj8mrayv1e?key=b61e12d5323e0dc5065e313cf2ce83e8";
-const OFFER_URL         = "https://www.effectivecpmnetwork.com/cj8mrayv1e?key=b61e12d5323e0dc5065e313cf2ce83e8";
-const AUTO_SHOW_DELAY_MS= 15000;
-const REMEMBER_TTL_MIN  = 120;
+    <div class="nav-right">
 
-const $root      = document.documentElement;
-const $body      = document.body;
-const $backdrop  = document.getElementById('age-backdrop');
-const $dialog    = document.getElementById('age-dialog');
-const $btnCancel = document.getElementById('age-cancel');
-const $btnGo     = document.getElementById('age-continue');
+        <button class="search-btn" onclick="toggleSearch()">
+            🔍
+        </button>
 
-function lockScroll(on){ $root.style.overflow = $body.style.overflow = on ? 'hidden' : ''; }
+        <button class="login-btn">
+            Masuk
+        </button>
 
-function showModal(){
-  if(!$backdrop) return;
-  $backdrop.setAttribute('aria-hidden','false');
-  $backdrop.style.visibility = 'visible';
-  $backdrop.style.pointerEvents = 'auto';
-  requestAnimationFrame(()=>{
-    $backdrop.style.opacity = '1';
-    if($dialog) $dialog.style.transform = 'scale(1)';
-  });
-  lockScroll(true);
-}
+        <button class="profile">
+            👤
+        </button>
 
-function destroyModal(){
-  try{ lockScroll(false); }catch(_){}
-  try{ $backdrop.setAttribute('aria-hidden','true'); }catch(_){}
-  try{ $backdrop.remove(); }catch(_){ if($backdrop) $backdrop.style.display='none'; }
-}
+    </div>
 
-function openInNewTabOnly(url){
-  const a = document.createElement('a');
-  a.href = url;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
+</header>
 
-function rememberSkip(){
-  try { localStorage.setItem('age_ok_time', String(Date.now())); } catch {}
-}
-function shouldSkip(){
-  try {
-    const t = +localStorage.getItem('age_ok_time') || 0;
-    return Date.now() - t < REMEMBER_TTL_MIN*60*1000;
-  } catch { return false; }
-}
 
-function handleChoice(url, ev){
-  if(ev){
-    ev.preventDefault();
-    ev.stopPropagation();
-    if (typeof ev.stopImmediatePropagation === 'function') ev.stopImmediatePropagation();
-  }
-  rememberSkip();
-  destroyModal();
-  openInNewTabOnly(url);
-}
+<!-- ================= SEARCH ================= -->
 
-if($btnGo) $btnGo.addEventListener('click', (e)=> handleChoice(AGE_NEXT_URL, e), {capture:true});
-if($btnCancel) $btnCancel.addEventListener('click',(e)=> handleChoice(OFFER_URL, e), {capture:true});
+<div class="search-box" id="searchBox">
 
-window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') destroyModal(); });
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari film, drama, anime..."
+        onkeyup="searchMovie()"
+    >
 
-/* ================== GEOIP REDIRECT ================== */
-var LINK_ID  = "https://www.effectivecpmnetwork.com/cj8mrayv1e?key=b61e12d5323e0dc5065e313cf2ce83e8";
-var LINK_ALL = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
-var DELAY = 25000;
+</div>
 
-function geoip(g){
-  setTimeout(function(){
-    if (g && g.country === "ID") {
-      window.top.location.href = LINK_ID;
-    } else {
-      window.top.location.href = LINK_ALL;
-    }
-  }, DELAY);
-}
 
-// Tampilkan popup otomatis setelah delay
-window.addEventListener('load', ()=>{ 
-  if(!shouldSkip()) setTimeout(showModal, AUTO_SHOW_DELAY_MS); 
-});
-</script>
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-background"></div>
+
+    <div class="hero-content">
+
+        <span class="badge">TRENDING #1</span>
+
+        <h1>THE LAST<br>EMPEROR</h1>
+
+        <div class="movie-info">
+            <span>2026</span>
+            <span>•</span>
+            <span>16+</span>
+            <span>•</span>
+            <span>Drama</span>
+            <span>•</span>
+            <span>24 Episode</span>
+        </div>
+
+        <p>
+            Ketika sebuah rahasia besar terbongkar, seorang pemuda
+            harus menghadapi masa lalu dan menentukan masa depan
+            keluarganya.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="play-btn">
+                ▶ Mulai Nonton
+            </button>
+
+            <button class="info-btn">
+                ⓘ Detail
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTENT ================= -->
+
+<main class="content">
+
+
+    <!-- LANJUTKAN MENONTON -->
+
+    <section class="movie-section">
+
+        <div class="section-header">
+
+            <h2>Lanjutkan Menonton</h2>
+
+            <a href="#">Lihat Semua</a>
+
+        </div>
+
+        <div class="movie-row">
+
+            <div class="continue-card">
+
+                <img src="https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg">
+
+                <div class="progress">
+                    <span style="width:65%"></span>
+                </div>
+
+                <h3>Action Night</h3>
+
+                <small>Episode 8 • 65%</small>
+
+            </div>
+
+
+            <div class="continue-card">
+
+                <img src="https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg">
+
+                <div class="progress">
+                    <span style="width:40%"></span>
+                </div>
+
+                <h3>Adventure World</h3>
+
+                <small>Episode 4 • 40%</small>
+
+            </div>
+
+
+            <div class="continue-card">
+
+                <img src="https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg">
+
+                <div class="progress">
+                    <span style="width:80%"></span>
+                </div>
+
+                <h3>Hidden Truth</h3>
+
+                <small>Episode 12 • 80%</small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- POPULAR -->
+
+    <section class="movie-section" id="popular">
+
+        <div class="section-header">
+
+            <h2>Film Terpopuler</h2>
+
+            <a href="#">Lihat Semua</a>
+
+        </div>
+
+
+        <div class="movie-row">
+
+            <article class="movie-card" data-title="The Batman">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg">
+
+                    <div class="card-overlay">
+
+                        <button>▶</button>
+
+                    </div>
+
+                </div>
+
+                <h3>The Batman</h3>
+
+                <p>2022 • 16+</p>
+
+            </article>
+
+
+            <article class="movie-card" data-title="Oppenheimer">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
+
+                    <div class="card-overlay">
+
+                        <button>▶</button>
+
+                    </div>
+
+                </div>
+
+                <h3>Oppenheimer</h3>
+
+                <p>2023 • 17+</p>
+
+            </article>
+
+
+            <article class="movie-card" data-title="Dune">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg">
+
+                    <div class="card-overlay">
+
+                        <button>▶</button>
+
+                    </div>
+
+                </div>
+
+                <h3>Dune</h3>
+
+                <p>2021 • 13+</p>
+
+            </article>
+
+
+            <article class="movie-card" data-title="Interstellar">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg">
+
+                    <div class="card-overlay">
+
+                        <button>▶</button>
+
+                    </div>
+
+                </div>
+
+                <h3>Interstellar</h3>
+
+                <p>2014 • 13+</p>
+
+            </article>
+
+
+            <article class="movie-card" data-title="Avatar">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg">
+
+                    <div class="card-overlay">
+
+                        <button>▶</button>
+
+                    </div>
+
+                </div>
+
+                <h3>Avatar</h3>
+
+                <p>2009 • 13+</p>
+
+            </article>
+
+
+            <article class="movie-card" data-title="Joker">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
+
+                    <div class="card-overlay">
+
+                        <button>▶</button>
+
+                    </div>
+
+                </div>
+
+                <h3>Joker</h3>
+
+                <p>2019 • 17+</p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- DRAMA -->
+
+    <section class="movie-section" id="drama">
+
+        <div class="section-header">
+
+            <h2>Drama Pilihan</h2>
+
+            <a href="#">Lihat Semua</a>
+
+        </div>
+
+        <div class="movie-row">
+
+            <article class="movie-card" data-title="Drama Love Story">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg">
+
+                    <div class="card-overlay">
+                        <button>▶</button>
+                    </div>
+
+                </div>
+
+                <h3>Love Story</h3>
+                <p>2026 • 13+</p>
+
+            </article>
+
+
+            <article class="movie-card">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg">
+
+                    <div class="card-overlay">
+                        <button>▶</button>
+                    </div>
+
+                </div>
+
+                <h3>New Beginning</h3>
+                <p>2026 • 16+</p>
+
+            </article>
+
+
+            <article class="movie-card">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg">
+
+                    <div class="card-overlay">
+                        <button>▶</button>
+                    </div>
+
+                </div>
+
+                <h3>Forever Us</h3>
+                <p>2025 • 13+</p>
+
+            </article>
+
+
+            <article class="movie-card">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/5vYV2g6vL1Yk8V0G3Q0dJ6z5bWw.jpg">
+
+                    <div class="card-overlay">
+                        <button>▶</button>
+                    </div>
+
+                </div>
+
+                <h3>Secret Love</h3>
+                <p>2025 • 16+</p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILM -->
+
+    <section class="movie-section" id="film">
+
+        <div class="section-header">
+
+            <h2>Film Terbaru</h2>
+
+            <a href="#">Lihat Semua</a>
+
+        </div>
+
+        <div class="movie-row">
+
+            <article class="movie-card">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/5P8SmMzSNYDxXGs2AXzN2r4QK5T.jpg">
+
+                    <div class="card-overlay">
+                        <button>▶</button>
+                    </div>
+
+                </div>
+
+                <h3>Action Force</h3>
+                <p>2026 • 17+</p>
+
+            </article>
+
+
+            <article class="movie-card">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg">
+
+                    <div class="card-overlay">
+                        <button>▶</button>
+                    </div>
+
+                </div>
+
+                <h3>Future World</h3>
+                <p>2026 • 13+</p>
+
+            </article>
+
+
+            <article class="movie-card">
+
+                <div class="poster">
+
+                    <img src="https://image.tmdb.org/t/p/w500/1X4h0k2r2Q7Y5X7M3g6B8Y1F5rR.jpg">
+
+                    <div class="card-overlay">
+                        <button>▶</button>
+                    </div>
+
+                </div>
+
+                <h3>Dark City</h3>
+                <p>2026 • 17+</p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- GENRE -->
+
+    <section class="genres">
+
+        <h2>Jelajahi Genre</h2>
+
+        <div class="genre-grid">
+
+            <div class="genre">Action</div>
+            <div class="genre">Drama</div>
+            <div class="genre">Comedy</div>
+            <div class="genre">Romance</div>
+            <div class="genre">Horror</div>
+            <div class="genre">Thriller</div>
+            <div class="genre">Anime</div>
+            <div class="genre">Sci-Fi</div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        NONTON<span>IN</span>
+    </div>
+
+    <p>
+        Nikmati berbagai film dan serial favoritmu kapan saja.
+    </p>
+
+    <div class="footer-links">
+        <a href="#">Tentang Kami</a>
+        <a href="#">Syarat & Ketentuan</a>
+        <a href="#">Privasi</a>
+        <a href="#">Bantuan</a>
+    </div>
+
+    <p class="copyright">
+        © 2026 NONTONIN. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
