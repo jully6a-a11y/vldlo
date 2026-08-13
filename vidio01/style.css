@@ -700,3 +700,205 @@ footer {
     }
 
 }
+
+/* =====================================================
+   VIDEO PLAYER
+===================================================== */
+
+.player-section {
+    padding: 0 5%;
+    margin-bottom: 45px;
+}
+
+.video-container {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    background: #000;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5);
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    background: #000;
+}
+
+.video-loading {
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0,0,0,.7);
+
+    font-size: 14px;
+
+    color: #fff;
+}
+
+.player-info {
+    padding-top: 18px;
+}
+
+.player-info h1 {
+    font-size: 23px;
+
+    margin-bottom: 10px;
+}
+
+.player-meta {
+    display: flex;
+
+    gap: 10px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   STREAM CARD
+===================================================== */
+
+.stream-card {
+    flex: 0 0 190px;
+
+    cursor: pointer;
+}
+
+.stream-thumbnail {
+    position: relative;
+
+    width: 190px;
+    height: 110px;
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #292929,
+            #111
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: .25s;
+}
+
+.stream-card:hover .stream-thumbnail {
+    transform: scale(1.04);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.5);
+}
+
+.thumbnail-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffd400;
+
+    color: #000;
+
+    font-size: 16px;
+
+    padding-left: 2px;
+}
+
+.thumbnail-number {
+    position: absolute;
+
+    left: 10px;
+    top: 8px;
+
+    font-size: 11px;
+
+    color: #aaa;
+
+    background: rgba(0,0,0,.5);
+
+    padding: 4px 7px;
+
+    border-radius: 4px;
+}
+
+.stream-card h3 {
+    font-size: 13px;
+
+    margin-top: 10px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.stream-card p {
+    font-size: 11px;
+
+    color: #777;
+
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .player-section {
+        padding: 0 18px;
+    }
+
+    .video-container {
+        border-radius: 6px;
+    }
+
+    .player-info h1 {
+        font-size: 18px;
+    }
+
+    .stream-card {
+        flex-basis: 155px;
+    }
+
+    .stream-thumbnail {
+        width: 155px;
+        height: 90px;
+    }
+
+}
