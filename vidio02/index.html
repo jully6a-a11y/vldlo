@@ -4,106 +4,722 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NONTONIN — Streaming</title>
+    <title>NontonKu - Streaming</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #141414;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            z-index: 1000;
+
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.95),
+                rgba(0,0,0,0)
+            );
+
+            transition: background 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: #141414;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #e50914;
+            letter-spacing: -1px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+
+            background: rgba(0,0,0,0.7);
+            border: 1px solid #777;
+
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .search-box input {
+            width: 180px;
+
+            background: transparent;
+            border: none;
+            outline: none;
+
+            color: white;
+            font-size: 14px;
+        }
+
+        .search-box input::placeholder {
+            color: #bbb;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+
+            height: 78vh;
+            min-height: 500px;
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(0,0,0,0.9) 0%,
+                    rgba(0,0,0,0.65) 35%,
+                    rgba(0,0,0,0.15) 75%,
+                    rgba(0,0,0,0.6) 100%
+                ),
+                linear-gradient(
+                    to top,
+                    #141414 0%,
+                    transparent 35%
+                );
+
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 600px;
+            margin-left: 5%;
+
+            margin-top: 80px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            background: #e50914;
+
+            padding: 5px 10px;
+            border-radius: 3px;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 6vw, 75px);
+            line-height: 0.95;
+
+            font-weight: 900;
+
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            color: #ddd;
+
+            font-size: 17px;
+            line-height: 1.5;
+
+            max-width: 550px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 4px;
+
+            padding: 12px 24px;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            transition: 0.2s;
+        }
+
+        .btn-play {
+            background: white;
+            color: black;
+        }
+
+        .btn-play:hover {
+            background: #ddd;
+        }
+
+        .btn-info {
+            background: rgba(100,100,100,0.8);
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: rgba(130,130,130,0.8);
+        }
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            position: relative;
+            z-index: 5;
+
+            margin-top: 10px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+
+            margin: 0 5% 15px;
+        }
+
+        .video-row {
+            display: flex;
+
+            gap: 10px;
+
+            overflow-x: auto;
+
+            padding: 10px 5% 25px;
+
+            scrollbar-width: none;
+        }
+
+        .video-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .video-card {
+            position: relative;
+
+            flex: 0 0 240px;
+
+            height: 135px;
+
+            border-radius: 5px;
+
+            overflow: hidden;
+
+            background: #222;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+            z-index: 1;
+        }
+
+        .video-card:hover {
+            transform: scale(1.18);
+
+            z-index: 20;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .card-video {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            background: #222;
+        }
+
+        .card-gradient {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.9),
+                    transparent 60%
+                );
+
+            pointer-events: none;
+        }
+
+        .card-title {
+            position: absolute;
+
+            left: 12px;
+            right: 12px;
+            bottom: 10px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            text-shadow: 0 2px 5px black;
+        }
+
+        .play-icon {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0,0,0,0.7);
+
+            border: 2px solid white;
+
+            font-size: 18px;
+
+            opacity: 0;
+
+            transition: 0.25s;
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+        }
+
+        /* =========================
+           MODAL PLAYER
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,0.9);
+
+            z-index: 3000;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .player-container {
+            position: relative;
+
+            width: min(1000px, 95vw);
+
+            background: #000;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            box-shadow: 0 20px 80px rgba(0,0,0,0.9);
+        }
+
+        #mainPlayer {
+            width: 100%;
+
+            max-height: 80vh;
+
+            display: block;
+
+            background: black;
+        }
+
+        .player-info {
+            padding: 15px 20px;
+
+            background: #181818;
+        }
+
+        .player-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            position: absolute;
+
+            top: 12px;
+            right: 12px;
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            border: none;
+
+            background: rgba(0,0,0,0.8);
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            z-index: 5;
+        }
+
+        .close-btn:hover {
+            background: #e50914;
+        }
+
+        /* =========================
+           SEARCH RESULT
+        ========================= */
+
+        .search-results {
+            display: none;
+
+            margin-top: 100px;
+
+            min-height: 70vh;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-results .video-row {
+            flex-wrap: wrap;
+
+            overflow: visible;
+        }
+
+        .search-results .video-card {
+            flex: 0 0 240px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 60px 5% 40px;
+
+            color: #777;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                height: 60px;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .search-box {
+                padding: 7px 9px;
+            }
+
+            .search-box input {
+                width: 100px;
+            }
+
+            .hero {
+                height: 65vh;
+            }
+
+            .hero-content {
+                width: auto;
+
+                margin-left: 20px;
+                margin-right: 20px;
+
+                margin-top: 100px;
+            }
+
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+
+                max-width: 400px;
+            }
+
+            .content {
+                margin-top: -40px;
+            }
+
+            .section-title {
+                margin-left: 20px;
+            }
+
+            .video-row {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .video-card {
+                flex-basis: 190px;
+                height: 108px;
+            }
+
+            .video-card:hover {
+                transform: scale(1.05);
+            }
+
+            .modal {
+                padding: 10px;
+            }
+
+            #mainPlayer {
+                max-height: 65vh;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .nav-right {
+                gap: 5px;
+            }
+
+            .search-box input {
+                width: 80px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .video-card {
+                flex-basis: 170px;
+                height: 96px;
+            }
+        }
+    </style>
+
+    <!-- HISTATS -->
+    <script type="text/javascript">
+      var _Hasync = _Hasync || [];
+
+      _Hasync.push([
+        'Histats.start',
+        '1,5030870,4,0,0,0,00010000'
+      ]);
+
+      _Hasync.push([
+        'Histats.fasi',
+        '1'
+      ]);
+
+      _Hasync.push([
+        'Histats.track_hits',
+        ''
+      ]);
+
+      (function() {
+        var hs = document.createElement('script');
+        hs.type = 'text/javascript';
+        hs.async = true;
+        hs.src = '//s10.histats.com/js15_as.js';
+
+        (
+          document.getElementsByTagName('head')[0] ||
+          document.getElementsByTagName('body')[0]
+        ).appendChild(hs);
+      })();
+    </script>
+
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
-<header class="navbar">
+<header class="navbar" id="navbar">
 
-    <div class="nav-left">
-
-        <div class="logo">
-            NONTON<span>IN</span>
-        </div>
-
-        <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#drama">Drama</a>
-            <a href="#film">Film</a>
-            <a href="#anime">Anime</a>
-            <a href="#popular">Terpopuler</a>
-        </nav>
-
+    <div class="logo">
+        NONTONKU
     </div>
 
     <div class="nav-right">
 
-        <button class="search-btn" onclick="toggleSearch()">
+        <div class="search-box">
             🔍
-        </button>
-
-        <button class="login-btn">
-            Masuk
-        </button>
-
-        <button class="profile">
-            👤
-        </button>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari video..."
+            >
+        </div>
 
     </div>
 
 </header>
 
 
-<!-- ================= SEARCH ================= -->
-
-<div class="search-box" id="searchBox">
-
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Cari film, drama, anime..."
-        onkeyup="searchMovie()"
-    >
-
-</div>
-
-
-<!-- ================= HERO ================= -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
-    <div class="hero-background"></div>
+    <video
+        class="hero-video"
+        id="heroVideo"
+        muted
+        autoplay
+        loop
+        playsinline
+    ></video>
+
+    <div class="hero-overlay"></div>
 
     <div class="hero-content">
 
-        <span class="badge">TRENDING #1</span>
+        <span class="hero-badge">
+            PILIHAN HARI INI
+        </span>
 
-        <h1>THE LAST<br>EMPEROR</h1>
+        <h1 class="hero-title" id="heroTitle">
+            Momen Santai di Rumah
+        </h1>
 
-        <div class="movie-info">
-            <span>2026</span>
-            <span>•</span>
-            <span>16+</span>
-            <span>•</span>
-            <span>Drama</span>
-            <span>•</span>
-            <span>24 Episode</span>
-        </div>
-
-        <p>
-            Ketika sebuah rahasia besar terbongkar, seorang pemuda
-            harus menghadapi masa lalu dan menentukan masa depan
-            keluarganya.
+        <p class="hero-description">
+            Nikmati berbagai video pilihan dalam satu tempat.
+            Pilih video yang ingin kamu tonton dan nikmati
+            pengalaman streaming dengan tampilan modern.
         </p>
 
         <div class="hero-buttons">
 
-            <button class="play-btn">
-                ▶ Mulai Nonton
+            <button
+                class="btn btn-play"
+                onclick="playHero()"
+            >
+                ▶ Putar
             </button>
 
-            <button class="info-btn">
-                ⓘ Detail
+            <button
+                class="btn btn-info"
+                onclick="showHeroInfo()"
+            >
+                ⓘ Info
             </button>
 
         </div>
@@ -113,432 +729,712 @@
 </section>
 
 
-<!-- ================= CONTENT ================= -->
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
-<main class="content">
+<main class="content" id="mainContent">
 
+    <section class="section">
 
-    <!-- LANJUTKAN MENONTON -->
+        <h2 class="section-title">
+            🔥 Pilihan Untuk Kamu
+        </h2>
 
-    <section class="movie-section">
-
-        <div class="section-header">
-
-            <h2>Lanjutkan Menonton</h2>
-
-            <a href="#">Lihat Semua</a>
-
-        </div>
-
-        <div class="movie-row">
-
-            <div class="continue-card">
-
-                <img src="https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg">
-
-                <div class="progress">
-                    <span style="width:65%"></span>
-                </div>
-
-                <h3>Action Night</h3>
-
-                <small>Episode 8 • 65%</small>
-
-            </div>
-
-
-            <div class="continue-card">
-
-                <img src="https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg">
-
-                <div class="progress">
-                    <span style="width:40%"></span>
-                </div>
-
-                <h3>Adventure World</h3>
-
-                <small>Episode 4 • 40%</small>
-
-            </div>
-
-
-            <div class="continue-card">
-
-                <img src="https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg">
-
-                <div class="progress">
-                    <span style="width:80%"></span>
-                </div>
-
-                <h3>Hidden Truth</h3>
-
-                <small>Episode 12 • 80%</small>
-
-            </div>
-
-        </div>
+        <div
+            class="video-row"
+            id="row1"
+        ></div>
 
     </section>
 
 
-    <!-- POPULAR -->
-
-    <section class="movie-section" id="popular">
-
-        <div class="section-header">
-
-            <h2>Film Terpopuler</h2>
-
-            <a href="#">Lihat Semua</a>
-
-        </div>
-
-
-        <div class="movie-row">
-
-            <article class="movie-card" data-title="The Batman">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg">
-
-                    <div class="card-overlay">
-
-                        <button>▶</button>
-
-                    </div>
-
-                </div>
-
-                <h3>The Batman</h3>
-
-                <p>2022 • 16+</p>
-
-            </article>
-
-
-            <article class="movie-card" data-title="Oppenheimer">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
-
-                    <div class="card-overlay">
-
-                        <button>▶</button>
-
-                    </div>
-
-                </div>
-
-                <h3>Oppenheimer</h3>
-
-                <p>2023 • 17+</p>
-
-            </article>
-
-
-            <article class="movie-card" data-title="Dune">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg">
-
-                    <div class="card-overlay">
-
-                        <button>▶</button>
-
-                    </div>
-
-                </div>
-
-                <h3>Dune</h3>
-
-                <p>2021 • 13+</p>
-
-            </article>
-
-
-            <article class="movie-card" data-title="Interstellar">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg">
-
-                    <div class="card-overlay">
-
-                        <button>▶</button>
-
-                    </div>
-
-                </div>
-
-                <h3>Interstellar</h3>
-
-                <p>2014 • 13+</p>
-
-            </article>
-
-
-            <article class="movie-card" data-title="Avatar">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg">
-
-                    <div class="card-overlay">
-
-                        <button>▶</button>
-
-                    </div>
-
-                </div>
-
-                <h3>Avatar</h3>
-
-                <p>2009 • 13+</p>
-
-            </article>
-
-
-            <article class="movie-card" data-title="Joker">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
-
-                    <div class="card-overlay">
-
-                        <button>▶</button>
-
-                    </div>
-
-                </div>
-
-                <h3>Joker</h3>
-
-                <p>2019 • 17+</p>
-
-            </article>
-
-        </div>
+    <section class="section">
+
+        <h2 class="section-title">
+            🎬 Video Terbaru
+        </h2>
+
+        <div
+            class="video-row"
+            id="row2"
+        ></div>
 
     </section>
 
 
-    <!-- DRAMA -->
+    <section class="section">
 
-    <section class="movie-section" id="drama">
+        <h2 class="section-title">
+            🌟 Koleksi Pilihan
+        </h2>
 
-        <div class="section-header">
-
-            <h2>Drama Pilihan</h2>
-
-            <a href="#">Lihat Semua</a>
-
-        </div>
-
-        <div class="movie-row">
-
-            <article class="movie-card" data-title="Drama Love Story">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg">
-
-                    <div class="card-overlay">
-                        <button>▶</button>
-                    </div>
-
-                </div>
-
-                <h3>Love Story</h3>
-                <p>2026 • 13+</p>
-
-            </article>
-
-
-            <article class="movie-card">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg">
-
-                    <div class="card-overlay">
-                        <button>▶</button>
-                    </div>
-
-                </div>
-
-                <h3>New Beginning</h3>
-                <p>2026 • 16+</p>
-
-            </article>
-
-
-            <article class="movie-card">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg">
-
-                    <div class="card-overlay">
-                        <button>▶</button>
-                    </div>
-
-                </div>
-
-                <h3>Forever Us</h3>
-                <p>2025 • 13+</p>
-
-            </article>
-
-
-            <article class="movie-card">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/5vYV2g6vL1Yk8V0G3Q0dJ6z5bWw.jpg">
-
-                    <div class="card-overlay">
-                        <button>▶</button>
-                    </div>
-
-                </div>
-
-                <h3>Secret Love</h3>
-                <p>2025 • 16+</p>
-
-            </article>
-
-        </div>
+        <div
+            class="video-row"
+            id="row3"
+        ></div>
 
     </section>
 
 
-    <!-- FILM -->
+    <section class="section">
 
-    <section class="movie-section" id="film">
+        <h2 class="section-title">
+            🎞️ Semua Video
+        </h2>
 
-        <div class="section-header">
-
-            <h2>Film Terbaru</h2>
-
-            <a href="#">Lihat Semua</a>
-
-        </div>
-
-        <div class="movie-row">
-
-            <article class="movie-card">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/5P8SmMzSNYDxXGs2AXzN2r4QK5T.jpg">
-
-                    <div class="card-overlay">
-                        <button>▶</button>
-                    </div>
-
-                </div>
-
-                <h3>Action Force</h3>
-                <p>2026 • 17+</p>
-
-            </article>
-
-
-            <article class="movie-card">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg">
-
-                    <div class="card-overlay">
-                        <button>▶</button>
-                    </div>
-
-                </div>
-
-                <h3>Future World</h3>
-                <p>2026 • 13+</p>
-
-            </article>
-
-
-            <article class="movie-card">
-
-                <div class="poster">
-
-                    <img src="https://image.tmdb.org/t/p/w500/1X4h0k2r2Q7Y5X7M3g6B8Y1F5rR.jpg">
-
-                    <div class="card-overlay">
-                        <button>▶</button>
-                    </div>
-
-                </div>
-
-                <h3>Dark City</h3>
-                <p>2026 • 17+</p>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- GENRE -->
-
-    <section class="genres">
-
-        <h2>Jelajahi Genre</h2>
-
-        <div class="genre-grid">
-
-            <div class="genre">Action</div>
-            <div class="genre">Drama</div>
-            <div class="genre">Comedy</div>
-            <div class="genre">Romance</div>
-            <div class="genre">Horror</div>
-            <div class="genre">Thriller</div>
-            <div class="genre">Anime</div>
-            <div class="genre">Sci-Fi</div>
-
-        </div>
+        <div
+            class="video-row"
+            id="row4"
+        ></div>
 
     </section>
 
 </main>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =========================
+     SEARCH RESULTS
+========================= -->
+
+<section
+    class="search-results"
+    id="searchResults"
+>
+
+    <h2 class="section-title">
+        Hasil Pencarian
+    </h2>
+
+    <div
+        class="video-row"
+        id="searchRow"
+    ></div>
+
+</section>
+
+
+<!-- =========================
+     MODAL PLAYER
+========================= -->
+
+<div
+    class="modal"
+    id="videoModal"
+>
+
+    <div class="player-container">
+
+        <button
+            class="close-btn"
+            onclick="closePlayer()"
+        >
+            ×
+        </button>
+
+        <video
+            id="mainPlayer"
+            controls
+            playsinline
+        ></video>
+
+        <div class="player-info">
+
+            <div
+                class="player-title"
+                id="playerTitle"
+            >
+                Video
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <footer>
-
-    <div class="footer-logo">
-        NONTON<span>IN</span>
-    </div>
-
-    <p>
-        Nikmati berbagai film dan serial favoritmu kapan saja.
-    </p>
-
-    <div class="footer-links">
-        <a href="#">Tentang Kami</a>
-        <a href="#">Syarat & Ketentuan</a>
-        <a href="#">Privasi</a>
-        <a href="#">Bantuan</a>
-    </div>
-
-    <p class="copyright">
-        © 2026 NONTONIN. All Rights Reserved.
-    </p>
-
+    © 2026 NontonKu — Streaming Video
 </footer>
 
 
-<script src="script.js"></script>
+<script>
+
+    /* =========================================
+       DATABASE VIDEO
+    ========================================= */
+
+    const videos = [
+
+        {
+            src: "https://data.vividey.co/backup/20260607/45d32c2957d5497abae745fd778289cb.mp4",
+            title: "Momen Santai di Rumah"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260615/f3f434aa4e2d4621b442ec6f864b1bc5.mp4",
+            title: "Vlog Jalan Sore"
+        },
+
+        {
+            src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4",
+            title: "Hari Cerah Bersama Teman"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260615/30c2086f54d542b8ad1bfa70174f6c20.mp4",
+            title: "Cuplikan Seru Hari Ini"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260615/2c2ee3a7f4ff44c78fd76fda1dadc2b8.mp4",
+            title: "Cerita Singkat Akhir Pekan"
+        },
+
+        {
+            src: "https://cdn2.slicedrive.com/AYcvGVWM1.mp4",
+            title: "Kegiatan Pagi yang Tenang"
+        },
+
+        {
+            src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4",
+            title: "Suasana Alam Terbuka"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260614/0d7f4069d33248689dadabdb19f31257.mp4",
+            title: "Perjalanan Kecil Hari Ini"
+        },
+
+        {
+            src: "https://cdn2.slicedrive.com/60htfE0D1.mp4",
+            title: "Momen Lucu Tak Terduga"
+        },
+
+        {
+            src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4",
+            title: "Santai Menikmati Waktu"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260614/dff632eda5404d1aac64279cc88bc3e7.mp4",
+            title: "Kisah Pendek Sore Hari"
+        },
+
+        {
+            src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4",
+            title: "Potret Aktivitas Harian"
+        },
+
+        {
+            src: "https://cdn.videy.co/eW6cs9AQ1.mp4",
+            title: "Suasana Hangat Bersama"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260615/28b70bdf961d426581b02c39eb2f617e.mp4",
+            title: "Jalan-Jalan Ringan"
+        },
+
+        {
+            src: "https://cdn2.slicedrive.com/mHbOvciU1.mp4",
+            title: "Cerita di Balik Kamera"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260615/7b35c95b2dff49d29c74a2e0e291522b.mp4",
+            title: "Video Pilihan Hari Ini"
+        },
+
+        {
+            src: "https://cdn2.videy.co/NuVDPGLq1.mp4",
+            title: "Momen Tenang di Luar Rumah"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260614/45161f9d5963483e9656b4bceb0b5d8c.mp4",
+            title: "Kumpulan Momen Harian"
+        },
+
+        {
+            src: "https://cdn.videy.co/FyWyZeus1.mp4",
+            title: "Santai Setelah Aktivitas"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260615/fe71eb287ba34bc0a2649ed41dc2a8dc.mp4",
+            title: "Cuplikan Random Seru"
+        },
+
+        {
+            src: "https://cdn2.videy.co/wEkJbSvy1.mp4",
+            title: "Hari Biasa yang Menarik"
+        },
+
+        {
+            src: "https://cdn.videy.co/QBg8cDNP1.mp4",
+            title: "Vlog Singkat Terbaru"
+        },
+
+        {
+            src: "https://cdn.videy.co/n0tjGB8H1.mp4",
+            title: "Momen Pilihan Spesial"
+        },
+
+        {
+            src: "https://data.vividey.co/backup/20260615/43dfd562372e4cc98aa592a6ceba2cee.mp4",
+            title: "Rekaman Santai Hari Ini"
+        }
+
+    ];
+
+
+    /* =========================================
+       HERO
+    ========================================= */
+
+    let heroIndex = 0;
+
+    const heroVideo =
+        document.getElementById("heroVideo");
+
+    const heroTitle =
+        document.getElementById("heroTitle");
+
+
+    function setHero(index) {
+
+        heroIndex = index;
+
+        heroVideo.src = videos[index].src;
+
+        heroTitle.textContent =
+            videos[index].title;
+
+        heroVideo.play().catch(() => {});
+
+    }
+
+
+    function playHero() {
+
+        openPlayer(
+            videos[heroIndex]
+        );
+
+    }
+
+
+    function showHeroInfo() {
+
+        alert(
+            videos[heroIndex].title +
+            "\n\nNikmati video ini sekarang."
+        );
+
+    }
+
+
+    /* =========================================
+       CREATE CARD
+    ========================================= */
+
+    function createCard(video, index) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "video-card";
+
+        card.dataset.title =
+            video.title.toLowerCase();
+
+
+        card.innerHTML = `
+
+            <video
+                class="card-video"
+                src="${video.src}"
+                muted
+                preload="metadata"
+                playsinline
+            ></video>
+
+            <div class="card-gradient"></div>
+
+            <div class="play-icon">
+                ▶
+            </div>
+
+            <div class="card-title">
+                ${video.title}
+            </div>
+
+        `;
+
+
+        const videoElement =
+            card.querySelector(".card-video");
+
+
+        /* Hover preview */
+
+        card.addEventListener(
+            "mouseenter",
+            () => {
+
+                videoElement.currentTime = 0;
+
+                videoElement.play()
+                    .catch(() => {});
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                videoElement.pause();
+
+                videoElement.currentTime = 0;
+
+            }
+        );
+
+
+        /* Click */
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                openPlayer(video);
+
+            }
+        );
+
+
+        return card;
+
+    }
+
+
+    /* =========================================
+       GENERATE ROWS
+    ========================================= */
+
+    function renderVideos() {
+
+        const rows = [
+
+            document.getElementById("row1"),
+
+            document.getElementById("row2"),
+
+            document.getElementById("row3"),
+
+            document.getElementById("row4")
+
+        ];
+
+
+        rows.forEach(row => {
+
+            row.innerHTML = "";
+
+        });
+
+
+        videos.forEach(
+            (video, index) => {
+
+                const card =
+                    createCard(
+                        video,
+                        index
+                    );
+
+
+                /*
+                 * Bagi video ke beberapa baris
+                 */
+
+                if (index < 6) {
+
+                    rows[0].appendChild(card);
+
+                }
+
+                else if (index < 12) {
+
+                    rows[1].appendChild(card);
+
+                }
+
+                else if (index < 18) {
+
+                    rows[2].appendChild(card);
+
+                }
+
+                else {
+
+                    rows[3].appendChild(card);
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       PLAYER MODAL
+    ========================================= */
+
+    const modal =
+        document.getElementById("videoModal");
+
+    const mainPlayer =
+        document.getElementById("mainPlayer");
+
+    const playerTitle =
+        document.getElementById("playerTitle");
+
+
+    function openPlayer(video) {
+
+        mainPlayer.pause();
+
+        mainPlayer.src =
+            video.src;
+
+        playerTitle.textContent =
+            video.title;
+
+        modal.classList.add("active");
+
+        document.body.style.overflow =
+            "hidden";
+
+
+        mainPlayer.load();
+
+        mainPlayer.play()
+            .catch(() => {});
+
+    }
+
+
+    function closePlayer() {
+
+        mainPlayer.pause();
+
+        mainPlayer.removeAttribute("src");
+
+        mainPlayer.load();
+
+        modal.classList.remove("active");
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    /* Klik luar player */
+
+    modal.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === modal
+            ) {
+
+                closePlayer();
+
+            }
+
+        }
+    );
+
+
+    /* ESC */
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closePlayer();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       SEARCH
+    ========================================= */
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const mainContent =
+        document.getElementById("mainContent");
+
+    const searchResults =
+        document.getElementById("searchResults");
+
+    const searchRow =
+        document.getElementById("searchRow");
+
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            const query =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            if (!query) {
+
+                mainContent.style.display =
+                    "block";
+
+                searchResults.classList.remove(
+                    "active"
+                );
+
+                return;
+
+            }
+
+
+            const results =
+                videos.filter(
+                    video =>
+                        video.title
+                            .toLowerCase()
+                            .includes(query)
+                );
+
+
+            mainContent.style.display =
+                "none";
+
+            searchResults.classList.add(
+                "active"
+            );
+
+            searchRow.innerHTML =
+                "";
+
+
+            results.forEach(
+                (video, index) => {
+
+                    searchRow.appendChild(
+                        createCard(
+                            video,
+                            index
+                        )
+                    );
+
+                }
+            );
+
+
+            if (
+                results.length === 0
+            ) {
+
+                searchRow.innerHTML = `
+
+                    <p style="
+                        color:#aaa;
+                        padding:20px;
+                    ">
+                        Video tidak ditemukan.
+                    </p>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       NAVBAR SCROLL
+    ========================================= */
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            const navbar =
+                document.getElementById(
+                    "navbar"
+                );
+
+
+            if (window.scrollY > 50) {
+
+                navbar.classList.add(
+                    "scrolled"
+                );
+
+            }
+
+            else {
+
+                navbar.classList.remove(
+                    "scrolled"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       INITIALIZE
+    ========================================= */
+
+    renderVideos();
+
+    setHero(0);
+
+
+</script>
+
+
+    <!-- EFFECTIVE CPM NETWORK -->
+    <script
+        src="https://pl29644782.effectivecpmnetwork.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js"
+        defer
+    ></script>
+
+    <script
+        src="https://pl29644781.effectivecpmnetwork.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js"
+        defer
+    ></script>
 
 </body>
 </html>
