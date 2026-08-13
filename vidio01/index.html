@@ -1,218 +1,2238 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NONTONIN — Streaming</title>
+  <title>ViuStream - Streaming Video</title>
 
-    <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #080808;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 68px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 0 5%;
+
+      z-index: 1000;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.95),
+        rgba(0,0,0,.65),
+        transparent
+      );
+
+      transition: .3s;
+    }
+
+    .navbar.scrolled {
+      background: #080808;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      color: #00d084;
+      letter-spacing: -1px;
+      margin-right: 35px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: #fff;
+    }
+
+    .nav-right {
+      margin-left: auto;
+
+      display: flex;
+      align-items: center;
+
+      gap: 20px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+
+      background: rgba(255,255,255,.1);
+
+      border: 1px solid rgba(255,255,255,.15);
+
+      border-radius: 20px;
+
+      padding: 8px 14px;
+    }
+
+    .search-box input {
+      width: 160px;
+
+      border: none;
+      outline: none;
+
+      color: white;
+      background: transparent;
+
+      margin-left: 6px;
+    }
+
+    .search-box input::placeholder {
+      color: #aaa;
+    }
+
+    .profile {
+      width: 35px;
+      height: 35px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #00d084,
+          #008c59
+        );
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-weight: bold;
+    }
+
+
+    /* =========================
+       HERO VIDEO
+    ========================= */
+
+    .hero {
+      height: 650px;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      padding: 0 7%;
+
+      overflow: hidden;
+
+      background: #080808;
+    }
+
+    /* VIDEO BACKGROUND */
+
+    .hero-video {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      z-index: 0;
+
+      opacity: .75;
+    }
+
+    /* DARK OVERLAY */
+
+    .hero-dark {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 1;
+
+      background:
+        linear-gradient(
+          90deg,
+          #080808 0%,
+          rgba(8,8,8,.90) 20%,
+          rgba(8,8,8,.65) 45%,
+          rgba(8,8,8,.25) 75%,
+          rgba(8,8,8,.15) 100%
+        ),
+        linear-gradient(
+          0deg,
+          #080808 0%,
+          transparent 40%
+        );
+    }
+
+    /* HERO CONTENT */
+
+    .hero-content {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 550px;
+
+      margin-top: 50px;
+    }
+
+    .hero-badge {
+      color: #00d084;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+
+      line-height: 1.05;
+
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #ccc;
+
+      line-height: 1.6;
+
+      margin-bottom: 25px;
+
+      font-size: 15px;
+    }
+
+    .hero-buttons {
+      display: flex;
+
+      gap: 12px;
+    }
+
+    .btn {
+      border: none;
+
+      padding: 12px 22px;
+
+      border-radius: 5px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      font-size: 14px;
+
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: #00d084;
+
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #00b873;
+
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.15);
+
+      color: #fff;
+
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.25);
+    }
+
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .content {
+      position: relative;
+
+      z-index: 5;
+
+      margin-top: -70px;
+
+      padding-bottom: 80px;
+    }
+
+    .section {
+      padding: 0 5%;
+
+      margin-bottom: 42px;
+    }
+
+    .section-title {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: 21px;
+    }
+
+    .see-all {
+      color: #aaa;
+
+      font-size: 13px;
+
+      cursor: pointer;
+    }
+
+    .see-all:hover {
+      color: #00d084;
+    }
+
+
+    /* =========================
+       VIDEO ROW
+    ========================= */
+
+    .video-row {
+      display: flex;
+
+      gap: 15px;
+
+      overflow-x: auto;
+
+      padding-bottom: 10px;
+
+      scrollbar-width: none;
+    }
+
+    .video-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .video-card {
+      min-width: 210px;
+
+      width: 210px;
+
+      cursor: pointer;
+
+      position: relative;
+
+      transition:
+        transform .25s,
+        opacity .25s;
+    }
+
+    .video-card:hover {
+      transform: scale(1.05);
+
+      z-index: 10;
+    }
+
+    .thumbnail {
+      position: relative;
+
+      width: 100%;
+
+      height: 120px;
+
+      overflow: hidden;
+
+      border-radius: 7px;
+
+      background: #151515;
+    }
+
+    .thumbnail video {
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+    }
+
+    .thumbnail-overlay {
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.8),
+          transparent 60%
+        );
+
+      pointer-events: none;
+    }
+
+    .play-icon {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      background: rgba(0,0,0,.7);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      opacity: 0;
+
+      transition: .2s;
+
+      font-size: 16px;
+    }
+
+    .video-card:hover .play-icon {
+      opacity: 1;
+    }
+
+    .video-title {
+      margin-top: 9px;
+
+      font-size: 14px;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      color: #eee;
+    }
+
+    .video-info {
+      margin-top: 5px;
+
+      color: #777;
+
+      font-size: 11px;
+    }
+
+
+    /* =========================
+       CONTINUE WATCHING
+    ========================= */
+
+    .progress {
+      position: absolute;
+
+      bottom: 0;
+      left: 0;
+
+      height: 3px;
+
+      background: #00d084;
+
+      width: 0%;
+
+      z-index: 5;
+    }
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    #searchSection {
+      display: none;
+
+      margin-top: 100px;
+    }
+
+    .search-results {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fill,
+          minmax(210px, 1fr)
+        );
+
+      gap: 25px 15px;
+    }
+
+    .search-results .video-card {
+      width: 100%;
+
+      min-width: 0;
+    }
+
+
+    /* =========================
+       PLAYER MODAL
+    ========================= */
+
+    .player-modal {
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(0,0,0,.94);
+
+      z-index: 2000;
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 25px;
+    }
+
+    .player-modal.active {
+      display: flex;
+    }
+
+    .player-container {
+      width: min(1100px, 95vw);
+
+      position: relative;
+    }
+
+    .main-video {
+      width: 100%;
+
+      max-height: 75vh;
+
+      background: #000;
+
+      border-radius: 8px;
+
+      display: block;
+    }
+
+    .close-player {
+      position: absolute;
+
+      right: -5px;
+
+      top: -45px;
+
+      width: 38px;
+      height: 38px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.12);
+
+      color: white;
+
+      cursor: pointer;
+
+      font-size: 20px;
+    }
+
+    .player-info {
+      margin-top: 15px;
+    }
+
+    .player-title {
+      font-size: 20px;
+
+      font-weight: bold;
+    }
+
+    .player-controls {
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: 12px;
+    }
+
+    .control-btn {
+      border: none;
+
+      background: #222;
+
+      color: #fff;
+
+      padding: 9px 15px;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+    }
+
+    .control-btn:hover {
+      background: #333;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 40px 5%;
+
+      border-top:
+        1px solid #1b1b1b;
+
+      color: #666;
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 768px) {
+
+      .navbar {
+        padding: 0 18px;
+      }
+
+      .logo {
+        margin-right: 15px;
+
+        font-size: 23px;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .search-box {
+        padding: 7px 10px;
+      }
+
+      .search-box input {
+        width: 90px;
+      }
+
+      .hero {
+        height: 570px;
+
+        padding: 0 25px;
+      }
+
+      .hero-video {
+        object-position: center;
+      }
+
+      .hero-content {
+        margin-top: 100px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 13px;
+      }
+
+      .content {
+        margin-top: -30px;
+      }
+
+      .section {
+        padding: 0 18px;
+      }
+
+      .video-card {
+        min-width: 165px;
+
+        width: 165px;
+      }
+
+      .thumbnail {
+        height: 95px;
+      }
+
+      .search-results {
+        grid-template-columns:
+          repeat(2, 1fr);
+
+        gap: 20px 10px;
+      }
+
+      #searchSection {
+        margin-top: 100px;
+      }
+
+      .hero-buttons {
+        flex-wrap: wrap;
+      }
+
+    }
+
+  </style>
 </head>
+
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
 
-<header class="navbar">
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
-    <div class="nav-left">
+  <nav
+    class="navbar"
+    id="navbar"
+  >
 
-        <div class="logo">
-            NONTON<span>IN</span>
-        </div>
-
-        <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#drama">Drama</a>
-            <a href="#film">Film</a>
-            <a href="#anime">Anime</a>
-            <a href="#popular">Terpopuler</a>
-        </nav>
-
+    <div class="logo">
+      ViuStream
     </div>
+
+
+    <ul class="nav-menu">
+
+      <li>
+        <a
+          href="#"
+          class="active"
+        >
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="#trending">
+          Trending
+        </a>
+      </li>
+
+      <li>
+        <a href="#latest">
+          Terbaru
+        </a>
+      </li>
+
+      <li>
+        <a href="#allVideos">
+          Semua Video
+        </a>
+      </li>
+
+    </ul>
+
 
     <div class="nav-right">
 
-        <button class="search-btn" onclick="toggleSearch()">
-            🔍
-        </button>
+      <div class="search-box">
 
-        <button class="login-btn">
-            Masuk
-        </button>
+        <span>🔍</span>
 
-        <button class="profile">
-            👤
-        </button>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari video..."
+        >
+
+      </div>
+
+
+      <div class="profile">
+        R
+      </div>
 
     </div>
 
-</header>
+  </nav>
 
 
-<!-- ================= SEARCH ================= -->
 
-<div class="search-box" id="searchBox">
+  <!-- =========================
+       HERO VIDEO BACKGROUND
+  ========================= -->
 
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Cari film, drama, anime..."
-        onkeyup="searchMovie()"
-    >
-
-</div>
+  <section class="hero">
 
 
-<!-- ================= HERO ================= -->
+    <!--
+      Video ini otomatis dimainkan
+      sebagai background.
+    -->
 
-<section class="hero">
+    <video
+      id="heroVideo"
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
 
-    <div class="hero-background"></div>
+
+    <!-- DARK OVERLAY -->
+
+    <div class="hero-dark"></div>
+
+
+    <!-- HERO CONTENT -->
 
     <div class="hero-content">
 
-        <span class="badge">TRENDING #1</span>
+      <div class="hero-badge">
+        ✦ PILIHAN HARI INI
+      </div>
 
-        <h1>THE LAST<br>EMPEROR</h1>
 
-        <div class="movie-info">
-            <span>2026</span>
-            <span>•</span>
-            <span>16+</span>
-            <span>•</span>
-            <span>Drama</span>
-            <span>•</span>
-            <span>24 Episode</span>
-        </div>
+      <h1 id="heroTitle">
+        Momen Santai di Rumah
+      </h1>
 
-        <p>
-            Ketika sebuah rahasia besar terbongkar, seorang pemuda
-            harus menghadapi masa lalu dan menentukan masa depan
-            keluarganya.
-        </p>
 
-        <div class="hero-buttons">
+      <p>
+        Nikmati berbagai video pilihan
+        dengan tampilan streaming yang
+        simpel, modern dan nyaman.
+      </p>
 
-            <button class="play-btn">
-                ▶ Mulai Nonton
-            </button>
 
-            <button class="info-btn">
-                ⓘ Detail
-            </button>
+      <div class="hero-buttons">
 
-        </div>
+        <button
+          class="btn btn-primary"
+          onclick="playHeroVideo()"
+        >
+          ▶ Mulai Menonton
+        </button>
+
+
+        <button
+          class="btn btn-secondary"
+          onclick="scrollToVideos()"
+        >
+          + Lihat Semua
+        </button>
+
+      </div>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- ================= CONTENT ================= -->
 
-<main class="content">
+  <!-- =========================
+       CONTENT
+  ========================= -->
 
-    <!-- ================= VIDEO PLAYER ================= -->
-
-    <section class="player-section" id="watch">
-
-        <div class="video-container">
-
-            <video id="mainVideo" controls playsinline>
-                <source id="videoSource" src="" type="video/mp4">
-                Browser kamu tidak mendukung video player.
-            </video>
-
-            <div class="video-loading" id="videoLoading">
-                Memuat video...
-            </div>
-
-        </div>
-
-        <div class="player-info">
-
-            <h1 id="videoTitle">Pilih video untuk mulai menonton</h1>
-
-            <div class="player-meta">
-                <span>HD</span>
-                <span>•</span>
-                <span>Streaming</span>
-            </div>
-
-        </div>
-
-    </section>
+  <main class="content">
 
 
-    <!-- ================= VIDEO LIST ================= -->
+    <!-- =========================
+         CONTINUE WATCHING
+    ========================= -->
 
-    <section class="movie-section">
+    <section
+      class="section"
+      id="continueSection"
+      style="display:none;"
+    >
 
-        <div class="section-header">
+      <div class="section-title">
 
-            <h2>Video Pilihan</h2>
+        <h2>
+          Lanjut Menonton
+        </h2>
 
-            <span id="videoCount"></span>
+      </div>
 
-        </div>
 
-        <div class="movie-row" id="videoList"></div>
+      <div
+        class="video-row"
+        id="continueRow"
+      ></div>
 
     </section>
 
 
-    <!-- ================= GENRE ================= -->
 
-    <section class="genres">
+    <!-- =========================
+         TRENDING
+    ========================= -->
 
-        <h2>Jelajahi</h2>
+    <section
+      class="section"
+      id="trending"
+    >
 
-        <div class="genre-grid">
+      <div class="section-title">
 
-            <div class="genre">Terbaru</div>
-            <div class="genre">Populer</div>
-            <div class="genre">Rekomendasi</div>
-            <div class="genre">Pilihan</div>
+        <h2>
+          🔥 Sedang Populer
+        </h2>
 
-        </div>
+
+        <span
+          class="see-all"
+          onclick="showAllVideos()"
+        >
+          Lihat Semua
+        </span>
+
+      </div>
+
+
+      <div
+        class="video-row"
+        id="trendingRow"
+      ></div>
 
     </section>
 
-</main>
 
 
-<!-- ================= FOOTER ================= -->
+    <!-- =========================
+         LATEST
+    ========================= -->
 
-<footer>
+    <section
+      class="section"
+      id="latest"
+    >
 
-    <div class="footer-logo">
-        NONTON<span>IN</span>
+      <div class="section-title">
+
+        <h2>
+          ✨ Terbaru
+        </h2>
+
+      </div>
+
+
+      <div
+        class="video-row"
+        id="latestRow"
+      ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ALL VIDEOS
+    ========================= -->
+
+    <section
+      class="section"
+      id="allVideos"
+    >
+
+      <div class="section-title">
+
+        <h2>
+          🎬 Semua Video
+        </h2>
+
+      </div>
+
+
+      <div
+        class="search-results"
+        id="allVideosGrid"
+      ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SEARCH RESULTS
+    ========================= -->
+
+    <section
+      class="section"
+      id="searchSection"
+    >
+
+      <div class="section-title">
+
+        <h2>
+          Hasil Pencarian
+        </h2>
+
+      </div>
+
+
+      <div
+        class="search-results"
+        id="searchResults"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================
+       VIDEO PLAYER MODAL
+  ========================= -->
+
+  <div
+    class="player-modal"
+    id="playerModal"
+  >
+
+    <div class="player-container">
+
+
+      <button
+        class="close-player"
+        onclick="closePlayer()"
+      >
+        ×
+      </button>
+
+
+      <video
+        class="main-video"
+        id="mainVideo"
+        controls
+        playsinline
+      ></video>
+
+
+      <div class="player-info">
+
+        <div
+          class="player-title"
+          id="playerTitle"
+        >
+          Video
+        </div>
+
+
+        <div class="player-controls">
+
+          <button
+            class="control-btn"
+            onclick="previousVideo()"
+          >
+            ◀ Sebelumnya
+          </button>
+
+
+          <button
+            class="control-btn"
+            onclick="nextVideo()"
+          >
+            Berikutnya ▶
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
 
     <p>
-        Nikmati berbagai film dan serial favoritmu kapan saja.
+      © 2026 ViuStream. All Rights Reserved.
     </p>
 
-    <div class="footer-links">
-        <a href="#">Tentang Kami</a>
-        <a href="#">Syarat & Ketentuan</a>
-        <a href="#">Privasi</a>
-        <a href="#">Bantuan</a>
-    </div>
-
-    <p class="copyright">
-        © 2026 NONTONIN. All Rights Reserved.
-    </p>
-
-</footer>
+  </footer>
 
 
-<script src="script.js"></script>
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+
+    /* ==========================================
+       DAFTAR VIDEO
+    ========================================== */
+
+    const videoList = [
+
+      {
+        src: "https://data.vividey.co/backup/20260607/45d32c2957d5497abae745fd778289cb.mp4",
+        title: "Momen Santai di Rumah"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260615/f3f434aa4e2d4621b442ec6f864b1bc5.mp4",
+        title: "Vlog Jalan Sore"
+      },
+
+      {
+        src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4",
+        title: "Hari Cerah Bersama Teman"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260615/30c2086f54d542b8ad1bfa70174f6c20.mp4",
+        title: "Cuplikan Seru Hari Ini"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260615/2c2ee3a7f4ff44c78fd76fda1dadc2b8.mp4",
+        title: "Cerita Singkat Akhir Pekan"
+      },
+
+      {
+        src: "https://cdn2.slicedrive.com/AYcvGVWM1.mp4",
+        title: "Kegiatan Pagi yang Tenang"
+      },
+
+      {
+        src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4",
+        title: "Suasana Alam Terbuka"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260614/0d7f4069d33248689dadabdb19f31257.mp4",
+        title: "Perjalanan Kecil Hari Ini"
+      },
+
+      {
+        src: "https://cdn2.slicedrive.com/60htfE0D1.mp4",
+        title: "Momen Lucu Tak Terduga"
+      },
+
+      {
+        src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4",
+        title: "Santai Menikmati Waktu"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260614/dff632eda5404d1aac64279cc88bc3e7.mp4",
+        title: "Kisah Pendek Sore Hari"
+      },
+
+      {
+        src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4",
+        title: "Potret Aktivitas Harian"
+      },
+
+      {
+        src: "https://cdn.videy.co/eW6cs9AQ1.mp4",
+        title: "Suasana Hangat Bersama"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260615/28b70bdf961d426581b02c39eb2f617e.mp4",
+        title: "Jalan-Jalan Ringan"
+      },
+
+      {
+        src: "https://cdn2.slicedrive.com/mHbOvciU1.mp4",
+        title: "Cerita di Balik Kamera"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260615/7b35c95b2dff49d29c74a2e0e291522b.mp4",
+        title: "Video Pilihan Hari Ini"
+      },
+
+      {
+        src: "https://cdn2.videy.co/NuVDPGLq1.mp4",
+        title: "Momen Tenang di Luar Rumah"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260614/45161f9d5963483e9656b4bceb0b5d8c.mp4",
+        title: "Kumpulan Momen Harian"
+      },
+
+      {
+        src: "https://cdn.videy.co/FyWyZeus1.mp4",
+        title: "Santai Setelah Aktivitas"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260615/fe71eb287ba34bc0a2649ed41dc2a8dc.mp4",
+        title: "Cuplikan Random Seru"
+      },
+
+      {
+        src: "https://cdn2.videy.co/wEkJbSvy1.mp4",
+        title: "Hari Biasa yang Menarik"
+      },
+
+      {
+        src: "https://cdn.videy.co/QBg8cDNP1.mp4",
+        title: "Vlog Singkat Terbaru"
+      },
+
+      {
+        src: "https://cdn.videy.co/n0tjGB8H1.mp4",
+        title: "Momen Pilihan Spesial"
+      },
+
+      {
+        src: "https://data.vividey.co/backup/20260615/43dfd562372e4cc98aa592a6ceba2cee.mp4",
+        title: "Rekaman Santai Hari Ini"
+      }
+
+    ];
+
+
+
+    /* ==========================================
+       ELEMENT
+    ========================================== */
+
+    const heroVideo =
+      document.getElementById("heroVideo");
+
+    const heroTitle =
+      document.getElementById("heroTitle");
+
+    const trendingRow =
+      document.getElementById("trendingRow");
+
+    const latestRow =
+      document.getElementById("latestRow");
+
+    const allVideosGrid =
+      document.getElementById("allVideosGrid");
+
+    const continueRow =
+      document.getElementById("continueRow");
+
+    const continueSection =
+      document.getElementById("continueSection");
+
+    const playerModal =
+      document.getElementById("playerModal");
+
+    const mainVideo =
+      document.getElementById("mainVideo");
+
+    const playerTitle =
+      document.getElementById("playerTitle");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+
+    let currentVideo = 0;
+
+    let heroVideoIndex = 0;
+
+
+
+    /* ==========================================
+       HERO VIDEO
+    ========================================== */
+
+    function loadHeroVideo(index) {
+
+      heroVideoIndex = index;
+
+
+      const selected =
+        videoList[index];
+
+
+      if (!selected) {
+        return;
+      }
+
+
+      heroVideo.src =
+        selected.src;
+
+
+      heroTitle.textContent =
+        selected.title;
+
+
+      heroVideo.muted = true;
+
+
+      heroVideo.play()
+        .catch(error => {
+
+          console.log(
+            "Autoplay diblokir browser:",
+            error
+          );
+
+        });
+
+    }
+
+
+
+    /* ==========================================
+       PLAY HERO VIDEO
+    ========================================== */
+
+    function playHeroVideo() {
+
+      playVideo(
+        heroVideoIndex
+      );
+
+    }
+
+
+
+    /* ==========================================
+       CREATE VIDEO CARD
+    ========================================== */
+
+    function createCard(
+      video,
+      index
+    ) {
+
+      const card =
+        document.createElement("div");
+
+
+      card.className =
+        "video-card";
+
+
+      card.onclick =
+        function() {
+
+          playVideo(index);
+
+        };
+
+
+      const thumbnail =
+        document.createElement("div");
+
+
+      thumbnail.className =
+        "thumbnail";
+
+
+      const videoElement =
+        document.createElement("video");
+
+
+      videoElement.src =
+        video.src;
+
+
+      videoElement.muted =
+        true;
+
+
+      videoElement.preload =
+        "metadata";
+
+
+      videoElement.playsInline =
+        true;
+
+
+      /*
+        Preview ketika mouse
+        diarahkan ke video.
+      */
+
+      card.addEventListener(
+        "mouseenter",
+        () => {
+
+          videoElement.currentTime =
+            0;
+
+          videoElement
+            .play()
+            .catch(() => {});
+
+        }
+      );
+
+
+      card.addEventListener(
+        "mouseleave",
+        () => {
+
+          videoElement.pause();
+
+          videoElement.currentTime =
+            0;
+
+        }
+      );
+
+
+      const overlay =
+        document.createElement("div");
+
+
+      overlay.className =
+        "thumbnail-overlay";
+
+
+      const playIcon =
+        document.createElement("div");
+
+
+      playIcon.className =
+        "play-icon";
+
+
+      playIcon.innerHTML =
+        "▶";
+
+
+      thumbnail.appendChild(
+        videoElement
+      );
+
+
+      thumbnail.appendChild(
+        overlay
+      );
+
+
+      thumbnail.appendChild(
+        playIcon
+      );
+
+
+      const title =
+        document.createElement("div");
+
+
+      title.className =
+        "video-title";
+
+
+      title.textContent =
+        video.title;
+
+
+      const info =
+        document.createElement("div");
+
+
+      info.className =
+        "video-info";
+
+
+      info.textContent =
+        "Video • HD";
+
+
+      card.appendChild(
+        thumbnail
+      );
+
+
+      card.appendChild(
+        title
+      );
+
+
+      card.appendChild(
+        info
+      );
+
+
+      return card;
+
+    }
+
+
+
+    /* ==========================================
+       TRENDING
+    ========================================== */
+
+    function renderTrending() {
+
+      trendingRow.innerHTML =
+        "";
+
+
+      videoList
+        .slice(0, 10)
+        .forEach(
+          (video, index) => {
+
+            trendingRow.appendChild(
+              createCard(
+                video,
+                index
+              )
+            );
+
+          }
+        );
+
+    }
+
+
+
+    /* ==========================================
+       LATEST
+    ========================================== */
+
+    function renderLatest() {
+
+      latestRow.innerHTML =
+        "";
+
+
+      const start =
+        Math.max(
+          0,
+          videoList.length - 10
+        );
+
+
+      videoList
+        .slice(start)
+        .reverse()
+        .forEach(
+          video => {
+
+            const originalIndex =
+              videoList.indexOf(
+                video
+              );
+
+
+            latestRow.appendChild(
+              createCard(
+                video,
+                originalIndex
+              )
+            );
+
+          }
+        );
+
+    }
+
+
+
+    /* ==========================================
+       ALL VIDEOS
+    ========================================== */
+
+    function renderAllVideos() {
+
+      allVideosGrid.innerHTML =
+        "";
+
+
+      videoList.forEach(
+        (video, index) => {
+
+          allVideosGrid.appendChild(
+            createCard(
+              video,
+              index
+            )
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /* ==========================================
+       PLAY VIDEO
+    ========================================== */
+
+    function playVideo(index) {
+
+      if (
+        index < 0 ||
+        index >= videoList.length
+      ) {
+
+        return;
+
+      }
+
+
+      currentVideo =
+        index;
+
+
+      const selectedVideo =
+        videoList[index];
+
+
+      playerTitle.textContent =
+        selectedVideo.title;
+
+
+      mainVideo.src =
+        selectedVideo.src;
+
+
+      playerModal.classList.add(
+        "active"
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
+
+
+      mainVideo.play()
+        .catch(() => {});
+
+
+      saveProgress(index);
+
+    }
+
+
+
+    /* ==========================================
+       CLOSE PLAYER
+    ========================================== */
+
+    function closePlayer() {
+
+      saveProgress(
+        currentVideo
+      );
+
+
+      mainVideo.pause();
+
+
+      mainVideo.src =
+        "";
+
+
+      playerModal.classList.remove(
+        "active"
+      );
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+
+    /* ==========================================
+       NEXT VIDEO
+    ========================================== */
+
+    function nextVideo() {
+
+      let next =
+        currentVideo + 1;
+
+
+      if (
+        next >= videoList.length
+      ) {
+
+        next = 0;
+
+      }
+
+
+      playVideo(next);
+
+    }
+
+
+
+    /* ==========================================
+       PREVIOUS VIDEO
+    ========================================== */
+
+    function previousVideo() {
+
+      let previous =
+        currentVideo - 1;
+
+
+      if (previous < 0) {
+
+        previous =
+          videoList.length - 1;
+
+      }
+
+
+      playVideo(previous);
+
+    }
+
+
+
+    /* ==========================================
+       KEYBOARD CONTROL
+    ========================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          !playerModal.classList.contains(
+            "active"
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closePlayer();
+
+        }
+
+
+        if (
+          event.key === "ArrowRight"
+        ) {
+
+          nextVideo();
+
+        }
+
+
+        if (
+          event.key === "ArrowLeft"
+        ) {
+
+          previousVideo();
+
+        }
+
+      }
+    );
+
+
+
+    /* ==========================================
+       SAVE WATCH PROGRESS
+    ========================================== */
+
+    function saveProgress(index) {
+
+      if (
+        !mainVideo.duration ||
+        isNaN(mainVideo.duration)
+      ) {
+
+        return;
+
+      }
+
+
+      const progressData =
+        JSON.parse(
+          localStorage.getItem(
+            "watchProgress"
+          ) || "{}"
+        );
+
+
+      progressData[index] = {
+
+        time:
+          mainVideo.currentTime,
+
+        duration:
+          mainVideo.duration,
+
+        title:
+          videoList[index].title,
+
+        src:
+          videoList[index].src
+
+      };
+
+
+      localStorage.setItem(
+        "watchProgress",
+        JSON.stringify(
+          progressData
+        )
+      );
+
+
+      renderContinueWatching();
+
+    }
+
+
+
+    /* ==========================================
+       UPDATE PROGRESS
+    ========================================== */
+
+    mainVideo.addEventListener(
+      "timeupdate",
+      function() {
+
+        if (
+          mainVideo.currentTime > 5
+        ) {
+
+          saveProgress(
+            currentVideo
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* ==========================================
+       RESUME VIDEO
+    ========================================== */
+
+    mainVideo.addEventListener(
+      "loadedmetadata",
+      function() {
+
+        const progressData =
+          JSON.parse(
+            localStorage.getItem(
+              "watchProgress"
+            ) || "{}"
+          );
+
+
+        const saved =
+          progressData[
+            currentVideo
+          ];
+
+
+        if (
+          saved &&
+          saved.time <
+          mainVideo.duration - 10
+        ) {
+
+          mainVideo.currentTime =
+            saved.time;
+
+        }
+
+      }
+    );
+
+
+
+    /* ==========================================
+       CONTINUE WATCHING
+    ========================================== */
+
+    function renderContinueWatching() {
+
+      continueRow.innerHTML =
+        "";
+
+
+      const progressData =
+        JSON.parse(
+          localStorage.getItem(
+            "watchProgress"
+          ) || "{}"
+        );
+
+
+      const keys =
+        Object.keys(
+          progressData
+        );
+
+
+      if (
+        keys.length === 0
+      ) {
+
+        continueSection.style.display =
+          "none";
+
+        return;
+
+      }
+
+
+      continueSection.style.display =
+        "block";
+
+
+      keys
+        .reverse()
+        .slice(0, 10)
+        .forEach(
+          index => {
+
+            const video =
+              videoList[index];
+
+
+            if (!video) {
+              return;
+            }
+
+
+            const card =
+              createCard(
+                video,
+                Number(index)
+              );
+
+
+            const progress =
+              document.createElement(
+                "div"
+              );
+
+
+            progress.className =
+              "progress";
+
+
+            const saved =
+              progressData[index];
+
+
+            if (
+              saved &&
+              saved.duration
+            ) {
+
+              const percentage =
+                (
+                  saved.time /
+                  saved.duration
+                ) * 100;
+
+
+              progress.style.width =
+                Math.min(
+                  percentage,
+                  100
+                ) + "%";
+
+            }
+
+
+            card
+              .querySelector(
+                ".thumbnail"
+              )
+              .appendChild(
+                progress
+              );
+
+
+            continueRow.appendChild(
+              card
+            );
+
+          }
+        );
+
+    }
+
+
+
+    /* ==========================================
+       SEARCH
+    ========================================== */
+
+    searchInput.addEventListener(
+      "input",
+      function() {
+
+        const keyword =
+          this.value
+            .toLowerCase()
+            .trim();
+
+
+        const searchSection =
+          document.getElementById(
+            "searchSection"
+          );
+
+
+        const searchResults =
+          document.getElementById(
+            "searchResults"
+          );
+
+
+        if (!keyword) {
+
+          searchSection.style.display =
+            "none";
+
+          return;
+
+        }
+
+
+        searchSection.style.display =
+          "block";
+
+
+        const results =
+          videoList.filter(
+            video =>
+              video.title
+                .toLowerCase()
+                .includes(
+                  keyword
+                )
+          );
+
+
+        searchResults.innerHTML =
+          "";
+
+
+        results.forEach(
+          video => {
+
+            const originalIndex =
+              videoList.indexOf(
+                video
+              );
+
+
+            searchResults.appendChild(
+              createCard(
+                video,
+                originalIndex
+              )
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+
+    /* ==========================================
+       SHOW ALL VIDEOS
+    ========================================== */
+
+    function showAllVideos() {
+
+      document.getElementById(
+        "allVideos"
+      ).scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+
+    /* ==========================================
+       SCROLL TO VIDEOS
+    ========================================== */
+
+    function scrollToVideos() {
+
+      document.getElementById(
+        "trending"
+      ).scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+
+    /* ==========================================
+       NAVBAR SCROLL
+    ========================================== */
+
+    window.addEventListener(
+      "scroll",
+      function() {
+
+        const navbar =
+          document.getElementById(
+            "navbar"
+          );
+
+
+        if (
+          window.scrollY > 50
+        ) {
+
+          navbar.classList.add(
+            "scrolled"
+          );
+
+        } else {
+
+          navbar.classList.remove(
+            "scrolled"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* ==========================================
+       CLICK OUTSIDE PLAYER
+    ========================================== */
+
+    playerModal.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target ===
+          playerModal
+        ) {
+
+          closePlayer();
+
+        }
+
+      }
+    );
+
+
+
+    /* ==========================================
+       AUTO NEXT VIDEO
+    ========================================== */
+
+    mainVideo.addEventListener(
+      "ended",
+      function() {
+
+        nextVideo();
+
+      }
+    );
+
+
+
+    /* ==========================================
+       INITIALIZE
+    ========================================== */
+
+    renderTrending();
+
+    renderLatest();
+
+    renderAllVideos();
+
+    renderContinueWatching();
+
+
+    /*
+      Video pertama langsung menjadi
+      background hero.
+    */
+
+    loadHeroVideo(0);
+
+
+  </script>
 
 </body>
 </html>
