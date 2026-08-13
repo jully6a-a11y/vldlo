@@ -2,24 +2,44 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-   <meta name="monetag" content="13f93e085f03d3c5870e29d0c903c1b0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <meta name="theme-color" content="#f3dca8">
   <title>vldlo - Kumpulan Video</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
-<!-- Histats.com  END  -->
+
+  <!-- HISTATS -->
+  <script type="text/javascript">
+    var _Hasync = _Hasync || [];
+
+    _Hasync.push([
+      'Histats.start',
+      '1,5030870,4,0,0,0,00010000'
+    ]);
+
+    _Hasync.push([
+      'Histats.fasi',
+      '1'
+    ]);
+
+    _Hasync.push([
+      'Histats.track_hits',
+      ''
+    ]);
+
+    (function() {
+      var hs = document.createElement('script');
+      hs.type = 'text/javascript';
+      hs.async = true;
+      hs.src = '//s10.histats.com/js15_as.js';
+
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(hs);
+    })();
+  </script>
+
   <style>
     * {
       margin: 0;
@@ -157,7 +177,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
       align-items: center;
       gap: 8px;
       padding: 0 12px;
-      box-shadow: inset 0 0 0 1px #eee, 0 2px 6px rgba(0,0,0,.12);
+      box-shadow:
+        inset 0 0 0 1px #eee,
+        0 2px 6px rgba(0,0,0,.12);
     }
 
     .search-box svg {
@@ -239,6 +261,26 @@ hs.src = ('//s10.histats.com/js15_as.js');
       display: block;
       object-fit: contain;
       background: #000;
+    }
+
+    /* AREA IKLAN */
+    .ad-container {
+      width: min(100%, 540px);
+      min-height: 90px;
+      margin: 12px auto 4px;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ad-container iframe,
+    .ad-container img,
+    .ad-container video {
+      max-width: 100%;
     }
 
     /* BAGIAN VIDEO KECIL */
@@ -401,11 +443,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
       min-width: 100px;
     }
 
-    .ad-area {
-      display: none;
-    }
-
     @media (max-width: 760px) {
+
       .navbar {
         grid-template-columns: 90px 1fr 118px;
         gap: 8px;
@@ -433,9 +472,14 @@ hs.src = ('//s10.histats.com/js15_as.js');
       .more-section {
         padding-left: 18px;
       }
+
+      .ad-container {
+        min-height: 80px;
+      }
     }
 
     @media (max-width: 560px) {
+
       .sidebar {
         width: 42px;
       }
@@ -486,32 +530,42 @@ hs.src = ('//s10.histats.com/js15_as.js');
       .video-title h1 {
         font-size: 30px;
       }
+
+      .ad-container {
+        min-height: 70px;
+      }
     }
   </style>
 </head>
+
 <body>
 
 <div class="app">
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
+
     <div class="side-logo">vD</div>
 
     <div class="side-menu">
-      <button class="icon-btn redirect-btn" title="Home" type="button">
+
+      <button class="icon-btn" title="Home" type="button">
         <svg viewBox="0 0 24 24">
-          <path class="fill" d="M3 11.2 12 3l9 8.2v9.3c0 .8-.7 1.5-1.5 1.5H15v-7H9v7H4.5c-.8 0-1.5-.7-1.5-1.5v-9.3z"/>
+          <path
+            class="fill"
+            d="M3 11.2 12 3l9 8.2v9.3c0 .8-.7 1.5-1.5 1.5H15v-7H9v7H4.5c-.8 0-1.5-.7-1.5-1.5v-9.3z"
+          />
         </svg>
       </button>
 
-      <button class="icon-btn redirect-btn" title="Profile" type="button">
+      <button class="icon-btn" title="Profile" type="button">
         <svg viewBox="0 0 24 24">
           <circle cx="12" cy="7" r="4"></circle>
           <path d="M4 22c.7-5 4-8 8-8s7.3 3 8 8"></path>
         </svg>
       </button>
 
-      <button class="icon-btn redirect-btn" title="Download" type="button">
+      <button class="icon-btn" title="Download" type="button">
         <svg viewBox="0 0 24 24">
           <path d="M12 3v13"></path>
           <path d="m6 10 6 6 6-6"></path>
@@ -519,195 +573,535 @@ hs.src = ('//s10.histats.com/js15_as.js');
         </svg>
       </button>
 
-      <button class="icon-btn redirect-btn" title="Upload" type="button">
+      <button class="icon-btn" title="Upload" type="button">
         <svg viewBox="0 0 24 24">
           <path d="M12 4v16"></path>
           <path d="M4 12h16"></path>
         </svg>
       </button>
+
     </div>
 
-    <button class="icon-btn side-bottom redirect-btn" title="Exit" type="button">
+    <button class="icon-btn side-bottom" title="Exit" type="button">
       <svg viewBox="0 0 24 24">
         <path d="M12 3v9"></path>
         <path d="M7 6.5a9 9 0 1 0 10 0"></path>
       </svg>
     </button>
+
   </aside>
+
 
   <!-- HALAMAN -->
   <main class="page">
 
     <!-- NAVBAR -->
     <nav class="navbar">
-      <div class="logo">vldlo</div>
+
+      <div class="logo">
+        vldlo
+      </div>
 
       <div class="search-wrap">
+
         <div class="search-box">
+
           <svg viewBox="0 0 24 24">
             <circle cx="10.5" cy="10.5" r="6.5"></circle>
             <path d="m16 16 5 5"></path>
           </svg>
+
           <input type="text" placeholder="">
+
         </div>
+
       </div>
 
       <div class="top-actions">
-        <button class="pill-btn redirect-btn" type="button">download</button>
-        <button class="pill-btn redirect-btn" type="button">profile</button>
+
+        <button class="pill-btn" type="button">
+          download
+        </button>
+
+        <button class="pill-btn" type="button">
+          profile
+        </button>
+
       </div>
+
     </nav>
 
-    <!-- VIDEO UTAMA -->
+
+    <!-- KONTEN VIDEO -->
     <section class="hero">
+
+      <!-- VIDEO UTAMA -->
       <div class="main-card">
+
         <div class="video-title">
-          <h1 id="mainTitle">judul vidio nya</h1>
+          <h1 id="mainTitle">
+            judul vidio nya
+          </h1>
         </div>
 
         <div class="video-frame">
-          <video id="mainVideo" controls playsinline>
-            <source id="mainSource" src="" type="video/mp4">
+
+          <video
+            id="mainVideo"
+            controls
+            playsinline
+          >
+            <source
+              id="mainSource"
+              src=""
+              type="video/mp4"
+            >
+
             Browser tidak mendukung video.
+
           </video>
+
         </div>
+
       </div>
+
+
+      <!-- ==================================================
+           AREA IKLAN
+           IKLAN BERADA DI BAWAH VIDEO
+           TIDAK DITEMPATKAN DI EVENT PLAY
+           ================================================== -->
+
+      <div
+        class="ad-container"
+        id="adContainer"
+      ></div>
+
 
       <!-- VIDEO KECIL -->
       <section class="more-section">
-        <div class="more-header">
-          <div class="more-title">more vidio</div>
 
-          <button class="view-toggle" id="viewToggle" type="button" aria-label="Ubah tampilan video" aria-pressed="false">
+        <div class="more-header">
+
+          <div class="more-title">
+            more vidio
+          </div>
+
+          <button
+            class="view-toggle"
+            id="viewToggle"
+            type="button"
+            aria-label="Ubah tampilan video"
+            aria-pressed="false"
+          >
+
             <span class="icon-grid">
-              <i></i><i></i><i></i><i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
             </span>
 
             <span class="icon-list">
-              <i></i><i></i><i></i>
+              <i></i>
+              <i></i>
+              <i></i>
             </span>
+
           </button>
+
         </div>
 
-        <div class="thumb-row" id="thumbRow"></div>
+
+        <div
+          class="thumb-row"
+          id="thumbRow"
+        ></div>
+
       </section>
+
     </section>
+
   </main>
+
 </div>
 
-<!-- Iklan -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="250245" async data-cfasync="false"></script>
+
 <script>
- 
+
+  /* =====================================================
+     DAFTAR VIDEO
+     ===================================================== */
+
   const videoList = [
-    { src: "https://data.vividey.co/backup/20260607/45d32c2957d5497abae745fd778289cb.mp4", title: "Momen Santai di Rumah" },
-    { src: "https://data.vividey.co/backup/20260615/f3f434aa4e2d4621b442ec6f864b1bc5.mp4", title: "Vlog Jalan Sore" },
-    { src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4", title: "Hari Cerah Bersama Teman" },
-    { src: "https://data.vividey.co/backup/20260615/30c2086f54d542b8ad1bfa70174f6c20.mp4", title: "Cuplikan Seru Hari Ini" },
-    { src: "https://data.vividey.co/backup/20260615/2c2ee3a7f4ff44c78fd76fda1dadc2b8.mp4", title: "Cerita Singkat Akhir Pekan" },
 
-    { src: "https://cdn2.slicedrive.com/AYcvGVWM1.mp4", title: "Kegiatan Pagi yang Tenang" },
-    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "Suasana Alam Terbuka" },
-    { src: "https://data.vividey.co/backup/20260614/0d7f4069d33248689dadabdb19f31257.mp4", title: "Perjalanan Kecil Hari Ini" },
-    { src: "https://cdn2.slicedrive.com/60htfE0D1.mp4", title: "Momen Lucu Tak Terduga" },
-    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "Santai Menikmati Waktu" },
-    { src: "https://data.vividey.co/backup/20260614/dff632eda5404d1aac64279cc88bc3e7.mp4", title: "Kisah Pendek Sore Hari" },
-    { src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4", title: "Potret Aktivitas Harian" },
+    {
+      src: "https://data.vividey.co/backup/20260607/45d32c2957d5497abae745fd778289cb.mp4",
+      title: "Momen Santai di Rumah"
+    },
 
-    { src: "https://cdn.videy.co/eW6cs9AQ1.mp4", title: "Suasana Hangat Bersama" },
-    { src: "https://data.vividey.co/backup/20260615/28b70bdf961d426581b02c39eb2f617e.mp4", title: "Jalan-Jalan Ringan" },
-    { src: "https://cdn2.slicedrive.com/mHbOvciU1.mp4", title: "Cerita di Balik Kamera" },
-    { src: "https://data.vividey.co/backup/20260615/7b35c95b2dff49d29c74a2e0e291522b.mp4", title: "Video Pilihan Hari Ini" },
-    { src: "https://cdn2.videy.co/NuVDPGLq1.mp4", title: "Momen Tenang di Luar Rumah" },
+    {
+      src: "https://data.vividey.co/backup/20260615/f3f434aa4e2d4621b442ec6f864b1bc5.mp4",
+      title: "Vlog Jalan Sore"
+    },
 
-    { src: "https://data.vividey.co/backup/20260614/45161f9d5963483e9656b4bceb0b5d8c.mp4", title: "Kumpulan Momen Harian" },
-    { src: "https://cdn.videy.co/FyWyZeus1.mp4", title: "Santai Setelah Aktivitas" },
-    { src: "https://data.vividey.co/backup/20260615/fe71eb287ba34bc0a2649ed41dc2a8dc.mp4", title: "Cuplikan Random Seru" },
-    { src: "https://cdn2.videy.co/wEkJbSvy1.mp4", title: "Hari Biasa yang Menarik" },
-    { src: "https://cdn.videy.co/QBg8cDNP1.mp4", title: "Vlog Singkat Terbaru" },
-    { src: "https://cdn.videy.co/n0tjGB8H1.mp4", title: "Momen Pilihan Spesial" },
-    { src: "https://data.vividey.co/backup/20260615/43dfd562372e4cc98aa592a6ceba2cee.mp4", title: "Rekaman Santai Hari Ini" }
+    {
+      src: "https://cdn2.slicedrive.com/48DFeQPD1.mp4",
+      title: "Hari Cerah Bersama Teman"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260615/30c2086f54d542b8ad1bfa70174f6c20.mp4",
+      title: "Cuplikan Seru Hari Ini"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260615/2c2ee3a7f4ff44c78fd76fda1dadc2b8.mp4",
+      title: "Cerita Singkat Akhir Pekan"
+    },
+
+    {
+      src: "https://cdn2.slicedrive.com/AYcvGVWM1.mp4",
+      title: "Kegiatan Pagi yang Tenang"
+    },
+
+    {
+      src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4",
+      title: "Suasana Alam Terbuka"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260614/0d7f4069d33248689dadabdb19f31257.mp4",
+      title: "Perjalanan Kecil Hari Ini"
+    },
+
+    {
+      src: "https://cdn2.slicedrive.com/60htfE0D1.mp4",
+      title: "Momen Lucu Tak Terduga"
+    },
+
+    {
+      src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4",
+      title: "Santai Menikmati Waktu"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260614/dff632eda5404d1aac64279cc88bc3e7.mp4",
+      title: "Kisah Pendek Sore Hari"
+    },
+
+    {
+      src: "https://cdn2.slicedrive.com/CLN2EI3H1.mp4",
+      title: "Potret Aktivitas Harian"
+    },
+
+    {
+      src: "https://cdn.videy.co/eW6cs9AQ1.mp4",
+      title: "Suasana Hangat Bersama"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260615/28b70bdf961d426581b02c39eb2f617e.mp4",
+      title: "Jalan-Jalan Ringan"
+    },
+
+    {
+      src: "https://cdn2.slicedrive.com/mHbOvciU1.mp4",
+      title: "Cerita di Balik Kamera"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260615/7b35c95b2dff49d29c74a2e0e291522b.mp4",
+      title: "Video Pilihan Hari Ini"
+    },
+
+    {
+      src: "https://cdn2.videy.co/NuVDPGLq1.mp4",
+      title: "Momen Tenang di Luar Rumah"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260614/45161f9d5963483e9656b4bceb0b5d8c.mp4",
+      title: "Kumpulan Momen Harian"
+    },
+
+    {
+      src: "https://cdn.videy.co/FyWyZeus1.mp4",
+      title: "Santai Setelah Aktivitas"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260615/fe71eb287ba34bc0a2649ed41dc2a8dc.mp4",
+      title: "Cuplikan Random Seru"
+    },
+
+    {
+      src: "https://cdn2.videy.co/wEkJbSvy1.mp4",
+      title: "Hari Biasa yang Menarik"
+    },
+
+    {
+      src: "https://cdn.videy.co/QBg8cDNP1.mp4",
+      title: "Vlog Singkat Terbaru"
+    },
+
+    {
+      src: "https://cdn.videy.co/n0tjGB8H1.mp4",
+      title: "Momen Pilihan Spesial"
+    },
+
+    {
+      src: "https://data.vividey.co/backup/20260615/43dfd562372e4cc98aa592a6ceba2cee.mp4",
+      title: "Rekaman Santai Hari Ini"
+    }
+
   ];
 
-  const mainVideo = document.getElementById('mainVideo');
-  const mainSource = document.getElementById('mainSource');
-  const mainTitle = document.getElementById('mainTitle');
-  const thumbRow = document.getElementById('thumbRow');
-  const viewToggle = document.getElementById('viewToggle');
 
-  let playUnlocked = false;
+  /* =====================================================
+     ELEMENT
+     ===================================================== */
 
-  function openRedirect() {
-    window.open(redirectLink, '_blank');
-  }
+  const mainVideo =
+    document.getElementById('mainVideo');
+
+  const mainSource =
+    document.getElementById('mainSource');
+
+  const mainTitle =
+    document.getElementById('mainTitle');
+
+  const thumbRow =
+    document.getElementById('thumbRow');
+
+  const viewToggle =
+    document.getElementById('viewToggle');
+
+
+  /* =====================================================
+     LOAD VIDEO UTAMA
+     ===================================================== */
 
   function loadMainVideo(index) {
+
     const item = videoList[index];
 
-    playUnlocked = false;
-    mainTitle.textContent = item.title || 'judul vidio nya';
-    mainSource.src = item.src;
+    mainTitle.textContent =
+      item.title || 'judul vidio nya';
+
+    mainSource.src =
+      item.src;
+
     mainVideo.load();
+
   }
 
+
+  /* =====================================================
+     RENDER VIDEO THUMBNAIL
+     ===================================================== */
+
   function renderThumbs() {
+
     thumbRow.innerHTML = '';
 
     videoList.forEach((item, index) => {
-      const button = document.createElement('button');
-      button.className = 'thumb-card';
-      button.type = 'button';
+
+      const button =
+        document.createElement('button');
+
+      button.className =
+        'thumb-card';
+
+      button.type =
+        'button';
 
       button.innerHTML = `
-        <div class="thumb-name">${item.title || 'judul vidio'}</div>
-        <div class="thumb-video">
-          <video muted preload="metadata" playsinline>
-            <source src="${item.src}" type="video/mp4">
-          </video>
+
+        <div class="thumb-name">
+          ${item.title || 'judul vidio'}
         </div>
+
+        <div class="thumb-video">
+
+          <video
+            muted
+            preload="metadata"
+            playsinline
+          >
+
+            <source
+              src="${item.src}"
+              type="video/mp4"
+            >
+
+          </video>
+
+        </div>
+
       `;
 
-      button.addEventListener('click', () => {
-        loadMainVideo(index);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+
+      button.addEventListener(
+        'click',
+        () => {
+
+          loadMainVideo(index);
+
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+
+        }
+      );
+
 
       thumbRow.appendChild(button);
+
     });
+
   }
 
-  /* Button grid/list tetap normal */
-  viewToggle.addEventListener('click', () => {
-    const isList = thumbRow.classList.toggle('list-mode');
 
-    viewToggle.classList.toggle('list-active', isList);
-    viewToggle.setAttribute('aria-pressed', isList ? 'true' : 'false');
-  });
+  /* =====================================================
+     BUTTON GRID / LIST
+     ===================================================== */
 
-  /* Saat play pertama kali, buka link dulu, lalu video lanjut play */
-  mainVideo.addEventListener('play', () => {
-    if (!playUnlocked) {
-      playUnlocked = true;
-      mainVideo.pause();
-      openRedirect();
+  viewToggle.addEventListener(
+    'click',
+    () => {
 
-      setTimeout(() => {
-        mainVideo.play().catch(() => {});
-      }, 600);
+      const isList =
+        thumbRow.classList.toggle(
+          'list-mode'
+        );
+
+      viewToggle.classList.toggle(
+        'list-active',
+        isList
+      );
+
+      viewToggle.setAttribute(
+        'aria-pressed',
+        isList ? 'true' : 'false'
+      );
+
     }
-  });
+  );
 
+
+  /* =====================================================
+     JALANKAN WEBSITE
+     ===================================================== */
 
   renderThumbs();
-  loadMainVideo(0);
-  const sidebarLink = "https://omg10.com/4/11153848";
 
-document.querySelectorAll('.sidebar .icon-btn').forEach((button) => {
-  button.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.open(sidebarLink, '_blank');
-  });
-});
+  loadMainVideo(0);
+
+
+  /* =====================================================
+     LOAD IKLAN SETELAH HALAMAN SELESAI
+     
+     Script iklan TIDAK DIJALANKAN SAAT VIDEO PLAY.
+     ===================================================== */
+
+  window.addEventListener(
+    'load',
+    () => {
+
+      setTimeout(
+        () => {
+
+          const adContainer =
+            document.getElementById(
+              'adContainer'
+            );
+
+
+          /* ------------------------------------------------
+             IKLAN 1
+             Effective CPM Network
+             ------------------------------------------------ */
+
+          const adScript1 =
+            document.createElement('script');
+
+          adScript1.src =
+            'https://pl29644782.effectivecpmnetwork.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js';
+
+          adScript1.async = true;
+
+          adContainer.appendChild(
+            adScript1
+          );
+
+
+          /* ------------------------------------------------
+             IKLAN 2
+             Effective CPM Network
+             ------------------------------------------------ */
+
+          const adScript2 =
+            document.createElement('script');
+
+          adScript2.src =
+            'https://pl29644781.effectivecpmnetwork.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js';
+
+          adScript2.async = true;
+
+          adContainer.appendChild(
+            adScript2
+          );
+
+
+          /* ------------------------------------------------
+             IKLAN 3
+             AL5SM
+             ------------------------------------------------ */
+
+          const adScript3 =
+            document.createElement('script');
+
+          adScript3.dataset.zone =
+            '11108977';
+
+          adScript3.src =
+            'https://al5sm.com/tag.min.js';
+
+          adContainer.appendChild(
+            adScript3
+          );
+
+
+          /* ------------------------------------------------
+             IKLAN 4
+             5GVCI
+             ------------------------------------------------ */
+
+          const adScript4 =
+            document.createElement('script');
+
+          adScript4.src =
+            'https://5gvci.com/act/files/tag.min.js?z=11563487';
+
+          adScript4.dataset.cfasync =
+            'false';
+
+          adScript4.async =
+            true;
+
+          adContainer.appendChild(
+            adScript4
+          );
+
+        },
+
+        1000
+      );
+
+    }
+  );
 
 </script>
 
