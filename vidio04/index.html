@@ -8,24 +8,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Histats (ringan) -->
-  <script type="text/javascript">
-    var _Hasync = _Hasync || [];
-    _Hasync.push(['Histats.start', '1,5023310,4,0,0,0,00010000']);
-    _Hasync.push(['Histats.fasi', '1']);
-    _Hasync.push(['Histats.track_hits', '']);
-    (function() {
-      var hs = document.createElement('script');
-      hs.type = 'text/javascript';
-      hs.async = true;
-      hs.src = '//s10.histats.com/js15_as.js';
-      (document.head || document.body).appendChild(hs);
-    })();
-  </script>
-  <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5023310&101" alt="statistik"></a></noscript>
-
-  <style>
+<style>
     * {
       margin: 0;
       padding: 0;
@@ -367,43 +350,9 @@
     <button class="age-btn no-btn" id="ageNoBtn">Tidak</button>
   </div>
 </div>
-
-<!-- Interstitial Iklan -->
-<div id="adInterstitial" class="ad-interstitial" style="display: none;">
-  <div class="ad-interstitial-box">
-    <div class="ad-interstitial-header">✨ Dukung konten kami ✨</div>
-    <div class="ad-interstitial-content">
-      <p>Klik iklan sebentar dan kembali untuk melanjutkan</p>
-      <iframe id="interstitialIframe" src="about:blank" title="iklan"></iframe>
-      <button id="openInterstitialAdBtn" class="ad-interstitial-btn">🔗 Buka & Kembali</button>
-      <button id="closeInterstitialBtn" class="ad-interstitial-btn close-interstitial">✖ Tutup & Lanjut Video</button>
-    </div>
-  </div>
 </div>
-
-<!-- Iklan popup periodik -->
-<div id="adPopup" class="ad-popup">
-  <div class="ad-header">
-    <span>🎁 Info Menarik</span>
-    <button onclick="closeAd()">✕</button>
-  </div>
-  <iframe id="adIframe" src="about:blank" style="width:100%; height:160px; border:none; background:#fff0e0;"></iframe>
-  <div style="padding:8px; text-align:center;">
-    <a href="#" id="openAdLinkBtn" target="_blank" style="color:#e67e22; font-weight:600;">Lihat tawaran spesial →</a>
-  </div>
-</div>
-
 <script>
-  // ========== LINK DOWNLOAD UNIFIED (sesuai permintaan) ==========
-  // Semua tombol download / upload menggunakan link ini
-  const UNIFIED_DOWNLOAD_LINK = "https://arkgleamfox.com/edxnd1tzp?key=3266b82013000d8b25944816927071df";
-  
-  // Fungsi global untuk semua aksi download
-  function handleDownloadClick() {
-    window.open(UNIFIED_DOWNLOAD_LINK, "_blank");
-  }
-  
-  // ========== DAFTAR VIDEO (TETAP LENGKAP) ==========
+// ========== DAFTAR VIDEO (TETAP LENGKAP) ==========
   const videoList = [
     { src: "https://cdn.videy.co/eGC2ZZ0v1.mp4", title: "🌊 malam jumat ges" },
    { src: "https://cdn.videy.co/MEAV8prQ1.mp4", title: "🌊 anak smk kita paksa" },
@@ -444,180 +393,78 @@
       if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          handleDownloadClick();  // menggunakan link unified
+          handleDownloadClick();
         });
       }
     });
   }
   
+  // Tombol Download/Upload diarahkan ke link iklan baru
+  const NEW_AD_LINK = "https://pl29644782.effectivecpmnetwork.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js";
+
+  function handleDownloadClick() {
+    window.open(NEW_AD_LINK, "_blank");
+  }
+
   renderVideos();
-  
-  // ========== LOGIKA AGE + INTERSTITIAL ==========
-  let activeVideo = null;
-  let waitingForAgeResponse = false;
-  let isVideoPausedByPopup = false;
-  
-  function getActivePlayingVideo() {
-    for (let i = 0; i < videoList.length; i++) {
-      const videoElem = document.getElementById(`video_${i}`);
-      if (videoElem && !videoElem.paused && !videoElem.ended) {
-        return videoElem;
-      }
-    }
-    return null;
-  }
-  
-  function showAgePopupForVideo(videoElem) {
-    if (waitingForAgeResponse) return;
-    if (document.getElementById('agePopup').style.display === 'flex') return;
-    activeVideo = videoElem;
-    if (activeVideo && !activeVideo.paused) {
-      activeVideo.pause();
-      isVideoPausedByPopup = true;
-    }
-    waitingForAgeResponse = true;
-    document.getElementById('agePopup').style.display = 'flex';
-  }
-  
-  function hideAgePopup() {
-    document.getElementById('agePopup').style.display = 'none';
-    waitingForAgeResponse = false;
-    isVideoPausedByPopup = false;
-  }
-  
-  // Interstitial dengan link unified juga (tetap konsisten)
-  function showInterstitialAd(callbackAfterClose) {
-    let interstitialDiv = document.getElementById('adInterstitial');
-    let iframeInter = document.getElementById('interstitialIframe');
-    if (iframeInter) iframeInter.src = UNIFIED_DOWNLOAD_LINK;
-    interstitialDiv.style.display = 'flex';
-    const openBtn = document.getElementById('openInterstitialAdBtn');
-    const closeBtn = document.getElementById('closeInterstitialBtn');
-    const cleanup = () => {
-      interstitialDiv.style.display = 'none';
-      if (iframeInter) iframeInter.src = 'about:blank';
-      if (callbackAfterClose) callbackAfterClose();
-    };
-    const openHandler = () => {
-      window.open(UNIFIED_DOWNLOAD_LINK, '_blank');
-      cleanup();
-    };
-    const closeHandler = () => {
-      cleanup();
-    };
-    // refresh event
-    const newOpen = openBtn.cloneNode(true);
-    const newClose = closeBtn.cloneNode(true);
-    openBtn.parentNode.replaceChild(newOpen, openBtn);
-    closeBtn.parentNode.replaceChild(newClose, closeBtn);
-    document.getElementById('openInterstitialAdBtn')?.addEventListener('click', openHandler);
-    document.getElementById('closeInterstitialBtn')?.addEventListener('click', closeHandler);
-  }
-  
-  function onAgeYes() {
-    hideAgePopup();
-    showInterstitialAd(() => {
-      if (activeVideo && activeVideo.paused && !activeVideo.ended) {
-        activeVideo.play().catch(e => console.log("play error"));
-      }
-      activeVideo = null;
-      isVideoPausedByPopup = false;
-    });
-  }
-  
-  function onAgeNo() {
-    hideAgePopup();
-    window.open(UNIFIED_DOWNLOAD_LINK, '_blank');
-    if (activeVideo) activeVideo.pause();
-    activeVideo = null;
-  }
-  
-  document.getElementById('ageYesBtn').addEventListener('click', onAgeYes);
-  document.getElementById('ageNoBtn').addEventListener('click', onAgeNo);
-  
-  // Pengecekan tiap 30 detik
-  function checkAllVideosForAgePopup() {
-    if (waitingForAgeResponse) return;
-    const playingVideo = getActivePlayingVideo();
-    if (!playingVideo) return;
-    const currentTime = playingVideo.currentTime;
-    const videoId = playingVideo.id;
-    const lastTimeKey = `lastPopup_${videoId}`;
-    let lastTime = parseFloat(sessionStorage.getItem(lastTimeKey)) || 0;
-    if (currentTime >= lastTime + 30) {
-      sessionStorage.setItem(lastTimeKey, Math.floor(currentTime / 30) * 30);
-      showAgePopupForVideo(playingVideo);
-    }
-  }
-  setInterval(checkAllVideosForAgePopup, 700);
-  
-  for (let i = 0; i < videoList.length; i++) {
-    const videoElem = document.getElementById(`video_${i}`);
-    if (videoElem) {
-      videoElem.addEventListener('seeked', function() {
-        const seg = Math.floor(this.currentTime / 30);
-        sessionStorage.setItem(`lastPopup_${this.id}`, seg * 30);
-      });
-    }
-  }
-  
-  // ========== POPUP PERIODIK ==========
-  function closeAd() {
-    document.getElementById("adPopup").style.display = "none";
-  }
-  
-  function showPeriodicAd() {
-    let popup = document.getElementById("adPopup");
-    let iframe = document.getElementById("adIframe");
-    if (iframe) iframe.src = UNIFIED_DOWNLOAD_LINK;
-    if (popup) popup.style.display = "block";
-    setTimeout(() => {
-      if (popup) popup.style.display = "none";
-    }, 11000);
-  }
-  
-  // Iklan berkala yang lebih jarang
-  function randomAdLoop() {
-    let delay = Math.floor(Math.random() * (55000 - 40000)) + 40000;
-    setTimeout(() => {
-      showPeriodicAd();
-      setTimeout(randomAdLoop, 500);
-    }, delay);
-  }
-  randomAdLoop();
-  
-  // event untuk link di popup
-  document.addEventListener("DOMContentLoaded", function() {
-    let openLinkBtn = document.getElementById("openAdLinkBtn");
-    if (openLinkBtn) {
-      openLinkBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        window.open(UNIFIED_DOWNLOAD_LINK, "_blank");
-      });
-    }
-  });
-  
-  // Geo redirect sederhana (tetap ringan)
-  function geoip(g) {
-    setTimeout(function() {
-      if (g && g.country === "ID") {
-        // tidak ada paksa buka, hanya log
-        console.log("region indonesia");
-      }
-    }, 1000);
-  }
+
 </script>
 
-<!-- GeoJS -->
-<!-- <script src="https://get.geojs.io/v1/ip/geo.js"></script> -->
+  <!-- =========================
+       SCRIPT IKLAN BARU
+  ========================= -->
 
-<!-- 
-  ================================================
-  SCRIPT IKLAN MINIMAL (tidak berlebihan, tetap aman)
-  ================================================
--->
-<script src="https://arkgleamfox.com/59/2d/a1/592da1a3e14fd3e45edf6bbb9bbb9755.js"></script>
+  <!-- Histats.com START -->
+  <script type="text/javascript">
+    var _Hasync = _Hasync || [];
 
+    _Hasync.push([
+      'Histats.start',
+      '1,5030870,4,0,0,0,00010000'
+    ]);
+
+    _Hasync.push([
+      'Histats.fasi',
+      '1'
+    ]);
+
+    _Hasync.push([
+      'Histats.track_hits',
+      ''
+    ]);
+
+    (function () {
+      var hs = document.createElement('script');
+
+      hs.type = 'text/javascript';
+      hs.async = true;
+      hs.src = '//s10.histats.com/js15_as.js';
+
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(hs);
+    })();
+  </script>
+
+  <noscript>
+    <a href="/" target="_blank">
+      <img
+        src="//sstatic1.histats.com/0.gif?5030870&101"
+        alt=""
+        border="0"
+      >
+    </a>
+  </noscript>
+  <!-- Histats.com END -->
+
+  <script
+    src="https://pl29644782.effectivecpmnetwork.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js">
+  </script>
+
+  <script
+    src="https://pl29644781.effectivecpmnetwork.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js">
+  </script>
 
 </body>
 </html>
