@@ -1,22 +1,83 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ViuStream - Streaming Video</title>
-<!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
-<!-- Histats.com  END  -->
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ViuStream - Streaming Video</title>
+
+
+  <!-- ==========================================
+       HISTATS
+  ========================================== -->
+
+  <!-- Histats.com START (aync)-->
+  <script type="text/javascript">
+
+    var _Hasync = _Hasync || [];
+
+    _Hasync.push([
+      'Histats.start',
+      '1,5030870,4,0,0,0,00010000'
+    ]);
+
+    _Hasync.push([
+      'Histats.fasi',
+      '1'
+    ]);
+
+    _Hasync.push([
+      'Histats.track_hits',
+      ''
+    ]);
+
+    (function() {
+
+      var hs = document.createElement('script');
+
+      hs.type = 'text/javascript';
+
+      hs.async = true;
+
+      hs.src = '//s10.histats.com/js15_as.js';
+
+      (
+        document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]
+      ).appendChild(hs);
+
+    })();
+
+  </script>
+
+  <noscript>
+    <a
+      href="/"
+      target="_blank"
+    >
+      <img
+        src="//sstatic1.histats.com/0.gif?5030870&101"
+        alt=""
+        border="0"
+      >
+    </a>
+  </noscript>
+
+  <!-- Histats.com END -->
+
+
+  <!-- ==========================================
+       CSS
+  ========================================== -->
+
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -34,15 +95,17 @@ hs.src = ('//s10.histats.com/js15_as.js');
       overflow-x: hidden;
     }
 
-    /* =========================
+
+    /* ==========================================
        NAVBAR
-    ========================= */
+    ========================================== */
 
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+
       height: 68px;
 
       display: flex;
@@ -52,12 +115,13 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
       z-index: 1000;
 
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,.95),
-        rgba(0,0,0,.65),
-        transparent
-      );
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.95),
+          rgba(0,0,0,.65),
+          transparent
+        );
 
       transition: .3s;
     }
@@ -69,21 +133,29 @@ hs.src = ('//s10.histats.com/js15_as.js');
     .logo {
       font-size: 27px;
       font-weight: 900;
+
       color: #00d084;
+
       letter-spacing: -1px;
+
       margin-right: 35px;
     }
 
     .nav-menu {
       display: flex;
+
       gap: 25px;
+
       list-style: none;
     }
 
     .nav-menu a {
       color: #ddd;
+
       text-decoration: none;
+
       font-size: 14px;
+
       transition: .2s;
     }
 
@@ -105,9 +177,11 @@ hs.src = ('//s10.histats.com/js15_as.js');
       display: flex;
       align-items: center;
 
-      background: rgba(255,255,255,.1);
+      background:
+        rgba(255,255,255,.1);
 
-      border: 1px solid rgba(255,255,255,.15);
+      border:
+        1px solid rgba(255,255,255,.15);
 
       border-radius: 20px;
 
@@ -121,6 +195,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
       outline: none;
 
       color: white;
+
       background: transparent;
 
       margin-left: 6px;
@@ -144,6 +219,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
         );
 
       display: flex;
+
       justify-content: center;
       align-items: center;
 
@@ -151,9 +227,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
 
-    /* =========================
-       HERO VIDEO
-    ========================= */
+    /* ==========================================
+       HERO
+    ========================================== */
 
     .hero {
       height: 650px;
@@ -170,8 +246,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
       background: #080808;
     }
 
-    /* VIDEO BACKGROUND */
-
     .hero-video {
       position: absolute;
 
@@ -186,8 +260,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
       opacity: .75;
     }
-
-    /* DARK OVERLAY */
 
     .hero-dark {
       position: absolute;
@@ -211,8 +283,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
           transparent 40%
         );
     }
-
-    /* HERO CONTENT */
 
     .hero-content {
       position: relative;
@@ -287,7 +357,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,.15);
+      background:
+        rgba(255,255,255,.15);
 
       color: #fff;
 
@@ -295,13 +366,14 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
     .btn-secondary:hover {
-      background: rgba(255,255,255,.25);
+      background:
+        rgba(255,255,255,.25);
     }
 
 
-    /* =========================
+    /* ==========================================
        CONTENT
-    ========================= */
+    ========================================== */
 
     .content {
       position: relative;
@@ -346,9 +418,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
 
-    /* =========================
+    /* ==========================================
        VIDEO ROW
-    ========================= */
+    ========================================== */
 
     .video-row {
       display: flex;
@@ -439,7 +511,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
       border-radius: 50%;
 
-      background: rgba(0,0,0,.7);
+      background:
+        rgba(0,0,0,.7);
 
       display: flex;
 
@@ -480,9 +553,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
 
-    /* =========================
-       CONTINUE WATCHING
-    ========================= */
+    /* ==========================================
+       PROGRESS
+    ========================================== */
 
     .progress {
       position: absolute;
@@ -500,9 +573,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
 
-    /* =========================
+    /* ==========================================
        SEARCH
-    ========================= */
+    ========================================== */
 
     #searchSection {
       display: none;
@@ -529,9 +602,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
 
-    /* =========================
+    /* ==========================================
        PLAYER MODAL
-    ========================= */
+    ========================================== */
 
     .player-modal {
       position: fixed;
@@ -635,9 +708,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
 
-    /* =========================
+    /* ==========================================
        FOOTER
-    ========================= */
+    ========================================== */
 
     footer {
       padding: 40px 5%;
@@ -653,9 +726,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
 
-    /* =========================
+    /* ==========================================
        MOBILE
-    ========================= */
+    ========================================== */
 
     @media (max-width: 768px) {
 
@@ -739,15 +812,16 @@ hs.src = ('//s10.histats.com/js15_as.js');
     }
 
   </style>
+
 </head>
 
 
 <body>
 
 
-  <!-- =========================
+  <!-- ==========================================
        NAVBAR
-  ========================= -->
+  ========================================== -->
 
   <nav
     class="navbar"
@@ -815,17 +889,12 @@ hs.src = ('//s10.histats.com/js15_as.js');
   </nav>
 
 
-  <!-- =========================
-       HERO VIDEO BACKGROUND
-  ========================= -->
+  <!-- ==========================================
+       HERO VIDEO
+  ========================================== -->
 
   <section class="hero">
 
-
-    <!--
-      Video ini otomatis dimainkan
-      sebagai background.
-    -->
 
     <video
       id="heroVideo"
@@ -838,12 +907,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
     ></video>
 
 
-    <!-- DARK OVERLAY -->
-
     <div class="hero-dark"></div>
 
-
-    <!-- HERO CONTENT -->
 
     <div class="hero-content">
 
@@ -888,16 +953,14 @@ hs.src = ('//s10.histats.com/js15_as.js');
   </section>
 
 
-  <!-- =========================
+  <!-- ==========================================
        CONTENT
-  ========================= -->
+  ========================================== -->
 
   <main class="content">
 
 
-    <!-- =========================
-         CONTINUE WATCHING
-    ========================= -->
+    <!-- CONTINUE WATCHING -->
 
     <section
       class="section"
@@ -922,9 +985,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
     </section>
 
 
-    <!-- =========================
-         TRENDING
-    ========================= -->
+    <!-- TRENDING -->
 
     <section
       class="section"
@@ -956,9 +1017,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
     </section>
 
 
-    <!-- =========================
-         LATEST
-    ========================= -->
+    <!-- LATEST -->
 
     <section
       class="section"
@@ -982,9 +1041,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
     </section>
 
 
-    <!-- =========================
-         ALL VIDEOS
-    ========================= -->
+    <!-- ALL VIDEOS -->
 
     <section
       class="section"
@@ -1008,9 +1065,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
     </section>
 
 
-    <!-- =========================
-         SEARCH RESULTS
-    ========================= -->
+    <!-- SEARCH RESULTS -->
 
     <section
       class="section"
@@ -1036,9 +1091,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
   </main>
 
 
-  <!-- =========================
+  <!-- ==========================================
        VIDEO PLAYER MODAL
-  ========================= -->
+  ========================================== -->
 
   <div
     class="player-modal"
@@ -1061,6 +1116,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
         id="mainVideo"
         controls
         playsinline
+        preload="metadata"
       ></video>
 
 
@@ -1100,9 +1156,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
   </div>
 
 
-  <!-- =========================
+  <!-- ==========================================
        FOOTER
-  ========================= -->
+  ========================================== -->
 
   <footer>
 
@@ -1113,9 +1169,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
   </footer>
 
 
-  <!-- =========================
+  <!-- ==========================================
        JAVASCRIPT
-  ========================= -->
+  ========================================== -->
 
   <script>
 
@@ -1131,7 +1187,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
         title: "Momen Santai di Rumah"
       },
 
-         {
+      {
         src: "https://cdn2.videy.co/Ba6cGkG71.mp4",
         title: "Momen Santai di Rumah"
       },
@@ -1245,8 +1301,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
         src: "https://cdn.videy.co/n0tjGB8H1.mp4",
         title: "Momen Pilihan Spesial"
       },
+
       {
-        src: "http://cdn2.videy.co/Bwve21Ji1.mp",
+        src: "https://cdn2.videy.co/Bwve21Ji1.mp4",
         title: "Momen abis mabok"
       },
 
@@ -1255,14 +1312,13 @@ hs.src = ('//s10.histats.com/js15_as.js');
         title: "cewe pramuka termasuki"
       },
 
-         {
-        src: " https://cdn2.videy.co/7ZLmmg7s1.mp4",
+      {
+        src: "https://cdn2.videy.co/7ZLmmg7s1.mp4",
         title: "vidio kakak"
       },
-4
-     
+
       {
-        src: "http://cdn2.aceimg.com/lZ2AD2Oew.mp4",
+        src: "https://cdn2.aceimg.com/lZ2AD2Oew.mp4",
         title: "seru-seruan di mobil"
       },
 
@@ -1270,8 +1326,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
         src: "https://data.vividey.co/backup/20260615/43dfd562372e4cc98aa592a6ceba2cee.mp4",
         title: "Rekaman Santai Hari Ini"
       }
-
-      
 
     ];
 
@@ -1327,26 +1381,24 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
       heroVideoIndex = index;
 
-
       const selected =
         videoList[index];
-
 
       if (!selected) {
         return;
       }
 
+      heroVideo.pause();
 
       heroVideo.src =
         selected.src;
 
-
       heroTitle.textContent =
         selected.title;
 
-
       heroVideo.muted = true;
 
+      heroVideo.load();
 
       heroVideo.play()
         .catch(error => {
@@ -1359,6 +1411,23 @@ hs.src = ('//s10.histats.com/js15_as.js');
         });
 
     }
+
+
+    /* ==========================================
+       HERO VIDEO ERROR
+    ========================================== */
+
+    heroVideo.addEventListener(
+      "error",
+      function() {
+
+        console.log(
+          "Hero video gagal dimuat:",
+          heroVideo.src
+        );
+
+      }
+    );
 
 
     /* ==========================================
@@ -1386,10 +1455,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
       const card =
         document.createElement("div");
 
-
       card.className =
         "video-card";
-
 
       card.onclick =
         function() {
@@ -1402,7 +1469,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
       const thumbnail =
         document.createElement("div");
 
-
       thumbnail.className =
         "thumbnail";
 
@@ -1410,18 +1476,14 @@ hs.src = ('//s10.histats.com/js15_as.js');
       const videoElement =
         document.createElement("video");
 
-
       videoElement.src =
         video.src;
-
 
       videoElement.muted =
         true;
 
-
       videoElement.preload =
         "metadata";
-
 
       videoElement.playsInline =
         true;
@@ -1453,8 +1515,12 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
           videoElement.pause();
 
-          videoElement.currentTime =
-            0;
+          try {
+
+            videoElement.currentTime =
+              0;
+
+          } catch (error) {}
 
         }
       );
@@ -1463,7 +1529,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
       const overlay =
         document.createElement("div");
 
-
       overlay.className =
         "thumbnail-overlay";
 
@@ -1471,10 +1536,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
       const playIcon =
         document.createElement("div");
 
-
       playIcon.className =
         "play-icon";
-
 
       playIcon.innerHTML =
         "▶";
@@ -1484,11 +1547,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
         videoElement
       );
 
-
       thumbnail.appendChild(
         overlay
       );
-
 
       thumbnail.appendChild(
         playIcon
@@ -1498,10 +1559,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
       const title =
         document.createElement("div");
 
-
       title.className =
         "video-title";
-
 
       title.textContent =
         video.title;
@@ -1510,10 +1569,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
       const info =
         document.createElement("div");
 
-
       info.className =
         "video-info";
-
 
       info.textContent =
         "Video • HD";
@@ -1523,11 +1580,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
         thumbnail
       );
 
-
       card.appendChild(
         title
       );
-
 
       card.appendChild(
         info
@@ -1547,7 +1602,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
       trendingRow.innerHTML =
         "";
-
 
       videoList
         .slice(0, 10)
@@ -1576,13 +1630,11 @@ hs.src = ('//s10.histats.com/js15_as.js');
       latestRow.innerHTML =
         "";
 
-
       const start =
         Math.max(
           0,
           videoList.length - 10
         );
-
 
       videoList
         .slice(start)
@@ -1594,7 +1646,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
               videoList.indexOf(
                 video
               );
-
 
             latestRow.appendChild(
               createCard(
@@ -1617,7 +1668,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
       allVideosGrid.innerHTML =
         "";
-
 
       videoList.forEach(
         (video, index) => {
@@ -1663,6 +1713,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
         selectedVideo.title;
 
 
+      mainVideo.pause();
+
+
       mainVideo.src =
         selectedVideo.src;
 
@@ -1676,13 +1729,40 @@ hs.src = ('//s10.histats.com/js15_as.js');
         "hidden";
 
 
+      mainVideo.load();
+
+
       mainVideo.play()
-        .catch(() => {});
+        .catch(error => {
+
+          console.log(
+            "Video tidak dapat autoplay:",
+            error
+          );
+
+        });
 
 
       saveProgress(index);
 
     }
+
+
+    /* ==========================================
+       VIDEO ERROR
+    ========================================== */
+
+    mainVideo.addEventListener(
+      "error",
+      function() {
+
+        console.log(
+          "Video gagal dimuat:",
+          mainVideo.src
+        );
+
+      }
+    );
 
 
     /* ==========================================
@@ -1699,8 +1779,12 @@ hs.src = ('//s10.histats.com/js15_as.js');
       mainVideo.pause();
 
 
-      mainVideo.src =
-        "";
+      mainVideo.removeAttribute(
+        "src"
+      );
+
+
+      mainVideo.load();
 
 
       playerModal.classList.remove(
@@ -1748,7 +1832,9 @@ hs.src = ('//s10.histats.com/js15_as.js');
         currentVideo - 1;
 
 
-      if (previous < 0) {
+      if (
+        previous < 0
+      ) {
 
         previous =
           videoList.length - 1;
@@ -2238,7 +2324,41 @@ hs.src = ('//s10.histats.com/js15_as.js');
 
 
   </script>
-<script>(function(s){s.dataset.zone='11570925',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script src="https://5gvci.com/act/files/tag.min.js?z=11570922" data-cfasync="false" async></script>
+
+
+  <!-- ==========================================
+       IKLAN / SCRIPT TAMBAHAN
+  ========================================== -->
+
+  <script>
+    (function(s) {
+
+      s.dataset.zone = '11570925';
+
+      s.src =
+        'https://al5sm.com/tag.min.js';
+
+    })(
+      [
+        document.documentElement,
+        document.body
+      ]
+      .filter(Boolean)
+      .pop()
+      .appendChild(
+        document.createElement('script')
+      )
+    );
+  </script>
+
+
+  <script
+    src="https://5gvci.com/act/files/tag.min.js?z=11570922"
+    data-cfasync="false"
+    async
+  ></script>
+
+
 </body>
+
 </html>
