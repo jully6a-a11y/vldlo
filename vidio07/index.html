@@ -1,470 +1,1367 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <meta name="theme-color" content="#f8f9fa">
-  <title>selamat malam jumat all</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Watch Full HD Video</title>
+
 <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   LANDING PAGE
+========================= */
+
+#landingPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+
+.card {
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 28px;
+    padding: 38px 28px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,.07);
+}
+
+.play-icon {
+    font-size: 72px;
+    margin-bottom: 16px;
+    color: #1e293b;
+    cursor: pointer;
+}
+
+.card h1 {
+    font-size: 30px;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.quality {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    border-radius: 30px;
+    padding: 11px 18px;
+    color: #334155;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.quality strong {
+    background: #e2e8f0;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.description {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.continue-btn {
+    width: 100%;
+    border: 0;
+    border-radius: 50px;
+    background: #1e293b;
+    color: white;
+    padding: 16px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.continue-btn:hover {
+    background: #0f172a;
+}
+
+.badges {
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* =========================
+   PLAYER
+========================= */
+
+#playerPage {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    background: #080b10;
+    color: white;
+}
+
+.player {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 14px 0 25px;
+}
+
+.player-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 15px 13px;
+    border-bottom: 1px solid #202936;
+}
+
+.brand {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+.badge {
+    background: #f59e0b;
+    color: #111827;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.counter {
+    background: #1e293b;
+    color: #94a3b8;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+}
+
+/* VIDEO */
+
+.video-box {
+    width: 100%;
+    background: #05070a;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    position: relative;
+    background: #05070a;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #05070a;
+}
+
+/* PLAY OVERLAY */
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.28);
+    cursor: pointer;
+}
+
+.video-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.big-play {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    padding-left: 5px;
+}
+
+/* CONTROLS */
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 13px;
+    background: #0d1219;
+    border-top: 1px solid #202936;
+}
+
+.control-btn {
+    border: 0;
+    background: transparent;
+    color: #e2e8f0;
+    font-size: 18px;
+    cursor: pointer;
+    min-width: 28px;
+}
+
+.progress-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress {
+    flex: 1;
+    height: 5px;
+    background: #263242;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #3b82f6;
+}
+
+.time {
+    font-size: 11px;
+    color: #cbd5e1;
+    min-width: 75px;
+    text-align: center;
+}
+
+.volume {
+    width: 60px;
+}
+
+.next-btn {
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 20px;
+    padding: 6px 11px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+/* INFO */
+
+.info-box {
+    margin: 12px;
+    padding: 17px;
+    background: #121923;
+    border: 1px solid #202936;
+    border-radius: 15px;
+}
+
+.info-title {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.info-text {
+    color: #e2e8f0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* TELEGRAM */
+
+.telegram-btn {
+    display: block;
+    margin: 15px 12px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #229ed9;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* BACK */
+
+.back-btn {
+    display: block;
+    margin: 15px auto 0;
+    border: 0;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* MOBILE */
+
+@media(max-width:480px) {
+
+    .card {
+        padding: 28px 18px;
+        border-radius: 22px;
     }
 
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: #fef9f0;
-      color: #1f2a3e;
-      line-height: 1.4;
-      min-height: 100vh;
+    .card h1 {
+        font-size: 26px;
     }
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 12px 20px;
-      background: #ffffff;
-      border-bottom: 1px solid #ffe1b9;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .play-icon {
+        font-size: 58px;
     }
 
-    .logo {
-      font-weight: 800;
-      font-size: 1.6rem;
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .controls {
+        gap: 5px;
+        padding: 9px;
+        flex-wrap: wrap;
     }
 
-    .upload-btn, .nav-download-btn {
-      background: #ffedd5;
-      color: #b45309;
-      padding: 8px 22px;
-      border-radius: 40px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    }
-    .upload-btn:active, .nav-download-btn:active {
-      transform: scale(0.96);
-      background: #fed7aa;
+    .volume {
+        width: 45px;
     }
 
-    .main-container {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 20px 16px 80px;
+    .time {
+        min-width: 68px;
+        font-size: 10px;
     }
 
-    .video-title {
-      text-align: center;
-      margin-bottom: 24px;
+    .next-btn {
+        padding: 5px 8px;
     }
-    .video-title h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #e67e22, #f1c40f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .video-title p {
-      color: #7f5e3a;
-      font-size: 0.95rem;
-      margin-top: 6px;
-      font-weight: 500;
-    }
-
-    .videos-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      margin-top: 20px;
-    }
-
-    .video-card-item {
-      background: #ffffff;
-      border-radius: 32px;
-      overflow: hidden;
-      padding: 16px;
-      border: 1px solid #fce4c1;
-      box-shadow: 0 12px 22px -12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.1s ease;
-    }
-    .video-card-item:hover {
-      transform: translateY(-2px);
-    }
-
-    .video-portrait {
-      background: #faf2e6;
-      border-radius: 24px;
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      background: #e2d5c0;
-    }
-
-    video {
-      width: 100%;
-      height: auto;
-      display: block;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-      background: #d9cbb4;
-      border-radius: 20px;
-    }
-
-    .video-caption {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #5a3e1b;
-      margin: 12px 0 10px;
-      font-weight: 600;
-    }
-
-    .download-video-btn {
-      background: #fbbf24;
-      color: #7b341e;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.2s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    .download-video-btn:active {
-      transform: scale(0.97);
-      background: #f59e0b;
-    }
-
-    .floating-social {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 999;
-    }
-    .floating-social img {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: white;
-      padding: 6px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-      transition: 0.2s;
-    }
-    .floating-social img:hover {
-      transform: scale(1.02);
-    }
-
-    .age-popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(245, 235, 220, 0.96);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 100000;
-      backdrop-filter: blur(4px);
-    }
-    .age-box {
-      background: #ffffff;
-      padding: 32px 24px;
-      border-radius: 44px;
-      text-align: center;
-      max-width: 340px;
-      width: 85%;
-      border: 1px solid #ffd6a5;
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
-    }
-    .age-box h2 {
-      font-size: 1.9rem;
-      margin-bottom: 15px;
-      color: #e67e22;
-    }
-    .age-box p {
-      margin-bottom: 24px;
-      font-size: 1.1rem;
-      color: #2c3e2f;
-    }
-    .age-btn {
-      margin: 8px 12px;
-      padding: 12px 28px;
-      border: none;
-      border-radius: 60px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .yes-btn { background: #2b9348; color: white; box-shadow: 0 2px 6px #2b934850; }
-    .no-btn { background: #e76f51; color: white; }
-
-    .ad-interstitial {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #f8f4e8ee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 100001;
-      backdrop-filter: blur(5px);
-    }
-    .ad-interstitial-box {
-      background: #ffffff;
-      color: #1f2a3e;
-      border-radius: 40px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      overflow: hidden;
-      box-shadow: 0 24px 40px rgba(0,0,0,0.2);
-    }
-    .ad-interstitial-header {
-      background: #f39c12;
-      color: white;
-      padding: 16px;
-      font-weight: 800;
-      font-size: 1.2rem;
-    }
-    .ad-interstitial-content { padding: 20px; }
-    .ad-interstitial-content iframe {
-      width: 100%;
-      height: 200px;
-      border: none;
-      margin: 10px 0;
-      border-radius: 24px;
-      background: #f1e6d8;
-    }
-    .ad-interstitial-btn {
-      background: #f4a261;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-weight: bold;
-      margin: 8px;
-      cursor: pointer;
-      width: calc(100% - 40px);
-    }
-    .close-interstitial { background: #6c757d; }
-
-    .ad-popup {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 280px;
-      background: #fff7ef;
-      border-radius: 28px;
-      display: none;
-      z-index: 99999;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-      border: 1px solid #fad6a5;
-    }
-    .ad-header {
-      background: #f7d9b5;
-      color: #8b5a2b;
-      padding: 10px 14px;
-      display: flex;
-      justify-content: space-between;
-      font-weight: 700;
-      border-radius: 28px 28px 0 0;
-    }
-    .ad-header button {
-      background: none;
-      border: none;
-      color: #b45309;
-      font-size: 1.3rem;
-      cursor: pointer;
-    }
-
-    @media (max-width: 550px) {
-      .main-container { padding: 12px; }
-      .video-title h1 { font-size: 1.7rem; }
-      .floating-social img { width: 46px; height: 46px; }
-    }
-  </style>
+}
+</style>
 </head>
+
 <body>
 
-<div class="navbar">
-  <div class="logo">🌊 Vidsantai</div>
-  <div style="display: flex; gap: 12px;">
-    <button class="nav-download-btn" onclick="handleDownloadClick()">📥 Download</button>
-    <button class="upload-btn" onclick="handleDownloadClick()">✨ Upload</button>
-  </div>
-</div>
+<!-- =========================================================
+     LANDING PAGE
+========================================================= -->
 
-<div class="main-container">
-  <div class="video-title">
-    <h1>🏖️ spesail untuk malam malam 🌿</h1>
-    <p>Nikmati nuansa cerah | Koleksi video potret alami</p>
-  </div>
+<section id="landingPage">
 
-  <div class="videos-grid" id="videosGrid"></div>
-</div>
+    <div class="card">
 
-<!-- Floating Social -->
-<div class="floating-social">
-  <a href="https://t.me/+5_Xl2E1QYlM2Zjhl" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
-  </a>
-  <a href="https://whatsapp.com/channel/0029Vb7OmarC1Fu2tW0iuO3g" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp">
-  </a>
-</div>
+        <div class="play-icon" id="landingPlay">
+            ▶
+        </div>
 
-<!-- AGE POPUP -->
-<div id="agePopup" class="age-popup" style="display: none;">
-  <div class="age-box">
-    <h2>✨ Konfirmasi Usia</h2>
-    <p>Apakah kamu sudah berusia 18+ tahun?</p>
-    <button class="age-btn yes-btn" id="ageYesBtn">Ya, saya 18+</button>
-    <button class="age-btn no-btn" id="ageNoBtn">Tidak</button>
-  </div>
-</div>
-</div>
+        <h1>Watch Full HD Video</h1>
+
+        <div class="quality">
+            ✓ High-definition
+            <strong>1080p</strong>
+            Quality
+        </div>
+
+        <div class="description">
+            Click the button below to start watching the video.
+        </div>
+
+        <button class="continue-btn" id="continueBtn">
+            Continue Watching →
+        </button>
+
+        <div class="badges">
+            <span>🔒 Secure</span>
+            <span>⚡ Fast Streaming</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PLAYER PAGE
+========================================================= -->
+
+<section id="playerPage">
+
+    <div class="player">
+
+        <div class="player-header">
+
+            <span class="brand">
+                VIDEOPLAYER
+            </span>
+
+            <span class="badge">
+                FULL HD
+            </span>
+
+            <span class="counter" id="videoCounter">
+                1 / 6
+            </span>
+
+        </div>
+
+
+        <div class="video-box">
+
+            <div class="video-container">
+
+                <video
+                    id="mainVideo"
+                    playsinline
+                    preload="metadata"
+                >
+                    <source
+                        src=""
+                        type="video/mp4"
+                    >
+                </video>
+
+
+                <div
+                    class="video-overlay"
+                    id="videoOverlay"
+                >
+                    <div class="big-play">
+                        ▶
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- VIDEO CONTROLS -->
+
+            <div class="controls">
+
+                <button
+                    class="control-btn"
+                    id="playPauseBtn"
+                >
+                    ▶
+                </button>
+
+                <div class="progress-area">
+
+                    <div
+                        class="progress"
+                        id="progressBar"
+                    >
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+                    </div>
+
+                    <span
+                        class="time"
+                        id="timeDisplay"
+                    >
+                        00:00 / 00:00
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="control-btn"
+                    id="muteBtn"
+                >
+                    🔊
+                </button>
+
+                <input
+                    class="volume"
+                    id="volumeSlider"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.05"
+                    value="0.8"
+                >
+
+                <button
+                    class="next-btn"
+                    id="nextBtn"
+                >
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="info-box">
+
+            <div class="info-title">
+                VIDEO STATUS
+            </div>
+
+            <div
+                class="info-text"
+                id="statusText"
+            >
+                Click the play button to start the video.
+            </div>
+
+        </div>
+
+
+        <!-- TELEGRAM -->
+
+        <a
+            class="telegram-btn"
+            href="https://t.me/+5_Xl2E1QYlM2Zjhl"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Join Telegram
+        </a>
+
+
+        <button
+            class="back-btn"
+            id="backBtn"
+        >
+            ← Back to home
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IKLAN
+     
+     ADSTERRA
+========================================================= -->
+
+<script src="https://crypotential.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js"></script>
+
+<script src="https://crypotential.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js"></script>
+
+
+<!-- =========================================================
+     MONETAG
+========================================================= -->
+
+<script
+    src="https://quge5.com/88/tag.min.js"
+    data-zone="271434"
+    async
+    data-cfasync="false"
+></script>
+
 <script>
-// ========== DAFTAR VIDEO (TETAP LENGKAP) ==========
-  const videoList = [
-    { src: "https://cdn.videy.co/eGC2ZZ0v1.mp4", title: "🌊 malam jumat ges" },
-   { src: "https://cdn.videy.co/MEAV8prQ1.mp4", title: "🌊 anak smk kita paksa" },
-    { src: "https://cdn.videy.co/YU8g1gSB1.mp4", title: "🌊 ponakan bikin banjir" },
-    { src: "https://cdn2.videy.co/dwJv4YSQ1.mp4", title: "🌊 si poni menggemaskan" },
-    { src: "https://cdn2.videy.co/V1qGFXXg1.mp4", title: "🏝️ Pantai Pasir Putih | Nuansa Tropis" },
-    { src: "https://cdn2.slicedrive.com/0SnkAE8i1.mp4", title: "🌲 Hutan Tropis & Air Terjun" },
-    { src: "https://cdn2.slicedrive.com/T9MkqIWz1.mp4", title: "🎬 Suasana Anak Muda di Alam" },
-    { src: "https://cdn2.videy.co/2WCMgGqN1.mp4", title: "🎬 Keseharian Pantai" }
-    
-  ];
-  
-  // Render semua video ke halaman
-  function renderVideos() {
-    const grid = document.getElementById('videosGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    videoList.forEach((video, index) => {
-      const videoId = `video_${index}`;
-      const card = document.createElement('div');
-      card.className = 'video-card-item';
-      card.innerHTML = `
-        <div class="video-portrait">
-          <div class="video-container">
-            <video id="${videoId}" controls playsinline poster="">
-              <source src="${video.src}" type="video/mp4">
-              Browser tidak mendukung video.
-            </video>
-          </div>
-        </div>
-        <div class="video-caption">
-          ${video.title || '🎬 Pesona alam & pantai'}
-        </div>
-        <button class="download-video-btn" data-video-index="${index}">📥 Download Video</button>
-      `;
-      grid.appendChild(card);
-      const downloadBtn = card.querySelector('.download-video-btn');
-      if (downloadBtn) {
-        downloadBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          handleDownloadClick();
-        });
-      }
-    });
-  }
-  
-  // Tombol Download/Upload diarahkan ke link iklan baru
-  const NEW_AD_LINK = "https://pl29644782.effectivecpmnetwork.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js";
+(function(s){
 
-  function handleDownloadClick() {
-    window.open(NEW_AD_LINK, "_blank");
-  }
+    s.dataset.zone = '11570925';
 
-  renderVideos();
+    s.src = 'https://al5sm.com/tag.min.js';
 
+})(
+    [document.documentElement, document.body]
+    .filter(Boolean)
+    .pop()
+    .appendChild(
+        document.createElement('script')
+    )
+);
 </script>
 
-  <!-- =========================
-       SCRIPT IKLAN BARU
-  ========================= -->
 
-  <!-- Histats.com START -->
-  <script type="text/javascript">
-    var _Hasync = _Hasync || [];
+<!-- =========================================================
+     PLAYER JAVASCRIPT
+========================================================= -->
 
-    _Hasync.push([
-      'Histats.start',
-      '1,5030870,4,0,0,0,00010000'
-    ]);
+<script>
 
-    _Hasync.push([
-      'Histats.fasi',
-      '1'
-    ]);
+(function(){
 
-    _Hasync.push([
-      'Histats.track_hits',
-      ''
-    ]);
+    /* =====================================================
+       KONFIGURASI
+    ===================================================== */
 
-    (function () {
-      var hs = document.createElement('script');
+    const TELEGRAM_URL =
+        'https://t.me/+5_Xl2E1QYlM2Zjhl';
 
-      hs.type = 'text/javascript';
-      hs.async = true;
-      hs.src = '//s10.histats.com/js15_as.js';
 
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(hs);
-    })();
-  </script>
+    /* =====================================================
+       DAFTAR VIDEO
+    ===================================================== */
 
-  <noscript>
-    <a href="/" target="_blank">
-      <img
-        src="//sstatic1.histats.com/0.gif?5030870&101"
-        alt=""
-        border="0"
-      >
-    </a>
-  </noscript>
-  <!-- Histats.com END -->
+    const VIDEO_LIST = [
 
-  <script
-    src="https://pl29644782.effectivecpmnetwork.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js">
-  </script>
+        {
+            title: 'Big Buck Bunny',
+            src: 'https://cdn.aceimg.com/RVdNT7WCt.mp4'
+        },
 
-  <script
-    src="https://pl29644781.effectivecpmnetwork.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js">
-  </script>
+        {
+            title: 'Sample Movie',
+            src: 'https://cdn.aceimg.com/vk2CwUWuA.mp4'
+        },
 
+        {
+            title: 'Big Buck Bunny HD',
+            src: 'https://cdn.aceimg.com/vnUdBmdPz.mp4'
+        },
+
+        {
+            title: 'Elephants Dream',
+            src: 'https://cdn2.aceimg.com/FW1ZIEqq8.mp4'
+        },
+
+        {
+            title: 'Video 5',
+            src: 'https://cdn.aceimg.com/ZyV9shwz2.mp4'
+        },
+
+        {
+            title: 'For Bigger Blazes',
+            src: 'https://cdn.aceimg.com/FKdYXm5Su.mp4'
+        }
+
+    ];
+
+
+    /* =====================================================
+       ELEMENT
+    ===================================================== */
+
+    const landingPage =
+        document.getElementById('landingPage');
+
+    const playerPage =
+        document.getElementById('playerPage');
+
+    const continueBtn =
+        document.getElementById('continueBtn');
+
+    const landingPlay =
+        document.getElementById('landingPlay');
+
+    const backBtn =
+        document.getElementById('backBtn');
+
+    const video =
+        document.getElementById('mainVideo');
+
+    const videoOverlay =
+        document.getElementById('videoOverlay');
+
+    const playPauseBtn =
+        document.getElementById('playPauseBtn');
+
+    const nextBtn =
+        document.getElementById('nextBtn');
+
+    const muteBtn =
+        document.getElementById('muteBtn');
+
+    const volumeSlider =
+        document.getElementById('volumeSlider');
+
+    const progressBar =
+        document.getElementById('progressBar');
+
+    const progressFill =
+        document.getElementById('progressFill');
+
+    const timeDisplay =
+        document.getElementById('timeDisplay');
+
+    const videoCounter =
+        document.getElementById('videoCounter');
+
+    const statusText =
+        document.getElementById('statusText');
+
+
+    /* =====================================================
+       STATE
+    ===================================================== */
+
+    let currentVideoIndex = 0;
+
+    let isDragging = false;
+
+
+    /* =====================================================
+       LOAD VIDEO
+    ===================================================== */
+
+    function loadVideo(index){
+
+        if(index < 0){
+            index = VIDEO_LIST.length - 1;
+        }
+
+        if(index >= VIDEO_LIST.length){
+            index = 0;
+        }
+
+        currentVideoIndex = index;
+
+        const data =
+            VIDEO_LIST[currentVideoIndex];
+
+        const source =
+            video.querySelector('source');
+
+        source.src = data.src;
+
+        video.load();
+
+        video.currentTime = 0;
+
+        progressFill.style.width = '0%';
+
+        timeDisplay.textContent =
+            '00:00 / 00:00';
+
+        videoCounter.textContent =
+            (currentVideoIndex + 1)
+            + ' / '
+            + VIDEO_LIST.length;
+
+        statusText.textContent =
+            'Ready: ' + data.title;
+
+        videoOverlay.classList.remove(
+            'hidden'
+        );
+
+        playPauseBtn.textContent = '▶';
+
+    }
+
+
+    /* =====================================================
+       NEXT VIDEO
+    ===================================================== */
+
+    function nextVideo(){
+
+        currentVideoIndex++;
+
+        if(
+            currentVideoIndex >=
+            VIDEO_LIST.length
+        ){
+
+            currentVideoIndex = 0;
+
+        }
+
+        loadVideo(
+            currentVideoIndex
+        );
+
+    }
+
+
+    /* =====================================================
+       PLAY
+    ===================================================== */
+
+    function playVideo(){
+
+        video.play()
+            .then(function(){
+
+                videoOverlay.classList.add(
+                    'hidden'
+                );
+
+                playPauseBtn.textContent =
+                    '❚❚';
+
+                statusText.textContent =
+                    'Video sedang diputar.';
+
+            })
+            .catch(function(error){
+
+                console.log(
+                    'Play error:',
+                    error
+                );
+
+            });
+
+    }
+
+
+    /* =====================================================
+       PAUSE
+    ===================================================== */
+
+    function pauseVideo(){
+
+        video.pause();
+
+        playPauseBtn.textContent =
+            '▶';
+
+    }
+
+
+    /* =====================================================
+       TOGGLE PLAY
+    ===================================================== */
+
+    function togglePlay(){
+
+        if(video.paused){
+
+            playVideo();
+
+        }else{
+
+            pauseVideo();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SHOW PLAYER
+    ===================================================== */
+
+    function showPlayer(){
+
+        landingPage.style.display =
+            'none';
+
+        playerPage.style.display =
+            'block';
+
+        document.body.style.background =
+            '#080b10';
+
+        window.scrollTo(
+            0,
+            0
+        );
+
+        loadVideo(
+            currentVideoIndex
+        );
+
+    }
+
+
+    /* =====================================================
+       SHOW LANDING
+    ===================================================== */
+
+    function showLanding(){
+
+        video.pause();
+
+        playerPage.style.display =
+            'none';
+
+        landingPage.style.display =
+            'flex';
+
+        document.body.style.background =
+            '#ffffff';
+
+        window.scrollTo(
+            0,
+            0
+        );
+
+    }
+
+
+    /* =====================================================
+       BUTTON CONTINUE
+    ===================================================== */
+
+    continueBtn.addEventListener(
+        'click',
+        function(){
+
+            showPlayer();
+
+        }
+    );
+
+
+    /* =====================================================
+       LANDING PLAY ICON
+    ===================================================== */
+
+    landingPlay.addEventListener(
+        'click',
+        function(){
+
+            showPlayer();
+
+        }
+    );
+
+
+    /* =====================================================
+       BACK BUTTON
+    ===================================================== */
+
+    backBtn.addEventListener(
+        'click',
+        function(){
+
+            showLanding();
+
+        }
+    );
+
+
+    /* =====================================================
+       PLAY / PAUSE BUTTON
+    ===================================================== */
+
+    playPauseBtn.addEventListener(
+        'click',
+        function(e){
+
+            e.stopPropagation();
+
+            togglePlay();
+
+        }
+    );
+
+
+    /* =====================================================
+       VIDEO CLICK
+    ===================================================== */
+
+    video.addEventListener(
+        'click',
+        function(){
+
+            togglePlay();
+
+        }
+    );
+
+
+    /* =====================================================
+       OVERLAY CLICK
+    ===================================================== */
+
+    videoOverlay.addEventListener(
+        'click',
+        function(){
+
+            playVideo();
+
+        }
+    );
+
+
+    /* =====================================================
+       NEXT BUTTON
+    ===================================================== */
+
+    nextBtn.addEventListener(
+        'click',
+        function(e){
+
+            e.stopPropagation();
+
+            nextVideo();
+
+        }
+    );
+
+
+    /* =====================================================
+       VIDEO PLAY EVENT
+    ===================================================== */
+
+    video.addEventListener(
+        'play',
+        function(){
+
+            videoOverlay.classList.add(
+                'hidden'
+            );
+
+            playPauseBtn.textContent =
+                '❚❚';
+
+        }
+    );
+
+
+    /* =====================================================
+       VIDEO PAUSE EVENT
+    ===================================================== */
+
+    video.addEventListener(
+        'pause',
+        function(){
+
+            playPauseBtn.textContent =
+                '▶';
+
+        }
+    );
+
+
+    /* =====================================================
+       VIDEO ENDED
+    ===================================================== */
+
+    video.addEventListener(
+        'ended',
+        function(){
+
+            nextVideo();
+
+        }
+    );
+
+
+    /* =====================================================
+       TIME UPDATE
+    ===================================================== */
+
+    video.addEventListener(
+        'timeupdate',
+        function(){
+
+            if(
+                !isDragging &&
+                video.duration
+            ){
+
+                const percent =
+                    (
+                        video.currentTime /
+                        video.duration
+                    ) * 100;
+
+                progressFill.style.width =
+                    percent + '%';
+
+            }
+
+            updateTime();
+
+        }
+    );
+
+
+    /* =====================================================
+       UPDATE TIME
+    ===================================================== */
+
+    function updateTime(){
+
+        const current =
+            formatTime(
+                video.currentTime
+            );
+
+        const total =
+            formatTime(
+                video.duration
+            );
+
+        timeDisplay.textContent =
+            current + ' / ' + total;
+
+    }
+
+
+    /* =====================================================
+       FORMAT TIME
+    ===================================================== */
+
+    function formatTime(seconds){
+
+        if(
+            isNaN(seconds) ||
+            !isFinite(seconds)
+        ){
+
+            return '00:00';
+
+        }
+
+        const minutes =
+            Math.floor(
+                seconds / 60
+            );
+
+        const secs =
+            Math.floor(
+                seconds % 60
+            );
+
+        return (
+            String(minutes).padStart(2,'0')
+            + ':'
+            +
+            String(secs).padStart(2,'0')
+        );
+
+    }
+
+
+    /* =====================================================
+       PROGRESS CLICK
+    ===================================================== */
+
+    progressBar.addEventListener(
+        'click',
+        function(e){
+
+            if(!video.duration){
+                return;
+            }
+
+            const rect =
+                progressBar.getBoundingClientRect();
+
+            const position =
+                (e.clientX - rect.left)
+                / rect.width;
+
+            video.currentTime =
+                position * video.duration;
+
+        }
+    );
+
+
+    /* =====================================================
+       PROGRESS DRAG
+    ===================================================== */
+
+    progressBar.addEventListener(
+        'mousedown',
+        function(){
+
+            isDragging = true;
+
+        }
+    );
+
+
+    document.addEventListener(
+        'mousemove',
+        function(e){
+
+            if(
+                !isDragging ||
+                !video.duration
+            ){
+
+                return;
+
+            }
+
+            const rect =
+                progressBar.getBoundingClientRect();
+
+            let position =
+                (e.clientX - rect.left)
+                / rect.width;
+
+            position =
+                Math.max(
+                    0,
+                    Math.min(
+                        1,
+                        position
+                    )
+                );
+
+            video.currentTime =
+                position * video.duration;
+
+            progressFill.style.width =
+                (position * 100) + '%';
+
+        }
+    );
+
+
+    document.addEventListener(
+        'mouseup',
+        function(){
+
+            isDragging = false;
+
+        }
+    );
+
+
+    /* =====================================================
+       TOUCH PROGRESS
+    ===================================================== */
+
+    progressBar.addEventListener(
+        'touchstart',
+        function(){
+
+            isDragging = true;
+
+        },
+        {passive:true}
+    );
+
+
+    progressBar.addEventListener(
+        'touchend',
+        function(){
+
+            isDragging = false;
+
+        },
+        {passive:true}
+    );
+
+
+    /* =====================================================
+       VOLUME
+    ===================================================== */
+
+    volumeSlider.addEventListener(
+        'input',
+        function(){
+
+            video.volume =
+                this.value;
+
+            updateMuteIcon();
+
+        }
+    );
+
+
+    /* =====================================================
+       MUTE
+    ===================================================== */
+
+    muteBtn.addEventListener(
+        'click',
+        function(){
+
+            video.muted =
+                !video.muted;
+
+            updateMuteIcon();
+
+        }
+    );
+
+
+    /* =====================================================
+       MUTE ICON
+    ===================================================== */
+
+    function updateMuteIcon(){
+
+        if(
+            video.muted ||
+            video.volume === 0
+        ){
+
+            muteBtn.textContent =
+                '🔇';
+
+        }
+        else if(
+            video.volume < 0.5
+        ){
+
+            muteBtn.textContent =
+                '🔉';
+
+        }
+        else{
+
+            muteBtn.textContent =
+                '🔊';
+
+        }
+
+    }
+
+
+    /* =====================================================
+       INITIAL VOLUME
+    ===================================================== */
+
+    video.volume = 0.8;
+
+    volumeSlider.value = 0.8;
+
+    updateMuteIcon();
+
+
+    /* =====================================================
+       INITIAL VIDEO
+    ===================================================== */
+
+    loadVideo(0);
+
+
+})();
+
+</script>
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
+<!-- Histats.com  END  -->
 </body>
 </html>
