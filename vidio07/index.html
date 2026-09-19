@@ -1,1367 +1,644 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Watch Full HD Video</title>
+  <title>Video Player</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    min-height: 100vh;
-    background: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* =========================
-   LANDING PAGE
-========================= */
-
-#landingPage {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-}
-
-.card {
-    width: 100%;
-    max-width: 480px;
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-radius: 28px;
-    padding: 38px 28px;
-    text-align: center;
-    box-shadow: 0 10px 35px rgba(0,0,0,.07);
-}
-
-.play-icon {
-    font-size: 72px;
-    margin-bottom: 16px;
-    color: #1e293b;
-    cursor: pointer;
-}
-
-.card h1 {
-    font-size: 30px;
-    color: #111827;
-    margin-bottom: 20px;
-}
-
-.quality {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #f1f5f9;
-    border-radius: 30px;
-    padding: 11px 18px;
-    color: #334155;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.quality strong {
-    background: #e2e8f0;
-    padding: 3px 8px;
-    border-radius: 20px;
-}
-
-.description {
-    color: #64748b;
-    line-height: 1.6;
-    font-size: 15px;
-    margin-bottom: 25px;
-}
-
-.continue-btn {
-    width: 100%;
-    border: 0;
-    border-radius: 50px;
-    background: #1e293b;
-    color: white;
-    padding: 16px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.continue-btn:hover {
-    background: #0f172a;
-}
-
-.badges {
-    margin-top: 25px;
-    padding-top: 18px;
-    border-top: 1px solid #eee;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    color: #64748b;
-    font-size: 13px;
-}
-
-/* =========================
-   PLAYER
-========================= */
-
-#playerPage {
-    display: none;
-    width: 100%;
-    min-height: 100vh;
-    background: #080b10;
-    color: white;
-}
-
-.player {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    padding: 14px 0 25px;
-}
-
-.player-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 0 15px 13px;
-    border-bottom: 1px solid #202936;
-}
-
-.brand {
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #94a3b8;
-}
-
-.badge {
-    background: #f59e0b;
-    color: #111827;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: bold;
-}
-
-.counter {
-    background: #1e293b;
-    color: #94a3b8;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-}
-
-/* VIDEO */
-
-.video-box {
-    width: 100%;
-    background: #05070a;
-    position: relative;
-    overflow: hidden;
-}
-
-.video-container {
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    position: relative;
-    background: #05070a;
-}
-
-video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    background: #05070a;
-}
-
-/* PLAY OVERLAY */
-
-.video-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,.28);
-    cursor: pointer;
-}
-
-.video-overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.big-play {
-    width: 82px;
-    height: 82px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.92);
-    color: #111827;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    padding-left: 5px;
-}
-
-/* CONTROLS */
-
-.controls {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 11px 13px;
-    background: #0d1219;
-    border-top: 1px solid #202936;
-}
-
-.control-btn {
-    border: 0;
-    background: transparent;
-    color: #e2e8f0;
-    font-size: 18px;
-    cursor: pointer;
-    min-width: 28px;
-}
-
-.progress-area {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.progress {
-    flex: 1;
-    height: 5px;
-    background: #263242;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: #3b82f6;
-}
-
-.time {
-    font-size: 11px;
-    color: #cbd5e1;
-    min-width: 75px;
-    text-align: center;
-}
-
-.volume {
-    width: 60px;
-}
-
-.next-btn {
-    border: 1px solid #334155;
-    background: #1e293b;
-    color: #e2e8f0;
-    border-radius: 20px;
-    padding: 6px 11px;
-    cursor: pointer;
-    font-size: 11px;
-}
-
-/* INFO */
-
-.info-box {
-    margin: 12px;
-    padding: 17px;
-    background: #121923;
-    border: 1px solid #202936;
-    border-radius: 15px;
-}
-
-.info-title {
-    color: #94a3b8;
-    font-size: 11px;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.info-text {
-    color: #e2e8f0;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-/* TELEGRAM */
-
-.telegram-btn {
-    display: block;
-    margin: 15px 12px;
-    padding: 14px;
-    border-radius: 12px;
-    background: #229ed9;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* BACK */
-
-.back-btn {
-    display: block;
-    margin: 15px auto 0;
-    border: 0;
-    background: transparent;
-    color: #64748b;
-    cursor: pointer;
-    padding: 10px;
-}
-
-/* MOBILE */
-
-@media(max-width:480px) {
-
-    .card {
-        padding: 28px 18px;
-        border-radius: 22px;
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .card h1 {
-        font-size: 26px;
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      min-height: 100vh;
     }
 
-    .play-icon {
-        font-size: 58px;
+    /* =========================
+       LANDING PAGE
+    ========================== */
+
+    #page-landing {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
-    .controls {
-        gap: 5px;
-        padding: 9px;
-        flex-wrap: wrap;
+    .landing-box {
+      width: 100%;
+      max-width: 500px;
+      background: #1c1c1c;
+      border-radius: 14px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,.4);
     }
 
-    .volume {
-        width: 45px;
+    .landing-box h1 {
+      font-size: 25px;
+      margin-bottom: 12px;
     }
 
-    .time {
-        min-width: 68px;
-        font-size: 10px;
+    .landing-box p {
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .continue-btn {
+      display: inline-block;
+      border: none;
+      background: #fff;
+      color: #111;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .continue-btn:hover {
+      opacity: .85;
+    }
+
+    /* =========================
+       PLAYER PAGE
+    ========================== */
+
+    #page-player {
+      display: none;
+      min-height: 100vh;
+      padding: 15px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      background: #000;
+    }
+
+    .video-info {
+      padding: 15px 5px;
+    }
+
+    .video-info h2 {
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+
+    .video-info p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* =========================
+       AD AREA
+    ========================== */
+
+    .ad-section {
+      margin: 18px 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .ad-label {
+      font-size: 11px;
+      color: #777;
+      margin-bottom: 5px;
+    }
+
+    #ad-container {
+      width: 100%;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================== */
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .buttons button,
+    .buttons a {
+      flex: 1;
+      padding: 12px;
+      border-radius: 7px;
+      border: 0;
+      text-decoration: none;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .next-btn {
-        padding: 5px 8px;
+      background: #fff;
+      color: #111;
     }
-}
-</style>
+
+    .telegram-btn {
+      background: #229ed9;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      #page-player {
+        padding: 8px;
+      }
+
+      .landing-box {
+        padding: 25px 18px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     LANDING PAGE
-========================================================= -->
+  <!-- =====================================================
+       LANDING PAGE
+  ====================================================== -->
 
-<section id="landingPage">
+  <section id="page-landing">
 
-    <div class="card">
+    <div class="landing-box">
 
-        <div class="play-icon" id="landingPlay">
-            ▶
-        </div>
+      <h1>Video Player</h1>
 
-        <h1>Watch Full HD Video</h1>
+      <p>
+        Klik tombol di bawah untuk melanjutkan ke halaman video.
+      </p>
 
-        <div class="quality">
-            ✓ High-definition
-            <strong>1080p</strong>
-            Quality
-        </div>
-
-        <div class="description">
-            Click the button below to start watching the video.
-        </div>
-
-        <button class="continue-btn" id="continueBtn">
-            Continue Watching →
-        </button>
-
-        <div class="badges">
-            <span>🔒 Secure</span>
-            <span>⚡ Fast Streaming</span>
-        </div>
+      <button
+        class="continue-btn"
+        id="continueBtn">
+        Lanjut ke Video
+      </button>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- =========================================================
-     PLAYER PAGE
-========================================================= -->
+  <!-- =====================================================
+       PLAYER PAGE
+  ====================================================== -->
 
-<section id="playerPage">
+  <section id="page-player">
 
-    <div class="player">
+    <div class="container">
 
-        <div class="player-header">
+      <!-- VIDEO -->
 
-            <span class="brand">
-                VIDEOPLAYER
-            </span>
+      <div class="video-wrapper">
 
-            <span class="badge">
-                FULL HD
-            </span>
+        <video
+          id="mainVideo"
+          controls
+          playsinline
+          preload="metadata">
 
-            <span class="counter" id="videoCounter">
-                1 / 6
-            </span>
+          <source
+            id="videoSource"
+            src=""
+            type="video/mp4">
 
+          Browser Anda tidak mendukung video HTML5.
+
+        </video>
+
+      </div>
+
+
+      <!-- INFO -->
+
+      <div class="video-info">
+
+        <h2 id="videoTitle">
+          Video 1
+        </h2>
+
+        <p id="videoCounter">
+          Video 1 dari 6
+        </p>
+
+      </div>
+
+
+      <!-- =================================================
+           IKLAN
+      ================================================== -->
+
+      <div class="ad-section">
+
+        <div class="ad-label">
+          Advertisement
         </div>
 
+        <div id="ad-container"></div>
 
-        <div class="video-box">
-
-            <div class="video-container">
-
-                <video
-                    id="mainVideo"
-                    playsinline
-                    preload="metadata"
-                >
-                    <source
-                        src=""
-                        type="video/mp4"
-                    >
-                </video>
+      </div>
 
 
-                <div
-                    class="video-overlay"
-                    id="videoOverlay"
-                >
-                    <div class="big-play">
-                        ▶
-                    </div>
-                </div>
+      <!-- BUTTONS -->
 
-            </div>
-
-
-            <!-- VIDEO CONTROLS -->
-
-            <div class="controls">
-
-                <button
-                    class="control-btn"
-                    id="playPauseBtn"
-                >
-                    ▶
-                </button>
-
-                <div class="progress-area">
-
-                    <div
-                        class="progress"
-                        id="progressBar"
-                    >
-                        <div
-                            class="progress-fill"
-                            id="progressFill"
-                        ></div>
-                    </div>
-
-                    <span
-                        class="time"
-                        id="timeDisplay"
-                    >
-                        00:00 / 00:00
-                    </span>
-
-                </div>
-
-
-                <button
-                    class="control-btn"
-                    id="muteBtn"
-                >
-                    🔊
-                </button>
-
-                <input
-                    class="volume"
-                    id="volumeSlider"
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.05"
-                    value="0.8"
-                >
-
-                <button
-                    class="next-btn"
-                    id="nextBtn"
-                >
-                    Next →
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- INFO -->
-
-        <div class="info-box">
-
-            <div class="info-title">
-                VIDEO STATUS
-            </div>
-
-            <div
-                class="info-text"
-                id="statusText"
-            >
-                Click the play button to start the video.
-            </div>
-
-        </div>
-
-
-        <!-- TELEGRAM -->
-
-        <a
-            class="telegram-btn"
-            href="https://t.me/+5_Xl2E1QYlM2Zjhl"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Join Telegram
-        </a>
-
+      <div class="buttons">
 
         <button
-            class="back-btn"
-            id="backBtn"
-        >
-            ← Back to home
+          class="next-btn"
+          id="nextBtn">
+          Video Berikutnya
         </button>
+
+        <a
+          class="telegram-btn"
+          href="https://t.me/+5_Xl2E1QYlM2Zjhl"
+          target="_blank"
+          rel="noopener noreferrer">
+          Telegram
+        </a>
+
+      </div>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- =========================================================
-     IKLAN
-     
+<script>
+/* =========================================================
+   VIDEO LIST
+========================================================= */
+
+const VIDEO_LIST = [
+
+  {
+    title: "Video 1",
+    src: "https://cdn.aceimg.com/RVdNT7WCt.mp4"
+  },
+
+  {
+    title: "Video 2",
+    src: "https://cdn.aceimg.com/vk2CwUWuA.mp4"
+  },
+
+  {
+    title: "Video 3",
+    src: "https://cdn.aceimg.com/vnUdBmdPz.mp4"
+  },
+
+  {
+    title: "Video 4",
+    src: "https://cdn2.aceimg.com/FW1ZIEqq8.mp4"
+  },
+
+  {
+    title: "Video 5",
+    src: "https://cdn.aceimg.com/ZyV9shwz2.mp4"
+  },
+
+  {
+    title: "Video 6",
+    src: "https://cdn.aceimg.com/FKdYXm5Su.mp4"
+  }
+
+];
+
+
+/* =========================================================
+   ELEMENT
+========================================================= */
+
+const landingPage =
+  document.getElementById("page-landing");
+
+const playerPage =
+  document.getElementById("page-player");
+
+const continueBtn =
+  document.getElementById("continueBtn");
+
+const nextBtn =
+  document.getElementById("nextBtn");
+
+const video =
+  document.getElementById("mainVideo");
+
+const videoSource =
+  document.getElementById("videoSource");
+
+const videoTitle =
+  document.getElementById("videoTitle");
+
+const videoCounter =
+  document.getElementById("videoCounter");
+
+const adContainer =
+  document.getElementById("ad-container");
+
+
+/* =========================================================
+   CURRENT VIDEO
+========================================================= */
+
+let currentVideoIndex = 0;
+
+
+/* =========================================================
+   LOAD VIDEO
+========================================================= */
+
+function loadVideo(index) {
+
+  if (index < 0) {
+    index = 0;
+  }
+
+  if (index >= VIDEO_LIST.length) {
+    index = 0;
+  }
+
+  currentVideoIndex = index;
+
+  const videoData =
+    VIDEO_LIST[currentVideoIndex];
+
+  videoSource.src =
+    videoData.src;
+
+  videoTitle.textContent =
+    videoData.title;
+
+  videoCounter.textContent =
+    "Video " +
+    (currentVideoIndex + 1) +
+    " dari " +
+    VIDEO_LIST.length;
+
+  video.load();
+
+}
+
+
+/* =========================================================
+   NEXT VIDEO
+========================================================= */
+
+function nextVideo() {
+
+  currentVideoIndex++;
+
+  if (currentVideoIndex >= VIDEO_LIST.length) {
+    currentVideoIndex = 0;
+  }
+
+  loadVideo(currentVideoIndex);
+
+  video.play().catch(() => {});
+
+}
+
+
+/* =========================================================
+   OPEN PLAYER
+========================================================= */
+
+function showPlayer() {
+
+  landingPage.style.display = "none";
+
+  playerPage.style.display = "block";
+
+  loadVideo(currentVideoIndex);
+
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+continueBtn.addEventListener("click", function() {
+
+  /*
+   * Iklan hanya dimuat setelah user benar-benar
+   * menekan tombol "Lanjut ke Video".
+   */
+
+  showPlayer();
+
+  loadAdvertising();
+
+});
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+nextBtn.addEventListener("click", function() {
+
+  nextVideo();
+
+});
+
+
+/* =========================================================
+   AUTO NEXT AFTER VIDEO END
+========================================================= */
+
+video.addEventListener("ended", function() {
+
+  nextVideo();
+
+});
+
+
+/* =========================================================
+   AD CONFIGURATION
+========================================================= */
+
+/*
+   Pilih SATU provider aktif.
+   
+   "adsterra"
+   atau
+   "monetag"
+*/
+
+const ACTIVE_AD = "monetag";
+
+
+/* =========================================================
+   LOAD ADVERTISING
+========================================================= */
+
+let advertisingLoaded = false;
+
+function loadAdvertising() {
+
+  if (advertisingLoaded) {
+    return;
+  }
+
+  advertisingLoaded = true;
+
+
+  /* -------------------------------------------------------
      ADSTERRA
-========================================================= -->
+  -------------------------------------------------------- */
 
-<script src="https://crypotential.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js"></script>
+  if (ACTIVE_AD === "adsterra") {
 
-<script src="https://crypotential.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js"></script>
+    const script1 =
+      document.createElement("script");
+
+    script1.src =
+      "https://crypotential.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js";
+
+    script1.async = true;
+
+    adContainer.appendChild(script1);
 
 
-<!-- =========================================================
+    const script2 =
+      document.createElement("script");
+
+    script2.src =
+      "https://crypotential.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js";
+
+    script2.async = true;
+
+    adContainer.appendChild(script2);
+
+  }
+
+
+  /* -------------------------------------------------------
      MONETAG
-========================================================= -->
+  -------------------------------------------------------- */
 
-<script
-    src="https://quge5.com/88/tag.min.js"
-    data-zone="271434"
-    async
-    data-cfasync="false"
-></script>
+  if (ACTIVE_AD === "monetag") {
 
-<script>
-(function(s){
+    const script1 =
+      document.createElement("script");
 
-    s.dataset.zone = '11570925';
+    script1.src =
+      "https://quge5.com/88/tag.min.js";
 
-    s.src = 'https://al5sm.com/tag.min.js';
+    script1.dataset.zone =
+      "271434";
 
-})(
-    [document.documentElement, document.body]
-    .filter(Boolean)
-    .pop()
-    .appendChild(
-        document.createElement('script')
-    )
+    script1.async = true;
+
+    script1.dataset.cfasync =
+      "false";
+
+    adContainer.appendChild(script1);
+
+
+    const script2 =
+      document.createElement("script");
+
+    script2.dataset.zone =
+      "11570925";
+
+    script2.src =
+      "https://al5sm.com/tag.min.js";
+
+    script2.async = true;
+
+    adContainer.appendChild(script2);
+
+  }
+
+}
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+landingPage.style.display = "flex";
+
+playerPage.style.display = "none";
+
+
+/* =========================================================
+   URL PLAYER MODE
+========================================================= */
+
+/*
+   Jika URL dibuka dengan:
+
+   ?player=true
+
+   maka langsung masuk player.
+*/
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+if (params.get("player") === "true") {
+
+  showPlayer();
+
+  loadAdvertising();
+
+}
+
+
+/* =========================================================
+   PREVENT ACCIDENTAL PAGE RELOAD FROM VIDEO
+========================================================= */
+
+video.addEventListener(
+  "error",
+  function() {
+
+    console.log(
+      "Video gagal dimuat:",
+      VIDEO_LIST[currentVideoIndex].src
+    );
+
+  }
 );
+
 </script>
 
-
-<!-- =========================================================
-     PLAYER JAVASCRIPT
-========================================================= -->
-
-<script>
-
-(function(){
-
-    /* =====================================================
-       KONFIGURASI
-    ===================================================== */
-
-    const TELEGRAM_URL =
-        'https://t.me/+5_Xl2E1QYlM2Zjhl';
-
-
-    /* =====================================================
-       DAFTAR VIDEO
-    ===================================================== */
-
-    const VIDEO_LIST = [
-
-        {
-            title: 'Big Buck Bunny',
-            src: 'https://cdn.aceimg.com/RVdNT7WCt.mp4'
-        },
-
-        {
-            title: 'Sample Movie',
-            src: 'https://cdn.aceimg.com/vk2CwUWuA.mp4'
-        },
-
-        {
-            title: 'Big Buck Bunny HD',
-            src: 'https://cdn.aceimg.com/vnUdBmdPz.mp4'
-        },
-
-        {
-            title: 'Elephants Dream',
-            src: 'https://cdn2.aceimg.com/FW1ZIEqq8.mp4'
-        },
-
-        {
-            title: 'Video 5',
-            src: 'https://cdn.aceimg.com/ZyV9shwz2.mp4'
-        },
-
-        {
-            title: 'For Bigger Blazes',
-            src: 'https://cdn.aceimg.com/FKdYXm5Su.mp4'
-        }
-
-    ];
-
-
-    /* =====================================================
-       ELEMENT
-    ===================================================== */
-
-    const landingPage =
-        document.getElementById('landingPage');
-
-    const playerPage =
-        document.getElementById('playerPage');
-
-    const continueBtn =
-        document.getElementById('continueBtn');
-
-    const landingPlay =
-        document.getElementById('landingPlay');
-
-    const backBtn =
-        document.getElementById('backBtn');
-
-    const video =
-        document.getElementById('mainVideo');
-
-    const videoOverlay =
-        document.getElementById('videoOverlay');
-
-    const playPauseBtn =
-        document.getElementById('playPauseBtn');
-
-    const nextBtn =
-        document.getElementById('nextBtn');
-
-    const muteBtn =
-        document.getElementById('muteBtn');
-
-    const volumeSlider =
-        document.getElementById('volumeSlider');
-
-    const progressBar =
-        document.getElementById('progressBar');
-
-    const progressFill =
-        document.getElementById('progressFill');
-
-    const timeDisplay =
-        document.getElementById('timeDisplay');
-
-    const videoCounter =
-        document.getElementById('videoCounter');
-
-    const statusText =
-        document.getElementById('statusText');
-
-
-    /* =====================================================
-       STATE
-    ===================================================== */
-
-    let currentVideoIndex = 0;
-
-    let isDragging = false;
-
-
-    /* =====================================================
-       LOAD VIDEO
-    ===================================================== */
-
-    function loadVideo(index){
-
-        if(index < 0){
-            index = VIDEO_LIST.length - 1;
-        }
-
-        if(index >= VIDEO_LIST.length){
-            index = 0;
-        }
-
-        currentVideoIndex = index;
-
-        const data =
-            VIDEO_LIST[currentVideoIndex];
-
-        const source =
-            video.querySelector('source');
-
-        source.src = data.src;
-
-        video.load();
-
-        video.currentTime = 0;
-
-        progressFill.style.width = '0%';
-
-        timeDisplay.textContent =
-            '00:00 / 00:00';
-
-        videoCounter.textContent =
-            (currentVideoIndex + 1)
-            + ' / '
-            + VIDEO_LIST.length;
-
-        statusText.textContent =
-            'Ready: ' + data.title;
-
-        videoOverlay.classList.remove(
-            'hidden'
-        );
-
-        playPauseBtn.textContent = '▶';
-
-    }
-
-
-    /* =====================================================
-       NEXT VIDEO
-    ===================================================== */
-
-    function nextVideo(){
-
-        currentVideoIndex++;
-
-        if(
-            currentVideoIndex >=
-            VIDEO_LIST.length
-        ){
-
-            currentVideoIndex = 0;
-
-        }
-
-        loadVideo(
-            currentVideoIndex
-        );
-
-    }
-
-
-    /* =====================================================
-       PLAY
-    ===================================================== */
-
-    function playVideo(){
-
-        video.play()
-            .then(function(){
-
-                videoOverlay.classList.add(
-                    'hidden'
-                );
-
-                playPauseBtn.textContent =
-                    '❚❚';
-
-                statusText.textContent =
-                    'Video sedang diputar.';
-
-            })
-            .catch(function(error){
-
-                console.log(
-                    'Play error:',
-                    error
-                );
-
-            });
-
-    }
-
-
-    /* =====================================================
-       PAUSE
-    ===================================================== */
-
-    function pauseVideo(){
-
-        video.pause();
-
-        playPauseBtn.textContent =
-            '▶';
-
-    }
-
-
-    /* =====================================================
-       TOGGLE PLAY
-    ===================================================== */
-
-    function togglePlay(){
-
-        if(video.paused){
-
-            playVideo();
-
-        }else{
-
-            pauseVideo();
-
-        }
-
-    }
-
-
-    /* =====================================================
-       SHOW PLAYER
-    ===================================================== */
-
-    function showPlayer(){
-
-        landingPage.style.display =
-            'none';
-
-        playerPage.style.display =
-            'block';
-
-        document.body.style.background =
-            '#080b10';
-
-        window.scrollTo(
-            0,
-            0
-        );
-
-        loadVideo(
-            currentVideoIndex
-        );
-
-    }
-
-
-    /* =====================================================
-       SHOW LANDING
-    ===================================================== */
-
-    function showLanding(){
-
-        video.pause();
-
-        playerPage.style.display =
-            'none';
-
-        landingPage.style.display =
-            'flex';
-
-        document.body.style.background =
-            '#ffffff';
-
-        window.scrollTo(
-            0,
-            0
-        );
-
-    }
-
-
-    /* =====================================================
-       BUTTON CONTINUE
-    ===================================================== */
-
-    continueBtn.addEventListener(
-        'click',
-        function(){
-
-            showPlayer();
-
-        }
-    );
-
-
-    /* =====================================================
-       LANDING PLAY ICON
-    ===================================================== */
-
-    landingPlay.addEventListener(
-        'click',
-        function(){
-
-            showPlayer();
-
-        }
-    );
-
-
-    /* =====================================================
-       BACK BUTTON
-    ===================================================== */
-
-    backBtn.addEventListener(
-        'click',
-        function(){
-
-            showLanding();
-
-        }
-    );
-
-
-    /* =====================================================
-       PLAY / PAUSE BUTTON
-    ===================================================== */
-
-    playPauseBtn.addEventListener(
-        'click',
-        function(e){
-
-            e.stopPropagation();
-
-            togglePlay();
-
-        }
-    );
-
-
-    /* =====================================================
-       VIDEO CLICK
-    ===================================================== */
-
-    video.addEventListener(
-        'click',
-        function(){
-
-            togglePlay();
-
-        }
-    );
-
-
-    /* =====================================================
-       OVERLAY CLICK
-    ===================================================== */
-
-    videoOverlay.addEventListener(
-        'click',
-        function(){
-
-            playVideo();
-
-        }
-    );
-
-
-    /* =====================================================
-       NEXT BUTTON
-    ===================================================== */
-
-    nextBtn.addEventListener(
-        'click',
-        function(e){
-
-            e.stopPropagation();
-
-            nextVideo();
-
-        }
-    );
-
-
-    /* =====================================================
-       VIDEO PLAY EVENT
-    ===================================================== */
-
-    video.addEventListener(
-        'play',
-        function(){
-
-            videoOverlay.classList.add(
-                'hidden'
-            );
-
-            playPauseBtn.textContent =
-                '❚❚';
-
-        }
-    );
-
-
-    /* =====================================================
-       VIDEO PAUSE EVENT
-    ===================================================== */
-
-    video.addEventListener(
-        'pause',
-        function(){
-
-            playPauseBtn.textContent =
-                '▶';
-
-        }
-    );
-
-
-    /* =====================================================
-       VIDEO ENDED
-    ===================================================== */
-
-    video.addEventListener(
-        'ended',
-        function(){
-
-            nextVideo();
-
-        }
-    );
-
-
-    /* =====================================================
-       TIME UPDATE
-    ===================================================== */
-
-    video.addEventListener(
-        'timeupdate',
-        function(){
-
-            if(
-                !isDragging &&
-                video.duration
-            ){
-
-                const percent =
-                    (
-                        video.currentTime /
-                        video.duration
-                    ) * 100;
-
-                progressFill.style.width =
-                    percent + '%';
-
-            }
-
-            updateTime();
-
-        }
-    );
-
-
-    /* =====================================================
-       UPDATE TIME
-    ===================================================== */
-
-    function updateTime(){
-
-        const current =
-            formatTime(
-                video.currentTime
-            );
-
-        const total =
-            formatTime(
-                video.duration
-            );
-
-        timeDisplay.textContent =
-            current + ' / ' + total;
-
-    }
-
-
-    /* =====================================================
-       FORMAT TIME
-    ===================================================== */
-
-    function formatTime(seconds){
-
-        if(
-            isNaN(seconds) ||
-            !isFinite(seconds)
-        ){
-
-            return '00:00';
-
-        }
-
-        const minutes =
-            Math.floor(
-                seconds / 60
-            );
-
-        const secs =
-            Math.floor(
-                seconds % 60
-            );
-
-        return (
-            String(minutes).padStart(2,'0')
-            + ':'
-            +
-            String(secs).padStart(2,'0')
-        );
-
-    }
-
-
-    /* =====================================================
-       PROGRESS CLICK
-    ===================================================== */
-
-    progressBar.addEventListener(
-        'click',
-        function(e){
-
-            if(!video.duration){
-                return;
-            }
-
-            const rect =
-                progressBar.getBoundingClientRect();
-
-            const position =
-                (e.clientX - rect.left)
-                / rect.width;
-
-            video.currentTime =
-                position * video.duration;
-
-        }
-    );
-
-
-    /* =====================================================
-       PROGRESS DRAG
-    ===================================================== */
-
-    progressBar.addEventListener(
-        'mousedown',
-        function(){
-
-            isDragging = true;
-
-        }
-    );
-
-
-    document.addEventListener(
-        'mousemove',
-        function(e){
-
-            if(
-                !isDragging ||
-                !video.duration
-            ){
-
-                return;
-
-            }
-
-            const rect =
-                progressBar.getBoundingClientRect();
-
-            let position =
-                (e.clientX - rect.left)
-                / rect.width;
-
-            position =
-                Math.max(
-                    0,
-                    Math.min(
-                        1,
-                        position
-                    )
-                );
-
-            video.currentTime =
-                position * video.duration;
-
-            progressFill.style.width =
-                (position * 100) + '%';
-
-        }
-    );
-
-
-    document.addEventListener(
-        'mouseup',
-        function(){
-
-            isDragging = false;
-
-        }
-    );
-
-
-    /* =====================================================
-       TOUCH PROGRESS
-    ===================================================== */
-
-    progressBar.addEventListener(
-        'touchstart',
-        function(){
-
-            isDragging = true;
-
-        },
-        {passive:true}
-    );
-
-
-    progressBar.addEventListener(
-        'touchend',
-        function(){
-
-            isDragging = false;
-
-        },
-        {passive:true}
-    );
-
-
-    /* =====================================================
-       VOLUME
-    ===================================================== */
-
-    volumeSlider.addEventListener(
-        'input',
-        function(){
-
-            video.volume =
-                this.value;
-
-            updateMuteIcon();
-
-        }
-    );
-
-
-    /* =====================================================
-       MUTE
-    ===================================================== */
-
-    muteBtn.addEventListener(
-        'click',
-        function(){
-
-            video.muted =
-                !video.muted;
-
-            updateMuteIcon();
-
-        }
-    );
-
-
-    /* =====================================================
-       MUTE ICON
-    ===================================================== */
-
-    function updateMuteIcon(){
-
-        if(
-            video.muted ||
-            video.volume === 0
-        ){
-
-            muteBtn.textContent =
-                '🔇';
-
-        }
-        else if(
-            video.volume < 0.5
-        ){
-
-            muteBtn.textContent =
-                '🔉';
-
-        }
-        else{
-
-            muteBtn.textContent =
-                '🔊';
-
-        }
-
-    }
-
-
-    /* =====================================================
-       INITIAL VOLUME
-    ===================================================== */
-
-    video.volume = 0.8;
-
-    volumeSlider.value = 0.8;
-
-    updateMuteIcon();
-
-
-    /* =====================================================
-       INITIAL VIDEO
-    ===================================================== */
-
-    loadVideo(0);
-
-
-})();
-
-</script>
-<!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5030870,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5030870&101" alt="" border="0"></a></noscript>
-<!-- Histats.com  END  -->
 </body>
 </html>
