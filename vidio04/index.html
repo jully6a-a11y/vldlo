@@ -856,33 +856,37 @@
                 //     })();
                 // }
 
-                // ---------- MONETAG ----------
-                 if (POPUNDER_TYPE === 'monetag') {
-                    (function(s) {
-                        s.dataset.zone = '11570925';
-                        s.src = 'https://al5sm.com/tag.min.js';
-                    })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
-                }
+const ENABLE_POPUNDER = true;
 
-                // ---------- ADSTERRA ----------
-                else if (POPUNDER_TYPE === 'adsterra') {
-                    (function() {
-                        var script = document.createElement('script');
-                        script.src = 'https://crypotential.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+if (isPlayerMode && ENABLE_POPUNDER) {
 
-              else if (POPUNDER_TYPE === 'adsterra2') {
-                    (function() {
-                        var script = document.createElement('script');
-                        script.src = 'https://crypotential.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
-            }
+    // MONETAG
+    (function(s) {
+        s.dataset.zone = '11570925';
+        s.src = 'https://al5sm.com/tag.min.js';
+    })(
+        [document.documentElement, document.body]
+        .filter(Boolean)
+        .pop()
+        .appendChild(document.createElement('script'))
+    );
+
+    // ADSTERRA 1
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://crypotential.com/54/88/48/548848e09439c6e0d5af5e5aab5d16d4.js';
+        script.async = true;
+        document.head.appendChild(script);
+    })();
+
+    // ADSTERRA 2
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://crypotential.com/1c/26/08/1c2608f140f0035e99e6a3f46a738656.js';
+        script.async = true;
+        document.head.appendChild(script);
+    })();
+}
 
             // =========================================================
             // 8. ELEMEN
